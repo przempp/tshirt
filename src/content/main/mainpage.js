@@ -13,7 +13,6 @@ function createTshirtDirectory() {
     let tshirtDirectory;
     tshirtDirectory = [];
     tshirts.forEach((tshirt, i) => {
-        console.log(i)
         if (i === 8) {
             tshirtDirectory.push(<div className='menu-item col-md-4 align-self-center' >
                 <div className='col-sm '>

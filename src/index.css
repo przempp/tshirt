@@ -46,6 +46,14 @@ body {
   background-position-x: 550px;
 }
 
+html a {
+  color: darkgrey;
+}
+
+html a:hover {
+  color: grey;
+  text-decoration: none;
+}
 
 
 .main {
@@ -64,6 +72,8 @@ body {
   padding-top: 50px;
   margin-bottom: 30px;
 }
+
+
 
 .navbar a {
   color: #e7e7e7;
@@ -117,8 +127,8 @@ body {
 
 @media only screen and (max-width: 767px)  {
   .logo-text {
-    font-size: 65px;
-    word-spacing: 20px;
+    font-size: 60px;
+    word-spacing: 15px;
   }
   .menu {
     font-size: 30px;
@@ -132,7 +142,7 @@ body {
 }
 
 .menu-tshirt-desc {
-  padding-top: 10px;
+  padding-top: 5px;
 }
 
 .menu-tshirt-desc p:nth-child(2) {

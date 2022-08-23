@@ -11,9 +11,9 @@ function Navbar() {
                 </Link>
             </div>
             <div className='menu row'>
-                <div className='menu-item col-sm'><Link to="/">Shirts</Link></div>
-                <div className='menu-item col-sm'><Link to="/shipping">Shipping</Link></div>
-                <div className='menu-item col-sm'><Link to="/about">About</Link></div>
+                <div className='menu-item col-4'><Link to="/">Shirts</Link></div>
+                <div className='menu-item col-4'><Link to="/shipping">Shipping</Link></div>
+                <div className='menu-item col-4'><Link to="/about">About</Link></div>
             </div>
         </div>
     )

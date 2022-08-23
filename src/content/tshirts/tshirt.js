@@ -8,8 +8,9 @@ function TshirtPage() {
     return(
         <div className="row justify-content-center shipping">
             <div className="col-md-5 align-self-center ">
-                <img className="tshirt-product-image " src={tshirts[tshirtIndex].img}/>
-
+                <a  href={tshirts[tshirtIndex].img}>
+                 <img className="tshirt-product-image"  src={tshirts[tshirtIndex].img}/>
+                </a>
             </div>
 
             <div className="col-md-7 tshirt-product-description justify-content-center align-self-center">

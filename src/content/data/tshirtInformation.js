@@ -8,7 +8,7 @@ export const tshirts = [
         desc: "mmm yum 😭 you have been drinking lice in your pepsi and eating trace amounts of arthropods \n" +
             "in your cereal so what is your problem chud? 🤓 🤓 🤓 \n" +
             "\n" +
-            "25$ includes world wide shipping." +
+            "25$ includes world wide shipping.\n" +
             "\n" +
             "See Shipping Page on how to order.",
         img: Crunchy,
