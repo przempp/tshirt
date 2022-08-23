@@ -93,6 +93,7 @@ body {
   font-family: 'HandjetHeartDoubleFlower', serif;
 }
 
+
 .logo-div {
   margin-bottom: 25px;
   text-align: center;
@@ -111,6 +112,17 @@ body {
 .menu-item {
   text-align: center;
 }
+
+@media only screen and (max-width: 767px)  {
+  .logo-text {
+    font-size: 65px;
+    word-spacing: 20px;
+  }
+  .menu {
+    font-size: 30px;
+  }
+}
+
 
 .directory-tshirt {
   max-width: 100%;
