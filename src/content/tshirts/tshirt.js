@@ -6,8 +6,8 @@ function TshirtPage() {
     const tshirtIndex = tshirts.findIndex((tshirt) => tshirt.link===id);
 
     return(
-        <div className="row justify-content-center ">
-            <div className="col-md-5 align-self-center">
+        <div className="row justify-content-center shipping">
+            <div className="col-md-5 align-self-center ">
                 <img className="tshirt-product-image " src={tshirts[tshirtIndex].img}/>
 
             </div>

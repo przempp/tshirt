@@ -140,14 +140,14 @@ body {
   padding-bottom: 25px;
 }
 
-/*.about, .shipping {*/
-/*  background: rgba(255, 122, 89, .03);*/
-/*  padding: 10px;*/
-/*  !*opacity: 0.2;*!*/
-/*  box-shadow: 5px 10px black;*/
-/*  margin-top: 50px;*/
-/*  text-align: center;*/
-/*}*/
+.about, .shipping {
+  background: rgba(255, 122, 89, .03);
+  padding: 10px;
+  /*opacity: 0.2;*/
+  box-shadow: 5px 10px black;
+  margin-top: 50px;
+  text-align: center;
+}
 
 .shipping{
     text-align: left;
