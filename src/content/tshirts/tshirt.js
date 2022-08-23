@@ -18,6 +18,8 @@ function TshirtPage() {
                 <h1>{tshirts[tshirtIndex].name}</h1>
                 <h2>{tshirts[tshirtIndex].desc}</h2>
 
+
+                <h2>15$ FOR EVERY ADDITIONAL SHIRT IN THE SAME SHIPMENT.</h2> <br/>
                 <h2>See <Link to='/shipping'>Shipping Page</Link> on how to order.</h2>
 
             </div>
