@@ -1,0 +1,186 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.navbar {
+  display: flex;
+  padding: 10px;
+}
+nav {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+nav ul {
+  margin: 0;
+  padding: 0;
+  display:inline-block;
+  list-style: none;
+  height: auto;
+}
+nav li {
+  display:inline-block;
+  position: relative;
+  width: auto;
+  right: 2%;
+}
+nav li a {
+  display: inline-block;
+  padding: 5px 50px;
+  font-size: 20px;
+}
+.enjoythed{
+  width: 89%;
+  position: relative;
+  right: 4%;
+  bottom: 250px;
+  height: 11px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 50px;
+}
+
+.enjoythed img{
+  width: 100%;
+  height: auto
+}
+
+@media screen and (max-width: 768px) {
+  .enjoythed img {
+    width: 130%;
+    margin-left: -17%;
+  }
+}
+
+
+.hatingniggers{
+  width: auto;
+  position: relative;
+  bottom: 80px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.background2 {
+  background-image: url(image/smiley.gif);
+  background-color: black;
+  background-position: center;
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh
+}
+
+.landingpage {
+  padding-top: 500px;
+}
+
+.shirts {
+  width: 100%;  /* change this to make "font" smaller or bigger */
+  height: auto;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  /*right: 9%;*/
+}
+.shipping{
+  width: 100%; /* change this to make "font" smaller or bigger */
+  height: auto;
+  position: relative;
+  margin-right: auto;
+  margin-left: auto;
+  /*left: 4%;*/
+}
+.about{
+  width: 100%;  /* change this to make "font" smaller or bigger */
+  height: auto;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  /*right: 18px;*/
+}
+.shitalian{
+  font-family: 'Roboto Mono', monospace;
+  color: white;
+  text-align:left;
+}
+.rape{
+  position: relative;
+  margin-left: 2%;
+  bottom: 50px;
+  left: 20px;
+}
+.niggor{
+  text-decoration: none;
+  color: white;
+}
+.ddd{
+  position: relative;
+  left: 5%;
+  bottom: 50px;
+}
+.i_hate_the_blacks{
+  font-family: 'Roboto Mono', monospace;
+  color: white;
+  position: relative;
+  text-align:left;
+  bottom: 300px;
+  left: 28%
+}
+.lol2{
+  font-family: 'Roboto Mono', monospace;
+  color: white;
+  position: relative;
+  text-align:left;
+  bottom: 300px;
+  left: 28%
+}
+.lol{
+  font-family: 'Roboto Mono', monospace;
+  color: white;
+  position: relative;
+  text-align:left;
+  bottom: 300px;
+  left: 28%
+}
+
+@media screen and (max-width: 768px) {
+  .storeList {
+    margin-top: -80px;
+    flex-direction: column;
+    padding: 0 15%;
+  }
+}
+
+.storeList {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.storeList ul.menu-item:not(:last-child) {
+  margin-bottom: 3px;
+}
+
+.menuimg {
+  width: 100%;
+  height: auto;
+}
+
+.landingpage {
+
+}
