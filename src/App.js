@@ -1,24 +1,35 @@
 import logo from './logo.svg';
+import Dupa from './content/main/mainpage'
+import Navbar from "./content/navbar/navbar";
+import About from './content/about/about'
+import Shipping from './content/shipping/shipping'
 import './App.css';
+import {
+    BrowserRouter,
+    Routes,
+    Route,
+    Link
+} from "react-router-dom";
+import { Parallax, Background } from 'react-parallax';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <BrowserRouter>
+
+      <div className="background2">
+          <div className="container main">
+              <Navbar/>
+              <Routes>
+                  <Route path="/" element={<Dupa/>} />
+                  <Route path="/about" element={<About/>} />
+                  <Route path="/shipping" element={<Shipping/>} />
+              </Routes>
+
+
+
+          </div>
+      </div>
+      </BrowserRouter>
   );
 }
 

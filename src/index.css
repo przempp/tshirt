@@ -1,13 +1,159 @@
+@font-face {
+  font-family: "HandjetHeart";   /*Can be any text*/
+  src: local("HandjetCircleDouble-Regular"),
+  url("./fonts/HandjetCircleDouble-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "HandjetHeartDoubleFlower";   /*Can be any text*/
+  src: local("HandjetHeartDoubleFlower-Regular"),
+  url("./fonts/HandjetFlowerDouble-Regular.ttf") format("truetype");
+}
+
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'HandjetHeart', 'HandjetHeartDoubleFlower', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/*code {*/
+/*  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',*/
+/*    monospace;*/
+/*}*/
+
+
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
+
+html, body {
+  background-image: url(image/smiley.gif);
+  background-color: black;
+  background-position: center;
+  background-attachment: scroll;
+  background-size: 320px;
+  background-clip: content-box;
+  background-position-x: 550px;
+}
+
+.background2 {
+  background-image: url(image/smiley.gif);
+  background-color: black;
+  background-position: center;
+  background-attachment: scroll;
+  background-size: 320px;
+  background-clip: content-box;
+  background-position-x: 500px;
+  /*overflow: hidden;*/
+
+}
+
+.main {
+  font-family: 'HandjetHeart';
+  font-style: italic;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: darkgrey;
+  text-transform: uppercase;
+  margin-bottom: 150px;
+}
+
+
+.navbar {
+  /*height: 350px;*/
+  padding-top: 50px;
+  margin-bottom: 30px;
+}
+
+.navbar a {
+  color: darkgrey;
+}
+
+.navbar a:hover {
+  color: grey;
+  text-decoration: none;
+}
+
+.logo-text {
+  font-size: 100px;
+  word-spacing: 30px;
+  color: dimgrey;
+  font-family: 'HandjetHeartDoubleFlower', serif;
+}
+
+.logo-div {
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+.menu {
+  font-size: 45px;
+  width: 100%;
+}
+
+.menu-directory {
+  font-size: 30px;
+  padding-top: 0px;
+}
+
+.menu-item {
+  text-align: center;
+}
+
+.directory-tshirt {
+  max-width: 100%;
+  /*max-height: 200px;*/
+}
+
+.menu-tshirt-desc {
+  padding-top: 10px;
+}
+
+.menu-tshirt-desc p:nth-child(2) {
+  margin-top: -25px;
+  padding-bottom: 25px;
+}
+
+.about, .shipping {
+  background: rgba(255, 122, 89, .03);
+  padding: 10px;
+  /*opacity: 0.2;*/
+  box-shadow: 5px 10px black;
+  margin-top: 50px;
+  text-align: center;
+}
+
+.shipping{
+    text-align: left;
+}
+
+.about p {
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
