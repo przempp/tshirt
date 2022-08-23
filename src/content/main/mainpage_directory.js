@@ -4,6 +4,7 @@ import shipping from '../../image/Shipping.png'
 import shirts from '../../image/Shirts.png'
 import about from '../../image/About.png'
 
+
 export function Dupa() {
     return (
         <div className="landingpage">

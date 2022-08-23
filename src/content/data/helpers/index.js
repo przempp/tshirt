@@ -1,0 +1,11 @@
+export const Crunchy = require('../../../image/Crunchy.png');
+export const BoogLoops = require('../../../image/Boog Loops.png');
+export const CornSyrup = require('../../../image/Corn Syrup.png');
+export const DeadWashingtons = require('../../../image/Dead Washingtons.png');
+export const FGC9 = require('../../../image/FGC9.png');
+export const Glock = require('../../../image/Glock.png');
+export const Liberator = require('../../../image/Liberator.png');
+export const Happy = require('../../../image/Happy.png');
+export const UncleVanya = require('../../../image/Uncle Vanya.png');
+export const Pitzer = require('../../../image/Pitzer.png');
+export const BrandName = require('../../../image/Brand Name.png');

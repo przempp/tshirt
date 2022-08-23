@@ -86,6 +86,15 @@ body {
   text-decoration: none;
 }
 
+. a {
+  color: darkgrey;
+}
+
+.navbar a:hover {
+  color: grey;
+  text-decoration: none;
+}
+
 .logo-text {
   font-size: 100px;
   word-spacing: 30px;
@@ -111,6 +120,20 @@ body {
 
 .menu-item {
   text-align: center;
+}
+
+.menu-tshirt-desc-name {
+  line-height: 0.9em;
+  padding-bottom: 0.8em;
+}
+
+.menu-tshirt-desc-name a {
+  color: darkgrey;
+}
+
+.menu-tshirt-desc-name a:hover {
+  color: grey;
+  text-decoration: none;
 }
 
 @media only screen and (max-width: 767px)  {
@@ -155,9 +178,19 @@ body {
 
 }
 
+.tshirt-product-image {
+  width: 100%;
+  height: 100%;
+}
 
+.tshirt-product-description {
+  white-space: pre;
+  white-space: break-spaces;
+}
 
-
+.tshirt-product-page {
+  font-size: 30px;
+}
 
 
 
