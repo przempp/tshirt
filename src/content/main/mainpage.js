@@ -40,7 +40,6 @@ function Dupa() {
             <div className='menu-item col-md-4 align-self-center' >
                 <div className='col-sm '>
                     <img className='directory-tshirt' src={selectPrint} />
-
                 </div>
             </div>
 

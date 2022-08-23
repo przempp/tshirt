@@ -13,8 +13,8 @@ function TshirtPage() {
             </div>
 
             <div className="col-md-8 tshirt-product-description justify-content-center align-self-center">
-                <h2>{tshirts[tshirtIndex].name}</h2>
-                <p>{tshirts[tshirtIndex].desc}</p>
+                <h1>{tshirts[tshirtIndex].name}</h1>
+                <h2>{tshirts[tshirtIndex].desc}</h2>
             </div>
         </div>
     )
