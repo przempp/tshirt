@@ -10,13 +10,16 @@ import {
     Route,
     Link
 } from "react-router-dom";
-import { Parallax, Background } from 'react-parallax';
+import { Parallax, Background } from "react-parallax";
+
 
 function App() {
+
+
   return (
       <BrowserRouter>
 
-      <div className="background2">
+      <div className="background2" >
           <div className="container main">
               <Navbar/>
               <Routes>

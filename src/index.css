@@ -34,24 +34,28 @@ body {
   box-sizing: border-box;
 }
 
-html, body {
+body {
   background-image: url(image/smiley.gif);
   background-color: black;
-  background-position: center;
-  background-attachment: scroll;
+  background-position: revert;
+  /*background-attachment: scroll;*/
   background-size: 320px;
-  background-clip: content-box;
+  background-attachment: ;
+  animation: myanimation 5s;
+  /*background-clip: content-box;*/
   background-position-x: 550px;
 }
 
+
+
 .background2 {
-  background-image: url(image/smiley.gif);
-  background-color: black;
-  background-position: center;
-  background-attachment: scroll;
-  background-size: 320px;
-  background-clip: content-box;
-  background-position-x: 500px;
+  /*background-image: url(image/smiley.gif);*/
+  /*background-color: black;*/
+  /*background-position: center;*/
+  /*background-attachment: scroll;*/
+  /*background-size: 320px;*/
+  /*background-clip: content-box;*/
+  /*background-position-x: 500px;*/
   /*overflow: hidden;*/
 
 }
