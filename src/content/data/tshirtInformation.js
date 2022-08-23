@@ -8,9 +8,7 @@ export const tshirts = [
         desc: "mmm yum 😭 you have been drinking lice in your pepsi and eating trace amounts of arthropods \n" +
             "in your cereal so what is your problem chud? 🤓 🤓 🤓 \n" +
             "\n" +
-            "25$ includes world wide shipping.\n" +
-            "\n" +
-            "See Shipping Page on how to order.",
+            "25$ includes world wide shipping.\n",
         img: Crunchy,
         price: 25
     },
@@ -20,9 +18,7 @@ export const tshirts = [
         desc: 'There\'s nothing like owning your own piece of paradise. And when that piece of paradise is nothing but sunshine and fresh air, it\'s even better.\n' +
             'Life is too short to worry about material possessions. Enjoy the moment and don\'t worry about tomorrow.\n' +
             '\n' +
-            '25$ includes world wide shipping.\n' +
-            '\n' +
-            'See Shipping Page on how to order.',
+            '25$ includes world wide shipping.\n',
         img: DeadWashingtons,
         price: 25
     },
@@ -33,9 +29,7 @@ export const tshirts = [
             'It\'s a great source of fiber to keep you feeling full, satisfied and productive all morning long. \n' +
             'Plus, it\'s super fun to eat!\n' +
             '\n' +
-            '25$ includes world wide shipping.\n' +
-            '\n' +
-            'See Shipping Page on how to order.',
+            '25$ includes world wide shipping.\n',
         img: BoogLoops,
         price: 25
     },
@@ -46,9 +40,7 @@ export const tshirts = [
             'You can order now and pay over 6 weeks – no interest or added fees. So what are you waiting for? \n' +
             'Treat your pod mates today!\n' +
             '\n' +
-            '25$ includes world wide shipping.\n' +
-            '\n' +
-            'See Shipping Page on how to order.',
+            '25$ includes world wide shipping.\n',
         img: Pitzer,
         price: 25
     },
@@ -58,9 +50,7 @@ export const tshirts = [
         desc: 'Make a bold and brave statement with our apparel!\n' +
             '(Statement not included)\n' +
             '\n' +
-            '25$ includes world wide shipping.\n' +
-            '\n' +
-            'See Shipping Page on how to order.',
+            '25$ includes world wide shipping.\n',
         img: BrandName,
         price: 25
     },
@@ -76,9 +66,7 @@ export const tshirts = [
             'Plus, corn syrup is a great alternative to sugar for people who are looking to cut down on their sugar intake. \n' +
             'So if you’re looking for a delicious and healthy way to sweeten your food, then corn syrup is the perfect choice!\n' +
             '\n' +
-            '25$ includes world wide shipping.\n' +
-            '\n' +
-            'See Shipping Page on how to order.',
+            '25$ includes world wide shipping.\n',
         img: CornSyrup,
         price: 25
     },
@@ -92,9 +80,7 @@ export const tshirts = [
             'I notice the good\n' +
             'I notice the good\n' +
             '\n' +
-            '25$ includes world wide shipping.\n' +
-            '\n' +
-            'See Shipping Page on how to order.',
+            '25$ includes world wide shipping.\n',
         img: Happy,
         price: 25
     },
@@ -104,9 +90,7 @@ export const tshirts = [
         desc: 'Looking for a delicious and affordable meal? Come to Uncle Vanya! Our food is just as good as REDACTED. \n' +
             'But don\'t take our word for it, come see for yourself!\n' +
             '\n' +
-            '25$ includes world wide shipping.\n' +
-            '\n' +
-            'See Shipping Page on how to order.',
+            '25$ includes world wide shipping.\n',
         img: UncleVanya,
         price: 25
     },
@@ -117,9 +101,7 @@ export const tshirts = [
             '3D-printed guns are also undetectable by metal detectors, making them a serious security risk. \n' +
             'If you come across a 3D-printed gun, such as pictured, do not pick it up or attempt to disarm it. Instead, call 911 immediately and do not approach the gun.\n' +
             '\n' +
-            '25$ includes world wide shipping.\n' +
-            '\n' +
-            'See Shipping Page on how to order.\n',
+            '25$ includes world wide shipping.\n',
         img: FGC9,
         price: 25
     },
@@ -130,9 +112,7 @@ export const tshirts = [
             '3D-printed guns are also undetectable by metal detectors, making them a serious security risk. \n' +
             'If you come across a 3D-printed gun, such as pictured, do not pick it up or attempt to disarm it. Instead, call 911 immediately and do not approach the gun.\n' +
             '\n' +
-            '25$ includes world wide shipping.\n' +
-            '\n' +
-            'See Shipping Page on how to order.\n',
+            '25$ includes world wide shipping.\n',
         img: Glock,
         price: 25
     },
@@ -143,9 +123,7 @@ export const tshirts = [
             '3D-printed guns are also undetectable by metal detectors, making them a serious security risk. \n' +
             'If you come across a 3D-printed gun, such as pictured, do not pick it up or attempt to disarm it. Instead, call 911 immediately and do not approach the gun.\n' +
             '\n' +
-            '25$ includes world wide shipping.\n' +
-            '\n' +
-            'See Shipping Page on how to order.\n',
+            '25$ includes world wide shipping.\n',
         img: Liberator,
         price: 25
     },

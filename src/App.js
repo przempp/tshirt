@@ -1,4 +1,5 @@
 import logo from './logo.svg';
+import React, { useState } from 'react';
 import TshirtsDirectory from './content/main/mainpage'
 import Navbar from "./content/navbar/navbar";
 import About from './content/about/about'
@@ -9,27 +10,27 @@ import {
     BrowserRouter,
     Routes,
     Route,
+    useParams
 } from "react-router-dom";
 
 function App() {
+ let id = useParams()
+    console.log(id)
+
   return (
       <BrowserRouter>
-
-      <div className="background2" >
           <div className="container main">
-              <Navbar/>
+              {Navbar()}
               <Routes>
                   <Route path="/" element={<TshirtsDirectory/>} />
                   <Route path="/about" element={<About/>} />
                   <Route path="/shipping" element={<Shipping/>} />
-                  {/*<Route path="/tshirt" element={<TshirtPage/>} />*/}
                   <Route path="/tshirts/:id" element={<TshirtPage/>} />
               </Routes>
 
 
 
           </div>
-      </div>
       </BrowserRouter>
   );
 }

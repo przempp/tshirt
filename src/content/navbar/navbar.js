@@ -1,8 +1,8 @@
-import {
-    Link
-} from "react-router-dom";
+import { Link, NavLink} from 'react-router-dom'
 
-function Navbar() {
+function Navbar(id) {
+
+
     return (
         <div className="navbar d-flex justify-content-center align-items-center flex-column">
             <div className="logo-div row">
@@ -11,9 +11,12 @@ function Navbar() {
                 </Link>
             </div>
             <div className='menu row'>
-                <div className='menu-item col-4'><Link to="/">Shirts</Link></div>
-                <div className='menu-item col-4'><Link to="/shipping">Shipping</Link></div>
-                <div className='menu-item col-4'><Link to="/about">About</Link></div>
+                <div className='menu-item col-4'>
+                    <NavLink className={({ isActive }) => isActive ? "navlink-active" : ""} to="/">Shirts</NavLink></div>
+                <div className='menu-item col-4'>
+                    <NavLink className={({ isActive }) => isActive ? "navlink-active" : ""} to="/shipping">Shipping</NavLink></div>
+                <div className='menu-item col-4'>
+                    <NavLink className={({ isActive }) => isActive ? "navlink-active" : ""} to="/about">About</NavLink></div>
             </div>
         </div>
     )

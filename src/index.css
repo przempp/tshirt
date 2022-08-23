@@ -181,11 +181,9 @@ html a:hover {
   font-size: 30px;
 }
 
-
-
-
-
-
+.navlink-active{
+  color: darkgray !important;
+}
 
 
 
