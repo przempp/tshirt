@@ -12,7 +12,15 @@ import {Link} from "react-router-dom";
 function createTshirtDirectory() {
     let tshirtDirectory;
     tshirtDirectory = [];
-    tshirts.forEach(tshirt => {
+    tshirts.forEach((tshirt, i) => {
+        console.log(i)
+        if (i === 8) {
+            tshirtDirectory.push(<div className='menu-item col-md-4 align-self-center' >
+                <div className='col-sm '>
+                    <img className='directory-tshirt' src={selectPrint} />
+                </div>
+            </div>)
+        }
         tshirtDirectory.push(
             <div className='menu-item col-md-4'>
                 <div className='col-sm'>
@@ -37,13 +45,6 @@ function TshirtsDirectory() {
     <div className="d-flex justify-content-center align-items-center flex-column">
         <div className='menu menu-directory row'>
             {table}
-
-            <div className='menu-item col-md-4 align-self-center' >
-                <div className='col-sm '>
-                    <img className='directory-tshirt' src={selectPrint} />
-                </div>
-            </div>
-
         </div>
     </div>
         </div>

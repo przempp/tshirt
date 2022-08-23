@@ -141,7 +141,7 @@ body {
 }
 
 .about, .shipping {
-  background: rgba(255, 122, 89, .03);
+  background: rgba(76, 194, 14, 0.05);
   padding: 10px;
   /*opacity: 0.2;*/
   box-shadow: 5px 10px black;
