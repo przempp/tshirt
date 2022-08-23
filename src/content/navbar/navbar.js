@@ -6,7 +6,9 @@ function Navbar() {
     return (
         <div className="navbar d-flex justify-content-center align-items-center flex-column">
             <div className="logo-div row">
-                <h1 className='logo-text col-xl'>ENJOY THE DECLINE</h1>
+                <Link to={'/'}>
+                    <h1 className='logo-text col-xl'>ENJOY THE DECLINE</h1>
+                </Link>
             </div>
             <div className='menu row'>
                 <div className='menu-item col-sm'><Link to="/">Shirts</Link></div>

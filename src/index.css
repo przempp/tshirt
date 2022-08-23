@@ -48,24 +48,12 @@ body {
 
 
 
-.background2 {
-  /*background-image: url(image/smiley.gif);*/
-  /*background-color: black;*/
-  /*background-position: center;*/
-  /*background-attachment: scroll;*/
-  /*background-size: 320px;*/
-  /*background-clip: content-box;*/
-  /*background-position-x: 500px;*/
-  /*overflow: hidden;*/
-
-}
-
 .main {
   font-family: 'HandjetHeart';
   font-style: italic;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: darkgrey;
+  color: #e7e7e7;
   text-transform: uppercase;
   margin-bottom: 150px;
 }
@@ -78,27 +66,18 @@ body {
 }
 
 .navbar a {
-  color: darkgrey;
+  color: #e7e7e7;
 }
 
 .navbar a:hover {
-  color: grey;
-  text-decoration: none;
-}
-
-.navbar a {
   color: darkgrey;
-}
-
-.navbar a:hover {
-  color: grey;
   text-decoration: none;
 }
 
 .logo-text {
   font-size: 100px;
   word-spacing: 30px;
-  color: dimgrey;
+  color: #e7e7e7;
   font-family: 'HandjetHeartDoubleFlower', serif;
 }
 
@@ -128,11 +107,11 @@ body {
 }
 
 .menu-tshirt-desc-name a {
-  color: darkgrey;
+  color: #e7e7e7;
 }
 
 .menu-tshirt-desc-name a:hover {
-  color: grey;
+  color: darkgrey;
   text-decoration: none;
 }
 
@@ -176,7 +155,7 @@ body {
 
 .tshirt-product-image {
   width: 100%;
-  height: 100%;
+
 }
 
 .tshirt-product-description {

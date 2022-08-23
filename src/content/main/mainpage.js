@@ -16,7 +16,9 @@ function createTshirtDirectory() {
         tshirtDirectory.push(
             <div className='menu-item col-md-4'>
                 <div className='col-sm'>
+                    <Link to={'/tshirts/' + tshirt.name.replace(/ /g,'_').toLowerCase()}>
                     <img className='directory-tshirt' src={tshirt.img} />
+                    </Link>
                 </div>
                 <div className='col-sm menu-tshirt-desc'>
                     <p className="menu-tshirt-desc-name"><Link to={'/tshirts/' + tshirt.name.replace(/ /g,'_').toLowerCase()}> {tshirt.name}</Link></p>
@@ -24,12 +26,11 @@ function createTshirtDirectory() {
                 </div>
             </div>
         )
-    }
-    )
+    })
     return tshirtDirectory
 }
 
-function Dupa() {
+function TshirtsDirectory() {
     let table = createTshirtDirectory()
     return (
         <div>
@@ -49,106 +50,4 @@ function Dupa() {
     );
 }
 
-function oldDirectory() {
-    return (
-        <div>
-
-
-        <div className='menu menu-directory row'>
-            <div className='menu-item col-md'>
-                <div className='col-sm'>
-                    <img className='directory-tshirt' src={crunchy} />
-                </div>
-                <div className='col-sm menu-tshirt-desc'>
-                    <p>Dead Washington</p>
-                    <p>25 incl Shipping</p>
-                </div>
-            </div>
-
-            <div className='menu-item col-md'>
-                <div className='col-sm'>
-                    <img className='directory-tshirt' src={crunchy} />
-                </div>
-                <div className='col-sm menu-tshirt-desc'>
-                    <p>Dead Washington</p>
-                    <p>25 incl Shipping</p>
-                </div>
-            </div>
-
-            <div className='menu-item col-md'>
-                <div className='col-sm'>
-                    <img className='directory-tshirt' src={crunchy} />
-                </div>
-                <div className='col-sm menu-tshirt-desc'>
-                    <p>Dead Washington</p>
-                    <p>25 incl Shipping</p>
-                </div>
-            </div>
-        </div>
-    {/*new row*/}
-    <div className='menu menu-directory row'>
-        <div className='menu-item col-md'>
-            <div className='col-sm'>
-                <img className='directory-tshirt' src={crunchy} />
-            </div>
-            <div className='col-sm menu-tshirt-desc'>
-                <p>Dead Washington</p>
-                <p>25 incl Shipping</p>
-            </div>
-        </div>
-        <div className='menu-item col-md'>
-            <div className='col-sm'>
-                <img className='directory-tshirt' src={crunchy} />
-            </div>
-            <div className='col-sm menu-tshirt-desc'>
-                <p>Dead Washington</p>
-                <p>25 incl Shipping</p>
-            </div>
-        </div>
-        <div className='menu-item col-md'>
-            <div className='col-sm'>
-                <img className='directory-tshirt' src={crunchy} />
-            </div>
-            <div className='col-sm menu-tshirt-desc'>
-                <p>Dead Washington</p>
-                <p>25 incl Shipping</p>
-            </div>
-        </div>
-    </div>
-    {/*new row*/}
-    <div className='menu menu-directory row'>
-        <div className='menu-item col-md'>
-            <div className='col-sm'>
-                <img className='directory-tshirt' src={crunchy} />
-            </div>
-            <div className='col-sm'>
-                <p>Dead Washington</p>
-                <p>25 incl Shipping</p>
-            </div>
-        </div>
-
-        <div className='menu-item col-md'>
-            <div className='col-sm'>
-                <img className='directory-tshirt' src={crunchy} />
-            </div>
-            <div className='col-sm'>
-                <p>Dead Washington</p>
-                <p>25 incl😂 Shipping</p>
-            </div>
-        </div>
-
-        <div className='menu-item col-md'>
-            <div className='col-sm'>
-                <img className='directory-tshirt' src={crunchy} />
-            </div>
-            <div className='col-sm'>
-                <p>Dead Washington</p>
-                <p>25 incl Shipping</p>
-            </div>
-        </div>
-    </div>
-        </div>
-    )
-}
-
-export default Dupa
+export default TshirtsDirectory

@@ -7,12 +7,12 @@ function TshirtPage() {
 
     return(
         <div className="row justify-content-center ">
-            <div className="col-md-4 ">
-                <img className="tshirt-product-image" src={tshirts[tshirtIndex].img}/>
+            <div className="col-md-5 align-self-center">
+                <img className="tshirt-product-image " src={tshirts[tshirtIndex].img}/>
 
             </div>
 
-            <div className="col-md-8 tshirt-product-description justify-content-center align-self-center">
+            <div className="col-md-7 tshirt-product-description justify-content-center align-self-center">
                 <h1>{tshirts[tshirtIndex].name}</h1>
                 <h2>{tshirts[tshirtIndex].desc}</h2>
             </div>
