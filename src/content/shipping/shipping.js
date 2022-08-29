@@ -2,7 +2,7 @@ function Shipping() {
     return (
         <div className='shipping'>
             <h2>
-                <p>0. ORDERS OR QUESTIONS THROUGH EMAIL <a href='mailto:jowe.blog@posteo.de'>jowe.blog@posteo.de</a>,
+                <p>0. ORDERS OR QUESTIONS THROUGH EMAIL <a href='mailto:jowe@airmail.cc'>jowe@airmail.cc</a>,
                     questions through our <a href='https://t.me/ETDsupportbot'>Telegram bot</a></p>
                 <p>1. SPECIFY FRONT AND BACK MOTIVE FOR YOUR ORDER, P.O. BOX OR ADDRESS WHERE YOU'D LIKE
                     TO HAVE IT SHIPPED TO AND ALSO IF YOU PREFER MONERO, ETHEREUM OR BITCOIN </p>
