@@ -1,8 +1,12 @@
 import tshirts from "../data/tshirtInformation";
+import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom'
 import {Link} from "react-router-dom";
 
 function TshirtPage() {
+    useEffect(() => {
+        window.scrollTo(0, 220)
+    }, [])
     const {id} = useParams();
     const tshirtIndex = tshirts.findIndex((tshirt) => tshirt.link===id);
 
