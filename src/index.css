@@ -187,7 +187,7 @@ html a:hover {
 
 .animation {
   animation-timing-function: ease-in-out;
-  animation-duration: 3s;
+  animation-duration: 4s;
   animation-iteration-count: infinite;
   animation-name: slidein;
 }
