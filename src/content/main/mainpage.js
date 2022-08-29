@@ -11,7 +11,7 @@ function createTshirtDirectory() {
         if (i === 8) {
             tshirtDirectory.push(<div className='menu-item col-md-4 align-self-center' >
                 <div className='col-sm '>
-                    <img className='directory-tshirt' src={selectPrint} />
+                    <img className='directory-tshirt animation' src={selectPrint} />
                 </div>
             </div>)
         }
