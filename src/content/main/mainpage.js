@@ -1,9 +1,4 @@
 import logo from "../../logo.svg";
-import enjoythedd from '../../image/enjoythed.png'
-import shipping from '../../image/Shipping.png'
-import shirts from '../../image/Shirts.png'
-import about from '../../image/About.png'
-import crunchy from '../../image/Crunchy.png'
 import tshirts from "../data/tshirtInformation";
 import selectPrint from "../../image/Select Print Front and Back.png"
 import {Link} from "react-router-dom";
