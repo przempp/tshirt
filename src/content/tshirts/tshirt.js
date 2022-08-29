@@ -5,7 +5,7 @@ import {Link} from "react-router-dom";
 
 function TshirtPage() {
     useEffect(() => {
-        window.scrollTo(0, 220)
+        if (window.innerWidth < 700) window.scrollTo(0, 240)
     }, [])
     const {id} = useParams();
     const tshirtIndex = tshirts.findIndex((tshirt) => tshirt.link===id);

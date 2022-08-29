@@ -19,7 +19,7 @@ function App() {
 
   return (
       <BrowserRouter>
-          <div className="container main">
+          <div className="container main pt-4">
               {Navbar()}
               <Routes>
                   <Route path="/" element={<TshirtsDirectory/>} />

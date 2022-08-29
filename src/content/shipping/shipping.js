@@ -1,4 +1,11 @@
+import {useEffect} from "react";
+
 function Shipping() {
+    useEffect(() => {
+        if (window.innerWidth < 700) window.scrollTo(0, 130)
+
+    }, [])
+
     return (
         <div className='shipping'>
             <h2>
