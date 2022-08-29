@@ -23,6 +23,14 @@ function TshirtPage() {
                 <h2>See <Link to='/shipping'>Shipping Page</Link> on how to order.</h2>
 
             </div>
+
+            <div className='col-md-12 '>
+                <hr className=" border-top border-bottom border-dark mb-4"/>
+
+                <h3>Can be supplied as t-shirt or tank top.</h3>
+                <h3>Select sizes S, M, L, or XL, but no bigger since we don't want morbidly obese people to reflect badly on the brand. Go do some pushups lmao.</h3>
+
+            </div>
         </div>
     )
 }

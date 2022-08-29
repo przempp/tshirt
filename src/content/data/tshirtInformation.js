@@ -97,9 +97,9 @@ export const tshirts = [
     {
         name: 'FGC9',
         link: 'fgc9',
-        desc: '3D-printed guns are a serious threat to public safety. They are untraceable and can easily be made with little to no experience. \n' +
-            '3D-printed guns are also undetectable by metal detectors, making them a serious security risk. \n' +
-            'If you come across a 3D-printed gun, such as pictured, do not pick it up or attempt to disarm it. Instead, call 911 immediately and do not approach the gun.\n' +
+        desc: '3d printed firearms are a major contributor to global warming. The production of these weapons emits large amounts of ' +
+            'greenhouse gases into the atmosphere, contributing to the warming of the planet. \n\nAdditionally, the use of these firearms ' +
+            'results in the release of lead and other pollutants into the environment, further harming the planet.\n\n' +
             '\n' +
             '25$ includes world wide shipping.\n',
         img: FGC9,
@@ -108,9 +108,9 @@ export const tshirts = [
     {
         name: 'GLOCK',
         link: 'glock',
-        desc: '3D-printed guns are a serious threat to public safety. They are untraceable and can easily be made with little to no experience. \n' +
-            '3D-printed guns are also undetectable by metal detectors, making them a serious security risk. \n' +
-            'If you come across a 3D-printed gun, such as pictured, do not pick it up or attempt to disarm it. Instead, call 911 immediately and do not approach the gun.\n' +
+        desc: '3d printed firearms are a major contributor to global warming. The production of these weapons emits large amounts of ' +
+            'greenhouse gases into the atmosphere, contributing to the warming of the planet. \n\nAdditionally, the use of these firearms ' +
+            'results in the release of lead and other pollutants into the environment, further harming the planet.\n\n' +
             '\n' +
             '25$ includes world wide shipping.\n',
         img: Glock,
@@ -119,9 +119,9 @@ export const tshirts = [
     {
         name: 'LIBERATOR',
         link: 'liberator',
-        desc: '3D-printed guns are a serious threat to public safety. They are untraceable and can easily be made with little to no experience. \n' +
-            '3D-printed guns are also undetectable by metal detectors, making them a serious security risk. \n' +
-            'If you come across a 3D-printed gun, such as pictured, do not pick it up or attempt to disarm it. Instead, call 911 immediately and do not approach the gun.\n' +
+        desc: '3d printed firearms are a major contributor to global warming. The production of these weapons emits large amounts of ' +
+            'greenhouse gases into the atmosphere, contributing to the warming of the planet. \n\nAdditionally, the use of these firearms ' +
+            'results in the release of lead and other pollutants into the environment, further harming the planet.\n\n' +
             '\n' +
             '25$ includes world wide shipping.\n',
         img: Liberator,

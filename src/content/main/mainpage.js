@@ -29,7 +29,7 @@ function createTshirtDirectory() {
                 </div>
                 <div className='col-sm menu-tshirt-desc'>
                     <p className="menu-tshirt-desc-name"><Link to={'/tshirts/' + tshirt.name.replace(/ /g,'_').toLowerCase()}> {tshirt.name}</Link></p>
-                    <p>{tshirt.price}$ incl Shipping</p>
+                    <p>{tshirt.price}$ incl. Shipping</p>
                 </div>
             </div>
         )
