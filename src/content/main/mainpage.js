@@ -9,11 +9,20 @@ function createTshirtDirectory() {
     tshirtDirectory = [];
     tshirts.forEach((tshirt, i) => {
         if (i === 8) {
-            tshirtDirectory.push(<div className='menu-item col-md-4 align-self-center' >
+            tshirtDirectory.push(<div className='directory-sticker menu-item col-md-4 align-self-center' >
                 <div className='col-sm '>
                     <img className='directory-tshirt animation' src={selectPrint} />
                 </div>
             </div>)
+        }
+        if (i === 8) {
+            tshirtDirectory.push(
+                <div  className='menu-item col-md-12'>
+                    <hr className='border-top border-bottom border-dark mb-4 directory-hr'  />
+                    <p>COMMUNITY PICKS</p>
+                <hr  className='border-top border-bottom border-dark mb-5 directory-hr '  />
+                </div>
+            )
         }
         tshirtDirectory.push(
             <div className='menu-item col-md-4'>

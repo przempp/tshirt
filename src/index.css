@@ -63,6 +63,15 @@ body {
   }
 }
 
+.directory-hr {
+  /*border-radius: 4px;*/
+  height: 3px;
+  background: #343a40;
+}
+
+.directory-sticker {
+  margin: 2em 0px ;
+}
 
 
 /*@keyframes slide {*/
@@ -80,7 +89,7 @@ body {
 /*}*/
 
 /*.scrolling-image {*/
-  background: url(image/smiley.gif) repeat-x;
+/*  background: url(image/smiley.gif) repeat-x;*/
 /*  height: 750px;*/
 /*  width: 7680px;*/
 /*  animation: slide 3s linear infinite;*/
