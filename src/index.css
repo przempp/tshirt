@@ -45,9 +45,10 @@ body {
 
 body {
   background-image: url(image/smiley.gif);
-  background-color: black;
+  /*color: gray !important;*/
+  background-color: #191719 !important;
   background-position: revert;
-  background-size: 320px;
+
   background-position-x: 0px;
   animation: scaleAnimation 10s infinite linear;
 }
