@@ -17,9 +17,9 @@ function createTshirtDirectory() {
         }
         if (i === 8) {
             tshirtDirectory.push(
-                <div  className='menu-item col-md-12'>
+                <div  className='menu-item col-md-12 '>
                     <hr className='border-top border-bottom border-dark mb-4 directory-hr'  />
-                    <p>COMMUNITY PICKS</p>
+                    <p className="" >COMMUNITY PICKS</p>
                 <hr  className='border-top border-bottom border-dark mb-5 directory-hr '  />
                 </div>
             )
@@ -45,7 +45,7 @@ function TshirtsDirectory() {
     let table = createTshirtDirectory()
     return (
         <div>
-    <div className="d-flex justify-content-center align-items-center flex-column">
+    <div className="d-flex justify-content-center align-items-center flex-column ">
         <div className='menu menu-directory row'>
             {table}
         </div>
