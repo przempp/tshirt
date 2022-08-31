@@ -49,7 +49,7 @@ body {
   background-position: revert;
   background-size: 320px;
   background-position-x: 0px;
-  animation: scaleAnimation 15s infinite linear;
+  animation: scaleAnimation 10s infinite linear;
 }
 
 @keyframes scaleAnimation {
