@@ -55,9 +55,11 @@ body {
 @keyframes scaleAnimation {
   0% {
     background-position-x: 0px;
+    background-position-y: 0px;
   }
   100% {
     background-position-x: 320px;
+    background-position-y: 230px;
   }
 }
 
