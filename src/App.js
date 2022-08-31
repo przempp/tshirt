@@ -19,7 +19,7 @@ function App() {
 
   return (
       <BrowserRouter>
-          <div className="container main pt-4">
+          <div className="container main pt-4 ">
               {Navbar()}
               <Routes>
                   <Route path="/" element={<TshirtsDirectory/>} />
@@ -27,9 +27,6 @@ function App() {
                   <Route path="/shipping" element={<Shipping/>} />
                   <Route path="/tshirts/:id" element={<TshirtPage/>} />
               </Routes>
-
-
-
           </div>
       </BrowserRouter>
   );
