@@ -1,5 +1,6 @@
 import logo from './logo.svg';
 import React, { useState } from 'react';
+
 import TshirtsDirectory from './content/main/mainpage'
 import Navbar from "./content/navbar/navbar";
 import About from './content/about/about'
@@ -15,12 +16,10 @@ import {
 
 function App() {
  let id = useParams()
-    console.log(id)
-
   return (
       <BrowserRouter>
           <div className="container main pt-4  ">
-              {Navbar()}
+              <Navbar/>
               <Routes>
                   <Route path="/" element={<TshirtsDirectory/>} />
                   <Route path="/about" element={<About/>} />

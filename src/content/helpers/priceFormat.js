@@ -1,0 +1,3 @@
+function PriceFormat( value ) {
+    return
+}

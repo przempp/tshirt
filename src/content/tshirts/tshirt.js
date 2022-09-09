@@ -12,13 +12,13 @@ function TshirtPage() {
 
     return(
         <div className="row justify-content-center">
-            <div className="col-md-5 align-self-center ">
+            <div className="col-lg-5 col-md-7  align-self-center ">
                 <a  href={tshirts[tshirtIndex].img}>
                  <img className="tshirt-product-image"  src={tshirts[tshirtIndex].img}/>
                 </a>
             </div>
 
-            <div className="col-md-7 tshirt-product-description justify-content-center align-self-center">
+            <div className="col-lg-7 col-md-5 tshirt-product-description justify-content-center align-self-center">
                 <h1>{tshirts[tshirtIndex].name}</h1>
                 <h2>{tshirts[tshirtIndex].desc}</h2>
 
