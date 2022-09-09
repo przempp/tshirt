@@ -8,7 +8,7 @@ export const tshirts = [
         desc: "mmm yum 😭 you have been drinking lice in your pepsi and eating trace amounts of arthropods \n" +
             "in your cereal so what is your problem chud? 🤓 🤓 🤓 \n" +
             "\n" +
-            "25$ includes world wide shipping.\n",
+            "25$ includes eu shipping, world wide shipping 35$\n",
         img: Crunchy,
         price: 25
     },
@@ -18,8 +18,7 @@ export const tshirts = [
         desc: 'There\'s nothing like owning your own piece of paradise. And when that piece of paradise is nothing but sunshine and fresh air, it\'s even better.\n' +
             'Life is too short to worry about material possessions. Enjoy the moment and don\'t worry about tomorrow.\n' +
             '\n' +
-            '25$ includes world wide shipping.\n',
-        img: DeadWashingtons,
+            '25$ includes eu shipping, world wide shipping 35$.\n',        img: DeadWashingtons,
         price: 25
     },
     {
@@ -29,8 +28,7 @@ export const tshirts = [
             'It\'s a great source of fiber to keep you feeling full, satisfied and productive all morning long. \n' +
             'Plus, it\'s super fun to eat!\n' +
             '\n' +
-            '25$ includes world wide shipping.\n',
-        img: BoogLoops,
+            '25$ includes eu shipping, world wide shipping 35$.\n',        img: BoogLoops,
         price: 25
     },
     {
@@ -40,8 +38,7 @@ export const tshirts = [
             'You can order now and pay over 6 weeks – no interest or added fees. So what are you waiting for? \n' +
             'Treat your pod mates today!\n' +
             '\n' +
-            '25$ includes world wide shipping.\n',
-        img: Pitzer,
+            '25$ includes eu shipping, world wide shipping 35$.\n',        img: Pitzer,
         price: 25
     },
     {
@@ -50,8 +47,7 @@ export const tshirts = [
         desc: 'Make a bold and brave statement with our apparel!\n' +
             '(Statement not included)\n' +
             '\n' +
-            '25$ includes world wide shipping.\n',
-        img: BrandName,
+            '25$ includes eu shipping, world wide shipping 35$.\n',        img: BrandName,
         price: 25
     },
     {
@@ -66,7 +62,7 @@ export const tshirts = [
             'Plus, corn syrup is a great alternative to sugar for people who are looking to cut down on their sugar intake. \n' +
             'So if you’re looking for a delicious and healthy way to sweeten your food, then corn syrup is the perfect choice!\n' +
             '\n' +
-            '25$ includes world wide shipping.\n',
+            '25$ includes eu shipping, world wide shipping 35$.\n',
         img: CornSyrup,
         price: 25
     },
@@ -80,7 +76,7 @@ export const tshirts = [
             'I notice the good\n' +
             'I notice the good\n' +
             '\n' +
-            '25$ includes world wide shipping.\n',
+            '25$ includes eu shipping, world wide shipping 35$.\n',
         img: Happy,
         price: 25
     },
@@ -90,7 +86,7 @@ export const tshirts = [
         desc: 'Looking for a delicious and affordable meal? Come to Uncle Vanya! Our food is just as good as REDACTED. \n' +
             'But don\'t take our word for it, come see for yourself!\n' +
             '\n' +
-            '25$ includes world wide shipping.\n',
+            '25$ includes eu shipping, world wide shipping 35$.\n',
         img: UncleVanya,
         price: 25
     },
@@ -101,7 +97,7 @@ export const tshirts = [
             'greenhouse gases into the atmosphere, contributing to the warming of the planet. \n\nAdditionally, the use of these firearms ' +
             'results in the release of lead and other pollutants into the environment, further harming the planet.\n\n' +
             '\n' +
-            '25$ includes world wide shipping.\n',
+            '25$ includes eu shipping, world wide shipping 35$.\n',
         img: FGC9,
         price: 25
     },
@@ -112,7 +108,7 @@ export const tshirts = [
             'greenhouse gases into the atmosphere, contributing to the warming of the planet. \n\nAdditionally, the use of these firearms ' +
             'results in the release of lead and other pollutants into the environment, further harming the planet.\n\n' +
             '\n' +
-            '25$ includes world wide shipping.\n',
+            '25$ includes eu shipping, world wide shipping 35$.\n',
         img: Glock,
         price: 25
     },
@@ -123,7 +119,7 @@ export const tshirts = [
             'greenhouse gases into the atmosphere, contributing to the warming of the planet. \n\nAdditionally, the use of these firearms ' +
             'results in the release of lead and other pollutants into the environment, further harming the planet.\n\n' +
             '\n' +
-            '25$ includes world wide shipping.\n',
+            '25$ includes eu shipping, world wide shipping 35$.\n',
         img: Liberator,
         price: 25
     },

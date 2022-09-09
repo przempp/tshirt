@@ -12,6 +12,7 @@ import {
     Route,
     useParams
 } from "react-router-dom";
+import ReactTooltip from "react-tooltip";
 
 function App() {
  let id = useParams()

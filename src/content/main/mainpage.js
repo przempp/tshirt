@@ -2,7 +2,8 @@ import logo from "../../logo.svg";
 import tshirts from "../data/tshirtInformation";
 import selectPrint from "../../image/Select Print Front and Back.png"
 import {Link} from "react-router-dom";
-
+import ReactTooltip from 'react-tooltip';
+import React from "react";
 
 function createTshirtDirectory() {
     let tshirtDirectory;
@@ -33,7 +34,7 @@ function createTshirtDirectory() {
                 </div>
                 <div className='col-sm menu-tshirt-desc'>
                     <p className="menu-tshirt-desc-name"><Link to={'/tshirts/' + tshirt.name.replace(/ /g,'_').toLowerCase()}> {tshirt.name}</Link></p>
-                    <p>{tshirt.price}$ incl. Shipping</p>
+                    <p data-place="bottom" data-offset="{'top': 30}" clickable="true" data-effect="solid"  data-tip="+10$ for shipping outside EU">{tshirt.price}$ incl. Shipping*</p>
                 </div>
             </div>
         )
@@ -45,11 +46,13 @@ function TshirtsDirectory() {
     let table = createTshirtDirectory()
     return (
         <div>
-    <div className="d-flex justify-content-center align-items-center flex-column ">
-        <div className='menu menu-directory row'>
-            {table}
-        </div>
-    </div>
+            <ReactTooltip />
+
+             <div className="d-flex justify-content-center align-items-center flex-column ">
+                <div className='menu menu-directory row'>
+                  {table}
+                </div>
+             </div>
         </div>
     );
 }
