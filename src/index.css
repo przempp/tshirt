@@ -339,6 +339,10 @@ html a:hover {
   }
 }
 
+.loading-status {
+  width: 100%;
+  text-align: center;
+}
 
 
 

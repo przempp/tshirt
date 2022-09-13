@@ -1,3 +1,0 @@
-function PriceFormat( value ) {
-    return
-}

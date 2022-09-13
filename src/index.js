@@ -7,7 +7,7 @@ import './bootstrap.min.css';
 import { ApolloClient, InMemoryCache, ApolloProvider, gql } from '@apollo/client';
 
 const client = new ApolloClient({
-    uri: 'http://localhost:3000/shop-api',
+    uri: 'https://adminpanel.enjoythed.biz/shop-api',
     cache: new InMemoryCache(),
 });
 
