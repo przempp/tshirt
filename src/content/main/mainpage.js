@@ -6,6 +6,7 @@ import { useQuery, gql } from '@apollo/client';
 import { GET_COLLECTIONS } from '../data/queries'
 import CreateTshirtDirectoryNew from './createTshirtDirectory'
 
+
 function TshirtsDirectory() {
     let table = CreateTshirtDirectoryNew()
     return (

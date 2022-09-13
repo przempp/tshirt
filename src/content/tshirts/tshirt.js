@@ -13,6 +13,7 @@ function TshirtPage() {
     }, [])
     const {id} = useParams();
     const { loading, error, data } = useQuery(GET_PRODUCT, {variables: { slug: id }});
+
     if (data) console.log(data.product)
     if (loading) return <p className='loading-status' >Loading...</p>;
     if (error) return <p className='loading-status'>Error :(</p>;

@@ -8777,6 +8777,11 @@ url-parse@^1.5.3:
     querystringify "^2.1.1"
     requires-port "^1.0.0"
 
+use-dencrypt-effect@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/use-dencrypt-effect/-/use-dencrypt-effect-1.0.2.tgz#29aa5d60680d75fcea055607853d9cdd8891e0a5"
+  integrity sha512-HfgvcQAUEoqSrAHiHrZL4stw5qc3JIDpN4lsYlcBa9WtOy4RKG03WlZ1Iq9k1OMOV3D2WiI0AFL8uIXWzYWHFA==
+
 util-deprecate@^1.0.1, util-deprecate@^1.0.2, util-deprecate@~1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/util-deprecate/-/util-deprecate-1.0.2.tgz#450d4dc9fa70de732762fbd2d4a28981419a0ccf"

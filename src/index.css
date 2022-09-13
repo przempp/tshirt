@@ -45,6 +45,17 @@ body {
   animation: scaleAnimation 10s infinite linear;
 }
 
+.bg-container {
+  overflow: auto;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: url(image/scanline2.png); /* download the image here: https://i.ibb.co/C0MjrsJ/05.png and link to it */
+  background-size: 5px 5px;
+}
+
 @keyframes scaleAnimation {
   0% {
     background-position-x: 0px;
@@ -251,6 +262,7 @@ html a:hover {
 
 .directory-tshirt {
   max-width: 100%;
+  filter: drop-shadow(0.65rem 0.65rem 0.9rem rgba(0, 0, 0, 0.9));
 }
 
 .menu-tshirt-desc {
