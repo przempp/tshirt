@@ -52,10 +52,10 @@ body {
   right: 0;
   bottom: 0;
   left: 0;
-  background: linear-gradient(rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.035)),
-              url(image/scanline2.png); /* download the image here: https://i.ibb.co/C0MjrsJ/05.png and link to it */
-
-  background-size: 4px 4px;
+  background: linear-gradient(rgba(255, 255, 255, 0.005), rgba(255, 255, 255, 0.005)),
+              url(image/scanlines3.png); /* download the image here: https://i.ibb.co/C0MjrsJ/05.png and link to it */
+  /*background: url(image/scanlines3.png); !* download the image here: https://i.ibb.co/C0MjrsJ/05.png and link to it *!*/
+  background-size: 5px 5px;
 }
 
 @keyframes scaleAnimation {
