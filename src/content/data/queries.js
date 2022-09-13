@@ -1,7 +1,7 @@
 import {gql} from "@apollo/client";
 
 export const GET_COLLECTIONS = gql`
-    query GetProducts {
+    query GetCollectons {
         collections(options:{filter: {slug: {contains: "frontpage"} }}) {
             items
             {
@@ -23,3 +23,23 @@ export const GET_COLLECTIONS = gql`
         }
     }
 `
+
+export const GET_PRODUCT = gql`
+        query GetProduct($slug: String!)  {
+            product(slug: $slug) {
+                name
+                description
+                variants {
+                    name
+                    price
+                    featuredAsset {
+                        source
+                        preview
+                    }
+                }
+                variantList {
+                    totalItems
+                }
+            }
+        }
+    `
