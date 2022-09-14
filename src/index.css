@@ -37,26 +37,41 @@ body {
 }
 
 body {
+
   background-image: url(image/smiley.gif);
   background-color: #191719 !important;
   background-position: revert;
   background-size: 320px;
   background-position-x: 0px;
   animation: scaleAnimation 10s infinite linear;
+  image-rendering: pixelated;
+
 }
 
 .bg-container {
+  z-index: 200;
   overflow: auto;
   position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
-  background: linear-gradient(rgba(255, 255, 255, 0.005), rgba(255, 255, 255, 0.005)),
+
+  background: linear-gradient(rgba(255, 255, 255, 0.005), rgba(255, 255, 255, 0.02)),
               url(image/scanlines3.png); /* download the image here: https://i.ibb.co/C0MjrsJ/05.png and link to it */
   /*background: url(image/scanlines3.png); !* download the image here: https://i.ibb.co/C0MjrsJ/05.png and link to it *!*/
-  background-size: 5px 5px;
+  background-size: 2px 2px;
 }
+
+/*.bg-container {*/
+/*  background-color: black;*/
+/*  background-image: radial-gradient(*/
+/*          rgba(0, 150, 0, 0.75), black 120%*/
+/*  );*/
+/*  background-blend-mode: screen;*/
+/*  height: 100vh;*/
+
+/*}*/
 
 @keyframes scaleAnimation {
   0% {
