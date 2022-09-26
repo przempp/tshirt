@@ -38,7 +38,7 @@ body {
 
 body {
 
-  background-image: url(image/smiley.gif);
+  background-image: url(image/smiley_old.gif);
   background-color: #191719 !important;
   background-position: revert;
   background-size: 320px;
@@ -373,7 +373,22 @@ html a:hover {
   text-align: center;
 }
 
+.cart-container {
+  position: fixed;
+  width: max-content;
+  height: max-content;
+  background: dimgrey;
+  z-index: 2;
+}
 
+.cart-product-image {
+  width: 50px;
+}
 
+.thumb.selected {
+  border: 3px solid darkgrey !important;
+}
 
-
+.thumb {
+  border: 3px solid #333 !important;
+}

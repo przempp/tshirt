@@ -6,6 +6,7 @@ import Navbar from "./content/navbar/navbar";
 import About from './content/about/about'
 import Shipping from './content/shipping/shipping'
 import TshirtPage from './content/tshirts/tshirt'
+import Cart from './content/cart/cart'
 import './App.css';
 import {
     BrowserRouter,
@@ -16,10 +17,12 @@ import {
 
 function App() {
  let id = useParams()
+
   return (
       <BrowserRouter>
           <div className="bg-container">
           <div className="container main pt-4  ">
+              <Cart/>
               <Navbar/>
               <Routes>
                   <Route path="/" element={<TshirtsDirectory/>} />
