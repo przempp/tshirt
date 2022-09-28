@@ -14,6 +14,7 @@ import {
     Route,
     useParams
 } from "react-router-dom";
+import Checkout from "./content/checkout/checkout";
 
 function App() {
  let id = useParams()
@@ -29,6 +30,7 @@ function App() {
                   <Route path="/about" element={<About/>} />
                   <Route path="/shipping" element={<Shipping/>} />
                   <Route path="/tshirts/:id" element={<TshirtPage/>} />
+                  <Route path="/checkout" element={<Checkout/>} />
               </Routes>
           </div>
           </div>

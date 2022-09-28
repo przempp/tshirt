@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import {useMutation, useQuery, } from "@apollo/client";
 import {ADJUST_ORDER_LINE, GET_ACTIVE_ORDER} from "../data/queries";
+import {Link} from 'react-router-dom'
 
 
 function Cart() {
@@ -57,6 +58,11 @@ function Cart() {
         <div className="cart-container">
             <h3 className='pt-2 pl-1' >{activeOrderData && activeOrderData.activeOrder && activeOrderData.activeOrder.totalWithTax/100}$</h3>
             {cartItems}
+            <Link to="/checkout">
+                <button type="button">
+                    Checkout
+                </button>
+            </Link>
         </div>
     )
 }

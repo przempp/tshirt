@@ -8,12 +8,15 @@ import {
     GET_PRODUCT,
     REMOVE_ITEM_FROM_ORDER,
     ADJUST_ORDER_LINE,
-    GET_DESIGNS
+    GET_DESIGNS,
+    GET_PRODUCTS_DESIGNS,
+    GET_PRODUCT_FEATURED_ASSET
 } from '../data/queries'
-import {useMutation, useQuery} from "@apollo/client";
+import {useMutation, useQuery, useLazyQuery} from "@apollo/client";
 import DOMPurify from 'dompurify';
 import convertHtmlToReact from '@hedgedoc/html-to-react';
 import { Carousel } from 'react-responsive-carousel';
+import ReactModal from 'react-modal';
 
 
 
@@ -23,16 +26,25 @@ function TshirtPage() {
     }, [])
     const {id} = useParams();
     const [variant, setVariant] = useState(0)
-    const [backImage, setBackImage] = useState("huj")
+    const [backDesignDialogueOpen, setBackDesignDialogueOpen] = useState(true)
+    const [isPickingBackDesign, setIsPickingBackDesign] = useState(false)
+    const [isConfirming, setIsConfirming] = useState(false)
+    const [isOpen, setIsOpen] = useState(false)
+    const [backImage, setBackImage] = useState("")
+    const [backImageSlug, setBackImageSlug] = useState("")
     const { loading, error, data } = useQuery(GET_PRODUCT, {variables: { slug: id }});
     // const { loading: designsLoading, error: designsError, data: designsData } = useQuery(GET_DESIGNS);
     const { loading: activeOrderLoading, error: activeOrderError, data: activeOrderData } = useQuery(GET_ACTIVE_ORDER);
+    const [ getProductFeaturedAsset, { loading: backFeaturedAssetLoading, error: backFeaturedAssetError, data: backFeaturedAssetData }] = useLazyQuery(GET_PRODUCT_FEATURED_ASSET);
+    const { loading: productsDesignsLoading, error: productsDesignsError, data: productsDesignsData } = useQuery(GET_PRODUCTS_DESIGNS);
     const [addItemToOrder, { loading: addItemLoading, error: addItemError, data: addItemData }] = useMutation(ADD_ITEM_TO_ORDER,
-        {
-            refetchQueries: [{ query: GET_ACTIVE_ORDER }, 'GetActiveOrder' ],
-            variables: { productVariantId: data && data.product.variants[variant].id, quantity: 1, backDesign: backImage  }
-        }
+        {variables: { productVariantId: data && data.product.variants[variant].id, quantity: 1, backDesign: backImage },
+        refetchQueries: [{ query: GET_ACTIVE_ORDER }, 'GetActiveOrder' ]}
     )
+    if (data) console.log(data.product.variants[variant].facetValues[0].id)
+    if (productsDesignsData) productsDesignsData.collection.productVariants.items.map((items, i) => {
+        // console.log(`${items.product.featuredAsset.preview}?preset=thumb`)
+    })
     // const [adjustOrderLine, { loading: adjustLoading, error: adjustError, data: adjustItemData }] = useMutation(ADJUST_ORDER_LINE, {variables: { orderLineId:
     //             (activeOrderData && activeOrderData.activeOrder.lines[0]) && activeOrderData.activeOrder.lines[0].id, quantity: 1  }})
     // const [removeItemFromOrder, { loading: removeItemLoading, error: removeItemError, data: removeItemData }] =
@@ -47,15 +59,119 @@ function TshirtPage() {
     // if (addItemData) console.log(addItemData)
     if (loading) return <p className='loading-status' >Loading...</p>;
     if (error) return <p className='loading-status'>Error :(</p>;
-    console.log(activeOrderData)
+    // console.log(activeOrderData)
     let clean = DOMPurify.sanitize(data.product.description, {USE_PROFILES: {html: true}});
+
+    const customStyles = {
+        content: {
+            maxHeight: '95vh',
+            maxWidth: '65vh',
+            top: '50%',
+            left: '50%',
+            right: 'auto',
+            bottom: 'auto',
+            marginRight: '-50%',
+            transform: 'translate(-50%, -50%)',
+            backgroundColor: 'rgba(22, 22, 22, 0.85)',
+            borderColor: 'grey',
+            zIndex: '999999999999'
+        },
+        overlay: {
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundColor: 'rgba(0, 0, 0, 0.15)'
+        },
+    };
+
+    // console.log(backImage)
+    // console.log(backImageSlug)
+
+
     return(
         <div className="row justify-content-center">
+            <ReactModal style={customStyles} isOpen={isOpen}>
+
+                {backDesignDialogueOpen && <div>
+
+                <h1 className='text-center' >WANT A DIFFERENT BACK DESIGN?</h1>
+                <div className='d-flex justify-content-around'>
+                    <button onClick={() => {setBackDesignDialogueOpen(false);
+                        setIsPickingBackDesign(true);
+                        }} >YES</button>
+                    <button onClick={() => {
+                        setBackDesignDialogueOpen(false);
+                        setIsPickingBackDesign(false);
+                        setIsOpen(false)}}>NO</button>
+                </div>
+                </div>}
+
+                {(isPickingBackDesign) &&
+                <div>
+                    <h1 className='text-center' style={{fontSize: '6vh'}} >SELECT DESIRED DESIGN ON THE BACK</h1>
+
+                     <Carousel  showIndicators={false} showArrows={false} showStatus={false} emulateTouch={true} infiniteLoop={true} onChange={(e, item,) => {
+                         setBackImage(item.props.id)
+                     }} >
+
+                        {
+                            (productsDesignsData) && productsDesignsData.collection.productVariants.items.map((items, i) => {
+                                // console.log(items.product)
+                            return (<div id={items.product.name}>
+                                <img  className="animation" src={`${items.product.featuredAsset.preview}?w=200&h=150&mode=crop`} />
+                            </div>)
+                        })
+                        }
+                     </Carousel>
+                    <div className='text-center' >
+                        <button  onClick={() => {
+                            setBackDesignDialogueOpen(false);
+                            setIsPickingBackDesign(false)
+                            setIsConfirming((true))
+                            console.log([data.product.variants[variant].facetValues[0].id])
+                            console.log(backImage)
+                            getProductFeaturedAsset({ variables: { term: backImage, id: [data.product.variants[variant].facetValues[0].id] } })
+                            ;}} >SELECT</button>
+                    </div>
+                </div>}
+
+                {isConfirming && <div>
+                    <h1 className='text-center' >YOUR SHIRT DESIGN:</h1>
+                    <div className='d-flex'>
+                        <div className='col-6 text-center'>
+                            <h1>FRONT</h1>
+                            <img className="animation" src={`${data.product.variants[variant].featuredAsset.preview}?preset=small&format=webp`}/>
+                        </div>
+                        <div className='col-6 text-center'>
+                            <h1>BACK</h1>
+                            {backFeaturedAssetData && console.log(backFeaturedAssetData.search)}
+                            {backFeaturedAssetData && <img className="animation" src={`${backFeaturedAssetData.search.items[variant].productVariantAsset.preview}?preset=small&format=webp`}/>}
+                        </div>
+                    </div>
+                    <div className='text-center'>
+                        <button
+                            onClick={() => {
+                                setIsOpen(false);
+                                setIsConfirming(false)
+                                addItemToOrder()
+                            }}
+                        >ADD TO CART</button>
+                    </div>
+
+                </div>}
+
+
+            </ReactModal>
+
+            {/* modal end */}
+
             <div className="col-lg-5 col-md-7  align-self-center ">
                 {/*<a  href={data.product.variants[0].featuredAsset.source}>*/}
                 {/* <img className="tshirt-product-image"  src={`${data.product.variants[0].featuredAsset.preview}?preset=large&format=webp`}/>*/}
                 {/*</a>*/}
-                <Carousel showArrows={false} showStatus={false} emulateTouch={true} infiniteLoop={true} onChange={e => setVariant(e)} >
+                <Carousel showArrows={false}  showStatus={false} emulateTouch={true} infiniteLoop={true} onChange={e => setVariant(e)} >
                     <div>
                         <img className="animation" src={`${data.product.variants[0].featuredAsset.preview}?preset=large&format=webp`} />
                     </div>
@@ -68,11 +184,18 @@ function TshirtPage() {
             <div className="col-lg-7 col-md-5 tshirt-product-description justify-content-center align-self-center ">
                 <div className='d-flex align-items-center mb-2'>
                 <h1 className="mb-0">{data.product.variants[variant].name}</h1>
-                    <button className="ml-4 h-100" onClick={addItemToOrder}>
+                    <button className="ml-4 h-100" onClick={() => {setIsOpen(true);
+                        setBackDesignDialogueOpen(true)}}>
                         Add item
                     </button>
-                    <input type="text" value={backImage} onChange={e => setBackImage(e.target.value)}>
-                    </input>
+
+
+
+                    <Carousel showArrows={false} showStatus={false} emulateTouch={true} infiniteLoop={true} onChange={e => setVariant(e)} >
+
+                    </Carousel>
+                    {/*<input type="text" value={backImage} onChange={e => setBackImage(e.target.value)}>*/}
+                    {/*</input>*/}
                 </div>
                 <h2 className='text-justify'>{convertHtmlToReact(clean)}</h2>
 
