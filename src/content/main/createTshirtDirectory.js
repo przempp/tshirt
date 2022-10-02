@@ -23,7 +23,7 @@ function CreateTshirtDirectoryNew() {
             tshirtDirectory.push(SetTable(products))
             console.log(collections.name)
             if (i === 7 && collections.name === 'Original') {
-                tshirtDirectory.push(<div className='directory-sticker menu-item col-md-4 align-self-center' >
+                tshirtDirectory.push(<div className='directory-sticker menu-item col-md-6 col-lg-4 align-self-center' >
                     <div className='col-sm '>
                         <img className='directory-tshirt animation' src={selectPrint} />
                     </div>
@@ -36,7 +36,7 @@ function CreateTshirtDirectoryNew() {
     function SetTable(item) {
         let tshirtDirectory = []
         tshirtDirectory.push(
-            <div className='menu-item col-md-4'>
+            <div className='menu-item  col-md-6 col-lg-4'>
                 <div className='col-sm'>
                     <Link to={'/tshirts/' + item.product.slug}>
                         <img className='directory-tshirt' src={`${item.featuredAsset.preview}?preset=large&format=webp`} />
