@@ -52,15 +52,15 @@ function Cart() {
     )
     return (
         <div>
-            <div style={{zIndex: "100022"}} className='position-fixed'>
+            <div style={{zIndex: "100022"}} className={` position-fixed  cart-icon `}  >
                 <h3 onClick={event => {sidebarClassname ? setSidebarClassname('') : setSidebarClassname('enter')}} className='pt-2 pl-1' >{activeOrderData && activeOrderData.activeOrder && activeOrderData.activeOrder.totalWithTax/100}$</h3>
                 {/*<button onClick={event => {setSidebarClassname('enter')}} >testtesttesttesttesttesttesttest</button>*/}
             </div>
             <div className={`sidebar  ${sidebarClassname}`}>
-                <div style={{zIndex: "100022"}} className='position-absolute'>
-                    <h3 onClick={event => {sidebarClassname ? setSidebarClassname('') : setSidebarClassname('enter')}} className='pt-2 pl-1' >{activeOrderData && activeOrderData.activeOrder && activeOrderData.activeOrder.totalWithTax/100}$</h3>
-                    {/*<button onClick={event => {setSidebarClassname('enter')}} >testtesttesttesttesttesttesttest</button>*/}
-                </div>
+                {/*<div style={{zIndex: "100022"}} className={`notransition position-absolute  cart${sidebarClassname}`}>*/}
+                {/*    <h3 onClick={event => {sidebarClassname ? setSidebarClassname('') : setSidebarClassname('enter')}} className='pt-2 pl-1' >{activeOrderData && activeOrderData.activeOrder && activeOrderData.activeOrder.totalWithTax/100}$</h3>*/}
+                {/*    /!*<button onClick={event => {setSidebarClassname('enter')}} >testtesttesttesttesttesttesttest</button>*!/*/}
+                {/*</div>*/}
                 <div className='navbar-div'>
                     <nav className="scrollbar  ">
                         <div className='animation-chill table-div-cart' >

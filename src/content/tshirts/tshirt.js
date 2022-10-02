@@ -174,7 +174,7 @@ function TshirtPage() {
                 {/*<a  href={data.product.variants[0].featuredAsset.source}>*/}
                 {/* <img className="tshirt-product-image"  src={`${data.product.variants[0].featuredAsset.preview}?preset=large&format=webp`}/>*/}
                 {/*</a>*/}
-                <Carousel showArrows={false}  showStatus={false} emulateTouch={true} infiniteLoop={true} onChange={e => setVariant(e)} >
+                <Carousel preventMovementUntilSwipeScrollTolerance={true} swipeScrollTolerance={30} showArrows={false}  showStatus={false} emulateTouch={true} infiniteLoop={true} onChange={e => setVariant(e)} >
                     <div>
                         <img className="animation" src={`${data.product.variants[0].featuredAsset.preview}?preset=large&format=webp`} />
                     </div>
