@@ -6,6 +6,8 @@ import Navbar from "./content/navbar/navbar";
 import About from './content/about/about'
 import Shipping from './content/shipping/shipping'
 import TshirtPage from './content/tshirts/tshirt'
+import Cart from './content/cart/cart'
+import SidebarComponent from './content/sidebar/SidebarComponent'
 import './App.css';
 import {
     BrowserRouter,
@@ -13,19 +15,24 @@ import {
     Route,
     useParams
 } from "react-router-dom";
+import Checkout from "./content/checkout/checkout";
 
 function App() {
  let id = useParams()
+
   return (
       <BrowserRouter>
           <div className="bg-container">
           <div className="container main pt-4  ">
+              {/*<SidebarComponent/>*/}
+              <Cart/>
               <Navbar/>
               <Routes>
                   <Route path="/" element={<TshirtsDirectory/>} />
                   <Route path="/about" element={<About/>} />
                   <Route path="/shipping" element={<Shipping/>} />
                   <Route path="/tshirts/:id" element={<TshirtPage/>} />
+                  <Route path="/checkout" element={<Checkout/>} />
               </Routes>
           </div>
           </div>
