@@ -12,7 +12,7 @@ function TshirtsDirectory() {
     return (
         <div>
             <div className="d-flex justify-content-center align-items-center flex-column ">
-                <div className='menu menu-directory row'>
+                <div className='menu menu-directory row justify-content-center'>
                     {table}
                 </div>
             </div>
