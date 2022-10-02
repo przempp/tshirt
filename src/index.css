@@ -40,6 +40,7 @@ table {
   /*border: 1px solid black;*/
   /*table-layout: fixed;*/
   /*width: 200px !important;*/
+  /*min-width: 20px;*/
 
 
 }
@@ -438,15 +439,15 @@ button {
 }
 
 .sidebar {
-  overflow: hidden;
+  overflow: visible;
   z-index: 1000;
   height: 150%;
   top: -20px;
   width: min-content;
   /*display: block;*/
-  backdrop-filter: blur(2px) hue-rotate(180deg)   ;
-  background: linear-gradient(-20deg, rgba(23, 23, 25, 1) 0%, rgba(25,23,25,0.7) 33%, rgba(25,23,25,1) 66%, rgba(25,23,25,0.5)  100%);
-  /*background-size: 400% 400%;*/
+  backdrop-filter: hue-rotate(180deg);
+  background: linear-gradient(180deg, rgba(23, 23, 25, 0.9) 0%,  rgba(25,23,25, 0.7)  100%);
+
   /*animation: AnimationName 6s linear infinite;*/
   /*transform: rotate(7deg);*/
   transform-origin: 100% 0%;
@@ -455,25 +456,31 @@ button {
   padding-top: 85px;
   /*border-right: solid 5px black;*/
   outline: 2px solid #343a40;
-  transition: all 0.5s;
-  -webkit-transition: all revert 0.35s;
+  transition: left 0.5s;
+  /*-webkit-transition: all revert 0.35s;*/
   justify-content: center;
   display: flex;
   flex-direction: column;
   justify-content: start;
-
 }
 
+.notransition {
+  -webkit-transition: none !important;
+  -moz-transition: none !important;
+  -o-transition: none !important;
+  transition: none !important;
+}
 
 .navbar-div > nav {
-  padding: 10px;
+  padding: 9px;
   filter: drop-shadow(2px 3px 4px black);
+  width: 100%;
   /*width: 500px;*/
   /*min-height: 5vh;*/
   /*max-height: 75vh;*/
-  /*overflow: auto;*/
+  overflow: auto;
   /*transform: rotate(-10deg);*/
-  overflow-x: hidden;
+  /*overflow-x: hidden;*/
 
 }
 
@@ -510,7 +517,7 @@ button {
 
 .table-div-cart {
   max-height: 60vh;
-  width: fit-content;
+
 }
 
 @media only screen and (max-width: 767px)  {
@@ -595,4 +602,10 @@ button {
   100% {
     transform: rotate(-1deg);
   }
+}
+
+.cart-icon {
+  /*left: 340px;*/
+  left: 5vw;
+  cursor: pointer;
 }
