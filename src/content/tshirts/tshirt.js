@@ -104,7 +104,9 @@ function TshirtPage() {
                     <button onClick={() => {
                         setBackDesignDialogueOpen(false);
                         setIsPickingBackDesign(false);
-                        setIsOpen(false)}}>NO</button>
+                        setIsOpen(false);
+                        addItemToOrder()
+                    }}>NO</button>
                 </div>
                 </div>}
 
@@ -138,16 +140,16 @@ function TshirtPage() {
                 </div>}
 
                 {isConfirming && <div>
-                    <h1 className='text-center' >YOUR SHIRT DESIGN:</h1>
+                    <h2 className='text-center' >YOUR SHIRT DESIGN:</h2>
                     <div className='d-flex'>
-                        <div className='col-6 text-center'>
-                            <h1>FRONT</h1>
+                        <div className='d-flex flex-column col-6 text-center'>
+                            <h2>FRONT</h2>
                             <img className="animation" src={`${data.product.variants[variant].featuredAsset.preview}?preset=small&format=webp`}/>
                         </div>
-                        <div className='col-6 text-center'>
-                            <h1>BACK</h1>
+                        <div className='d-flex flex-column col-6 text-center'>
+                            <h2>BACK</h2>
                             {backFeaturedAssetData && console.log(backFeaturedAssetData.search)}
-                            {backFeaturedAssetData && <img className="animation" src={`${backFeaturedAssetData.search.items[variant].productVariantAsset.preview}?preset=small&format=webp`}/>}
+                            {backFeaturedAssetData && <img className="animation" src={`${backFeaturedAssetData.search.items[0].productVariantAsset.preview}?preset=small&format=webp`}/>}
                         </div>
                     </div>
                     <div className='text-center'>
@@ -156,6 +158,7 @@ function TshirtPage() {
                                 setIsOpen(false);
                                 setIsConfirming(false)
                                 addItemToOrder()
+                                setBackImage('')
                             }}
                         >ADD TO CART</button>
                     </div>

@@ -7,6 +7,7 @@ import About from './content/about/about'
 import Shipping from './content/shipping/shipping'
 import TshirtPage from './content/tshirts/tshirt'
 import Cart from './content/cart/cart'
+import SidebarComponent from './content/sidebar/SidebarComponent'
 import './App.css';
 import {
     BrowserRouter,
@@ -23,6 +24,7 @@ function App() {
       <BrowserRouter>
           <div className="bg-container">
           <div className="container main pt-4  ">
+              {/*<SidebarComponent/>*/}
               <Cart/>
               <Navbar/>
               <Routes>
