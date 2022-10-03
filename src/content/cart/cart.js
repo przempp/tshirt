@@ -2,27 +2,27 @@ import React, { useState, useEffect, useRef } from 'react';
 import {useMutation, useQuery, } from "@apollo/client";
 import {ADJUST_ORDER_LINE, GET_ACTIVE_ORDER} from "../data/queries";
 import {Link} from 'react-router-dom'
-
+import OutsideClickHandler from 'react-outside-click-handler';
 
 function Cart() {
     const [sidebarClassname, setSidebarClassname] = useState('')
     const quantity = useRef(0);
     const id = useRef(0);
-
     // const [quantity, setQuantity] = useState(0);
     const { loading: activeOrderLoading, error: activeOrderError, data: activeOrderData } = useQuery(GET_ACTIVE_ORDER);
     const [adjustOrderLine, { loading: adjustLoading, error: adjustError, data: adjustItemData }] = useMutation(ADJUST_ORDER_LINE,
         {refetchQueries: [{ query: GET_ACTIVE_ORDER }]})
     if (activeOrderData) console.log(activeOrderData)
     let cartItems = []
+    // console.log(activeOrderData)
     activeOrderData && activeOrderData.activeOrder && activeOrderData.activeOrder.lines.map(item => {
-            console.log(item)
+        console.log(item)
             cartItems.push(
 
                         <tr>
-                            <th scope="col" ><img className='cart-product-image' src={item.featuredAsset.preview} /></th>
-                            <th scope="col" style={{minWidth: '100px', maxWidth: '300px' }}>{item.productVariant.name}</th>
-                            <th scope="col" >
+                            <td scope="col" ><img className='cart-product-image' src={item.featuredAsset.preview} /></td>
+                            <td  scope="col" style={{minWidth: '100px', maxWidth: '300px' }}>{item.productVariant.name}</td>
+                            <td scope="col" >
                                 <button onClick={() => {
                                     adjustOrderLine({ variables: {
                                         orderLineId:item.id, quantity: item.quantity + 1 } })}
@@ -30,9 +30,9 @@ function Cart() {
                                 >
                                     +
                                 </button>
-                            </th>
-                            <th scope="col" >{item.quantity} </th>
-                            <th scope="col" >
+                            </td>
+                            <td scope="col" >{item.quantity} </td>
+                            <td scope="col" >
                                 <button onClick={() => {
                                     adjustOrderLine({ variables: {
                                             orderLineId:item.id, quantity: item.quantity - 1 } })}
@@ -40,10 +40,15 @@ function Cart() {
                                 >
                                     -
                                 </button>
-                            </th>
-                            <th scope="col">{item.linePriceWithTax/100}$</th>
-                        </tr>
+                            </td>
+                            <td scope="col">{item.linePriceWithTax/100}$</td>
 
+                        </tr>
+            )
+            item.customFields.backDesign && cartItems.push(
+                <tr >
+                    <td style={{borderTop: 'none'}} colspan="6" scope="col" >+ Custom Back: {item.customFields.backDesign}</td>
+                </tr>
             )
     }
 
@@ -51,7 +56,9 @@ function Cart() {
 
     )
     return (
-        <div>
+        <OutsideClickHandler
+            onOutsideClick={() => setSidebarClassname('')}
+        >
             <div style={{zIndex: "100022"}} className={` position-fixed  cart-icon `}  >
                 <h3 onClick={event => {sidebarClassname ? setSidebarClassname('') : setSidebarClassname('enter')}} className='pt-2 pl-1' >{activeOrderData && activeOrderData.activeOrder && activeOrderData.activeOrder.totalWithTax/100}$</h3>
                 {/*<button onClick={event => {setSidebarClassname('enter')}} >testtesttesttesttesttesttesttest</button>*/}
@@ -83,7 +90,7 @@ function Cart() {
 
 
 
-        </div>
+        </OutsideClickHandler>
 
         // <div className="cart-container">
         //     {cartItems}
