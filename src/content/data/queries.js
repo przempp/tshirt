@@ -70,6 +70,9 @@ export const ACTIVE_ORDER = gql`
             }
             quantity
             linePriceWithTax
+            customFields {
+                backDesign
+            }
         }
     }
 `
