@@ -3,6 +3,7 @@ import {useMutation, useQuery, } from "@apollo/client";
 import {ADJUST_ORDER_LINE, GET_ACTIVE_ORDER} from "../data/queries";
 import {Link} from 'react-router-dom'
 import OutsideClickHandler from 'react-outside-click-handler';
+import CartDetailsTable from './cartDetailsTable'
 
 function Cart() {
     const [sidebarClassname, setSidebarClassname] = useState('')
@@ -10,51 +11,8 @@ function Cart() {
     const id = useRef(0);
     // const [quantity, setQuantity] = useState(0);
     const { loading: activeOrderLoading, error: activeOrderError, data: activeOrderData } = useQuery(GET_ACTIVE_ORDER);
-    const [adjustOrderLine, { loading: adjustLoading, error: adjustError, data: adjustItemData }] = useMutation(ADJUST_ORDER_LINE,
-        {refetchQueries: [{ query: GET_ACTIVE_ORDER }]})
-    if (activeOrderData) console.log(activeOrderData)
-    let cartItems = []
-    // console.log(activeOrderData)
-    activeOrderData && activeOrderData.activeOrder && activeOrderData.activeOrder.lines.map(item => {
-        console.log(item)
-            cartItems.push(
-
-                        <tr>
-                            <td scope="col" ><img className='cart-product-image' src={item.featuredAsset.preview} /></td>
-                            <td  scope="col" style={{minWidth: '100px', maxWidth: '300px' }}>{item.productVariant.name}</td>
-                            <td scope="col" >
-                                <button onClick={() => {
-                                    adjustOrderLine({ variables: {
-                                        orderLineId:item.id, quantity: item.quantity + 1 } })}
-                                }
-                                >
-                                    +
-                                </button>
-                            </td>
-                            <td scope="col" >{item.quantity} </td>
-                            <td scope="col" >
-                                <button onClick={() => {
-                                    adjustOrderLine({ variables: {
-                                            orderLineId:item.id, quantity: item.quantity - 1 } })}
-                                }
-                                >
-                                    -
-                                </button>
-                            </td>
-                            <td scope="col">{item.linePriceWithTax/100}$</td>
-
-                        </tr>
-            )
-            item.customFields.backDesign && cartItems.push(
-                <tr >
-                    <td style={{borderTop: 'none'}} colspan="6" scope="col" >+ Custom Back: {item.customFields.backDesign}</td>
-                </tr>
-            )
-    }
 
 
-
-    )
     return (
         <OutsideClickHandler
             onOutsideClick={() => setSidebarClassname('')}
@@ -69,16 +27,7 @@ function Cart() {
                 {/*    /!*<button onClick={event => {setSidebarClassname('enter')}} >testtesttesttesttesttesttesttest</button>*!/*/}
                 {/*</div>*/}
                 <div className='navbar-div'>
-                    <nav className="scrollbar  ">
-                        <div className='animation-chill table-div-cart' >
-
-                            <table className="table ">
-
-                        {cartItems}
-                            </table>
-                        </div>
-
-                    </nav>
+                    <CartDetailsTable/>
 
                     </div>
                 <Link className='checkout-button'   to="/checkout">

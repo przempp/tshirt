@@ -56,6 +56,18 @@ export const ACTIVE_ORDER = gql`
         couponCodes
         subTotalWithTax
         shippingWithTax
+        shippingAddress {
+            fullName
+            company
+            streetLine1
+            streetLine2
+            city
+            province
+            postalCode
+            country
+            countryCode
+            phoneNumber
+        }
         totalWithTax
         totalQuantity
         lines {
@@ -248,6 +260,17 @@ export const COUNTRY_FRAGMENT = gql`
         code
         name
         enabled
+    }
+`;
+
+export const GET_AVAILABLE_COUNTRIES = gql`
+    query GetAvailableCountries {
+        availableCountries {
+            id
+            code
+            name
+            enabled
+        }
     }
 `;
 
