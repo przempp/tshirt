@@ -524,7 +524,12 @@ button {
 
 .table-div-cart {
   max-height: 60vh;
+  min-width: 320px;
+}
 
+.responsive .table-div-cart {
+  max-height: none;
+  min-width: none;
 }
 
 @media only screen and (max-width: 767px)  {
