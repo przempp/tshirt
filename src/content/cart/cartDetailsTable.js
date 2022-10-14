@@ -44,7 +44,7 @@ function CartDetailsTable({showButtons = true, animate = true, responsive = fals
             )
             item.customFields.backDesign && cartItems.push(
                 <tr >
-                    <td style={{borderTop: 'none'}} colspan="6" scope="col" >+ Custom Back: {item.customFields.backDesign}</td>
+                    <td style={{borderTop: 'none'}} className='text-left' colspan="6" scope="col" >+ Custom Back: {item.customFields.backDesign}</td>
                 </tr>
             )
         }
@@ -52,7 +52,17 @@ function CartDetailsTable({showButtons = true, animate = true, responsive = fals
 
 
     )
-
+    if (activeOrderData && activeOrderData.activeOrder && activeOrderData.activeOrder.lines) {
+        if (activeOrderData.activeOrder.shippingWithTax) cartItems.push(
+            <tr>
+                <td  className='text-right pb-0 mb-0' colSpan="6" scope="col">+ Shipping: {activeOrderData.activeOrder.shippingWithTax/100}$</td>
+            </tr>)
+        cartItems.push(
+        <tr>
+            <td style={{borderTop: `${activeOrderData.activeOrder.shippingWithTax ? "none" : ""}` }} className='text-right' colSpan="6" scope="col">Total: {activeOrderData.activeOrder.totalWithTax/100}$</td>
+        </tr>
+    )
+    }
     return(
     <nav className={`scrollbar ${responsive ? "table-responsive" : ''}`}>
         {cartItems.length

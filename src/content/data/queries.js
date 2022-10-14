@@ -67,6 +67,11 @@ export const ACTIVE_ORDER = gql`
             country
             countryCode
             phoneNumber
+            customFields {
+                paymentType
+                paymentStartDate
+                cryptoPrice
+            }
         }
         totalWithTax
         totalQuantity
@@ -363,7 +368,7 @@ export const GET_ELIGIBLE_SHIPPING_METHODS = gql`
 
 export const GET_PRODUCTS_DESIGNS = gql`
     query GetProductsDesigns {
-        collection(id: 16) {
+        collection(id: 15) {
             productVariants {
                 items {
                     product {
@@ -434,3 +439,13 @@ export const TRANSITION_TO_ARRANGING_PAYMENT = gql`
 `;
 
 
+export const ADD_PAYMENT = gql`
+    mutation AddPayment($input: PaymentInput!) {
+        addPaymentToOrder(input: $input) {
+            ...Cart
+            ...ErrorResult
+        }
+    }
+    ${CART_FRAGMENT}
+    ${ERROR_RESULT_FRAGMENT}
+`;

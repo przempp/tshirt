@@ -17,9 +17,11 @@ import {
 } from "react-router-dom";
 import Checkout from "./content/checkout/checkout";
 
+
+
 function App() {
  let id = useParams()
-
+    console.log(process.env)
   return (
       <BrowserRouter>
           <div className="bg-container">
