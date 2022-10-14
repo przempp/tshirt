@@ -8,11 +8,13 @@ import './bootstrap.min.css';
 import { ApolloClient, InMemoryCache, ApolloProvider, HttpLink, ApolloLink, gql } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context'
 
+
 const AUTH_TOKEN_KEY = 'auth_token';
+
 
 const httpLink = new HttpLink({
     // uri: `http://localhost:3000/shop-api`,
-    uri: `https://adminpanel.enjoythed.biz/shop-api`,
+    uri: process.env.REACT_APP_SHOP_API_LINK,
     withCredentials: true,
 });
 
@@ -58,7 +60,6 @@ const client = new ApolloClient({
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <ApolloProvider client={client}>
-
     <App />
     </ApolloProvider>
 );

@@ -41,9 +41,10 @@ function TshirtPage() {
         refetchQueries: [{ query: GET_ACTIVE_ORDER }, 'GetActiveOrder' ]}
     )
     if (data) console.log(data.product.variants[variant].facetValues[0].id)
-    if (productsDesignsData) productsDesignsData.collection.productVariants.items.map((items, i) => {
-        // console.log(`${items.product.featuredAsset.preview}?preset=thumb`)
-    })
+    if (productsDesignsData) console.log(productsDesignsData)
+    // if (productsDesignsData) productsDesignsData.collection.productVariants.items.map((items, i) => {
+    //     // console.log(`${items.product.featuredAsset.preview}?preset=thumb`)
+    // })
 
     useEffect(() => {
         // Update the document title using the browser API

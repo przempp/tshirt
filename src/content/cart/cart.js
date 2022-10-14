@@ -18,7 +18,7 @@ function Cart() {
             onOutsideClick={() => setSidebarClassname('')}
         >
             <div style={{zIndex: "100022"}} className={` position-fixed  cart-icon `}  >
-                <h3 onClick={event => {sidebarClassname ? setSidebarClassname('') : setSidebarClassname('enter')}} className='pt-2 pl-1' >{activeOrderData && activeOrderData.activeOrder && activeOrderData.activeOrder.totalWithTax/100}$</h3>
+                <h3 onClick={event => {sidebarClassname ? setSidebarClassname('') : setSidebarClassname('enter')}} className='pt-2 pl-1' >{(activeOrderData && activeOrderData.activeOrder) ? activeOrderData.activeOrder.totalWithTax/100 : "0"}$</h3>
                 {/*<button onClick={event => {setSidebarClassname('enter')}} >testtesttesttesttesttesttesttest</button>*/}
             </div>
             <div className={`sidebar  ${sidebarClassname}`}>
@@ -30,11 +30,12 @@ function Cart() {
                     <CartDetailsTable/>
 
                     </div>
-                <Link className='checkout-button'   to="/checkout">
+                {activeOrderData && console.log(activeOrderData)}
+                {activeOrderData && activeOrderData.activeOrder && (activeOrderData.activeOrder.totalQuantity !== 0) && <Link className='checkout-button'   to="/checkout">
                     <button c onClick={e => {setSidebarClassname('')}} type="button">
                         Checkout
                     </button>
-                </Link>
+                </Link>}
                 </div>
 
 
