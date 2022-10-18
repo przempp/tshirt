@@ -146,21 +146,6 @@ export const ADJUST_ORDER_LINE = gql`
     }
 `
 
-// export const SET_SHIPPING_ADDRESS = gql`
-//     ${ACTIVE_ORDER}
-//     mutation setOrderShippingAddress(input: ){
-//         adjustOrderLine(orderLineId: $orderLineId, quantity: $quantity ) {
-//             ... ActiveOrder
-//             ... on ErrorResult {
-//                 errorCode
-//                 message
-//             }
-//         }
-//     }
-// `
-
-
-
 export const GET_ACTIVE_ORDER = gql`
     ${ACTIVE_ORDER}
     query GetActiveOrder {
@@ -279,6 +264,14 @@ export const GET_AVAILABLE_COUNTRIES = gql`
     }
 `;
 
+export const GET_NEXT_ORDER_STATES = gql`
+    query NextOrderStates {
+        nextOrderStates
+    }
+`;
+
+
+
 export const ORDER_ADDRESS_FRAGMENT = gql`
     fragment OrderAddress on OrderAddress {
         fullName
@@ -368,7 +361,7 @@ export const GET_ELIGIBLE_SHIPPING_METHODS = gql`
 
 export const GET_PRODUCTS_DESIGNS = gql`
     query GetProductsDesigns {
-        collection(id: 15) {
+        collection(id: 16) {
             productVariants {
                 items {
                     product {
@@ -438,6 +431,17 @@ export const TRANSITION_TO_ARRANGING_PAYMENT = gql`
     ${ERROR_RESULT_FRAGMENT}
 `;
 
+
+export const TRANSITION_ORDER_STATE = gql`
+    mutation TransitionOrderState($input: String!) {
+        transitionOrderToState(state: $input) {
+            ...Cart
+            ...ErrorResult
+        }
+    }
+    ${CART_FRAGMENT}
+    ${ERROR_RESULT_FRAGMENT}
+`;
 
 export const ADD_PAYMENT = gql`
     mutation AddPayment($input: PaymentInput!) {
