@@ -81,7 +81,6 @@ body {
   background-size: 320px;
   background-position-x: 0px;
   animation: scaleAnimation 10s infinite linear;
-  image-rendering: pixelated;
 
 
 }
