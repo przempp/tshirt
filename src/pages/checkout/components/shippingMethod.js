@@ -10,27 +10,24 @@ function ShippingMethod(
     cancelButton
 ) {
 
-    return(
+    return (
         <>
             <div className='form-group'>
                 <div className='col-12 pl-0'>
                     <label htmlFor="inputShippingType">Select Shipping Method</label>
                     <Select value={shippingType} onChange={e => {
                         setShippingType(e)
-                    }} styles={customStyles} options={shippingMethodsFormated} />
+                    }} styles={customStyles} options={shippingMethodsFormated}/>
                 </div>
-
-
-
             </div>
-            <div className='form-group'>
+            <div className='form-group d-flex justify-content-between' >
+                {cancelButton()}
                 <button onClick={() => {
                     setShippingMethod()
                     setShippingMethodStage(false)
                     setPaymentMethodStage(true)
-                }}  className="btn btn-primary" disabled={(!shippingType)} type='button'>Set Shipping
+                }} className="my-button small" disabled={(!shippingType)} type='button'>Set Shipping
                 </button>
-                {cancelButton()}
             </div>
         </>
     )

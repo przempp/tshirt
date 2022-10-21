@@ -7,7 +7,7 @@ function PaymentMethod(
     setShippingAddress, shippingType,
     cancelButton
 ) {
-    return(
+    return (
         <Form>
             <h2>Pick payment option</h2>
             <Form.Check
@@ -31,14 +31,22 @@ function PaymentMethod(
                 onChange={() => setSelectedCrypto('monero')}
                 checked={selectedCrypto === "monero"}
             />
-
-            <button onClick={e => {
-                setShippingAddress()
-                setPaymentMethodStage(false)
-                setPaymentStage(true)
-            }}  className="btn btn-primary" disabled={(!shippingType)} type='button'>Finalize
-            </button>
-            {cancelButton()}
+            <Form.Check
+                type={'radio'}
+                id={`default-ltc`}
+                label={`Litecoin`}
+                onChange={() => setSelectedCrypto('litecoin')}
+                checked={selectedCrypto === "litecoin"}
+            />
+            <div className='d-flex justify-content-between'>
+                {cancelButton()}
+                <button onClick={e => {
+                    setShippingAddress()
+                    setPaymentMethodStage(false)
+                    setPaymentStage(true)
+                }} className="my-button small" disabled={(!shippingType)} type='button'>Finalize
+                </button>
+            </div>
         </Form>
     )
 }

@@ -25,20 +25,26 @@ function ReviewDetails(
                     <p className='mt-2'>Payment with: {activeOrderData.activeOrder.shippingAddress.customFields.paymentType}</p>
                 </div>
             </div>
-            <div className='text-center'>
-                <h2>Finalize payment:</h2>
-                <button type='button' onClick={e => {
-                    transitionToPayment()
-                    setShippingAddress()
-                    // console.log('Zmiana na arranging payment POSZLA!')
-                    setPaymentStage(false)
-                    setCustomerPaysStage(true)
+            <div className='text-center d-flex flex-column text-center'>
+                <div>
+                    <button style={{ margin: '5px' }} type='button' className='my-button' onClick={e => {
+                        transitionToPayment()
+                        setShippingAddress()
+                        // console.log('Zmiana na arranging payment POSZLA!')
+                        setPaymentStage(false)
+                        setCustomerPaysStage(true)
 
-                }}>
-                    FINALIZE AND PAY!
-                </button>
-                {cancelButton()}
-                {editButton(setPaymentStage)}
+                    }}>
+                        FINALIZE AND PAY!
+                    </button>
+                </div>
+
+                <div >
+                    <span style={{ margin: '2.5px' }} > {cancelButton()} </span>
+                    <span style={{ margin: '2.5px' }} > {editButton(setPaymentStage)} </span>
+
+                </div>
+
             </div>
         </div>
     )

@@ -1,15 +1,18 @@
 @font-face {
   font-family: "HandjetHeart";   /*Can be any text*/
   src: local("HandjetCircleDouble-Regular"),
-  url("./fonts/HandjetCircleDouble-Regular.ttf") format("truetype");
+  url("assets/fonts/HandjetCircleDouble-Regular.ttf") format("truetype");
 }
 
 @font-face {
   font-family: "HandjetHeartDoubleFlower";   /*Can be any text*/
   src: local("HandjetHeartDoubleFlower-Regular"),
-  url("./fonts/HandjetFlowerDouble-Regular.ttf") format("truetype");
+  url("assets/fonts/HandjetFlowerDouble-Regular.ttf") format("truetype");
 }
 
+.table td {
+  padding: 0.55rem !important;
+}
 
 body {
 
@@ -66,13 +69,13 @@ th {
     transform: translate(0);
   }
   100% {
-    transform: translate(-3840px); /* The image width */
+    transform: translate(-3840px); /* The assets width */
   }
 }
 
 body {
 
-  background-image: url(image/smiley_old.gif);
+  background-image: url(assets/smiley_old.gif);
   background-color: #191719 !important;
   background-position: revert;
   background-size: 320px;
@@ -93,14 +96,14 @@ body {
   left: 0;
 
   background: linear-gradient(rgba(255, 255, 255, 0.005), rgba(255, 255, 255, 0.02)),
-              url(image/scanlines3.png); /* download the image here: https://i.ibb.co/C0MjrsJ/05.png and link to it */
-  /*background: url(image/scanlines3.png); !* download the image here: https://i.ibb.co/C0MjrsJ/05.png and link to it *!*/
+              url(assets/scanlines3.png); /* download the assets here: https://i.ibb.co/C0MjrsJ/05.png and link to it */
+  /*background: url(assets/scanlines3.png); !* download the assets here: https://i.ibb.co/C0MjrsJ/05.png and link to it *!*/
   background-size: 2px 2px;
 }
 
 /*.bg-container {*/
 /*  background-color: black;*/
-/*  background-image: radial-gradient(*/
+/*  background-assets: radial-gradient(*/
 /*          rgba(0, 150, 0, 0.75), black 120%*/
 /*  );*/
 /*  background-blend-mode: screen;*/
@@ -314,6 +317,9 @@ html a:hover {
 
 .directory-tshirt {
   max-width: 100%;
+}
+
+.tshirt-shadow {
   filter: drop-shadow(0.65rem 0.65rem 0.9rem rgba(0, 0, 0, 0.9));
 }
 
@@ -414,6 +420,8 @@ html a:hover {
 .loading-status {
   width: 100%;
   text-align: center;
+  padding-top: 15vh;
+  padding-bottom: 15vh;
 }
 
 .cart-container {
@@ -516,8 +524,8 @@ button {
 
 
 .checkout-button {
-  margin-top: 25px;
-  padding: 20px;
+  margin-top: 15px;
+  padding: 10px;
   align-self: center;
   /*transform: rotate(-7deg);*/
 }
@@ -541,10 +549,6 @@ button {
   .table-div-cart {
     max-height: 60vh;
     width: 100%;
-  }
-
-  .checkout-button {
-    transform: rotate(0deg);
   }
 
   .navbar-div {
@@ -621,4 +625,34 @@ button {
   /*left: 340px;*/
   left: 5vw;
   cursor: pointer;
+}
+
+
+.my-button{
+  /*background: linear-gradient(to right,#2d2d2d ,#414141);*/
+  background-color: #262525;
+  color: #fff;
+
+  font-size: 18px;
+  font-weight: 400;
+  font-style: italic;
+  text-decoration: none;
+  padding: 6px 15px;
+  border: 0px solid #000;
+  border-radius: 24px;
+  display: inline-block;
+  width: max-content;
+}
+.my-button:hover{
+  /*background: linear-gradient(to right,#5b5b5b ,#666666);*/
+  background-color: #1d1d1d;
+  cursor: pointer;
+}
+.my-button:active{
+  transform: scale(0.95);
+}
+
+.my-button:disabled{
+  color: dimgrey;
+  background: black;
 }
