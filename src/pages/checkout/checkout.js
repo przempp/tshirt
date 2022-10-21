@@ -11,8 +11,8 @@ import {
     SET_SHIPPING_METHOD,
     TRANSITION_ORDER_STATE,
     TRANSITION_TO_ARRANGING_PAYMENT
-} from "../data/queries";
-import CartDetailsTable from '../cart/cartDetailsTable'
+} from "../../data/queries";
+import CartDetailsTable from '../../components/cart/components/cartDetailsTable'
 import CustomerDetails from './components/customerDetails'
 import ShippingDetails from './components/shippingDetails'
 import ShippingMethod from './components/shippingMethod'
@@ -74,7 +74,8 @@ function Checkout() {
         {
             bitcoin: 'btc_address',
             ethereum: 'eth_address',
-            monero: 'xrm_address'
+            monero: 'xrm_address',
+            litecoin: 'ltc_address'
         }
 
 
@@ -168,12 +169,20 @@ function Checkout() {
 
     useEffect(() => {
         if (activeOrderData && activeOrderData.activeOrder && activeOrderData.activeOrder.state === "ArrangingPayment") {
+            const currentTimeInSeconds = Date.parse(new Date()) / 1000
+            const orderTimeInSeconds = Date.parse(activeOrderData.activeOrder.shippingAddress.customFields.paymentStartDate) / 1000
+            const timeoutTimeForOrder = (orderTimeInSeconds + 1800)
+            let whenTimeout = timeoutTimeForOrder - currentTimeInSeconds
+            console.log("Pozostalo do timeoutu:")
+            console.log(whenTimeout)
+            // console.log(activeOrderData.activeOrder.shippingAddress.customFields.paymentStartDate)
             let pastSecondsCalculated = (
                 (Date.parse(new Date()) - Date.parse(activeOrderData.activeOrder.shippingAddress.customFields.paymentStartDate)) / 1000)
             const interval = setInterval(() => {
-                setSecondsSinceOrderPlaced(pastSecondsCalculated++)
-                console.log(pastSecondsCalculated)
-                if (pastSecondsCalculated > 900) {
+                whenTimeout--
+                setSecondsSinceOrderPlaced(whenTimeout)
+                console.log(whenTimeout)
+                if (whenTimeout <= 0) {
                     transitionOrderState({variables: {input: 'Cancelled'}, refetchQueries: [{query: GET_ACTIVE_ORDER}]})
                     setFinalStage(false)
                     setCustomerDetailsStage(false)
@@ -185,7 +194,7 @@ function Checkout() {
 
     const cancelButton = () => {
         return (
-            <button onClick={() => {
+            <button className='my-button small'  onClick={() => {
                 transitionOrderState({variables: {input: 'Cancelled'}, refetchQueries: [{query: GET_ACTIVE_ORDER}]})
                 setFinalStage(false)
                 setCustomerDetailsStage(false)
@@ -197,7 +206,7 @@ function Checkout() {
 
     function editButton(setStage) {
         return (
-            <button onClick={() => {
+            <button className='my-button small'  onClick={() => {
                 transitionOrderState({variables: {input: 'AddingItems'}})
                 setCustomerDetailsStage(true)
                 setStage(false)
@@ -259,6 +268,11 @@ function Checkout() {
             label: data.name
         })
     })
+
+    useEffect(() => {
+        if (window.innerWidth < 700) window.scrollTo(0, 130)
+    }, [])
+
     useEffect(() => {
         if (activeOrderData && activeOrderData.activeOrder) {
             setTelegram(activeOrderData.activeOrder.shippingAddress.phoneNumber)
@@ -300,7 +314,7 @@ function Checkout() {
                                 customerPaysStage && CustomerPays(
                                     activeOrderData,
                                     secondsSinceOrderPlaced,
-                                    selectedCrypto, cryptoPrice,
+                                    selectedCrypto,
                                     storeCryptoAddresses,
                                     setTransactionID,
                                     addPayment,

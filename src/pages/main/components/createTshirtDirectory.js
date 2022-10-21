@@ -1,6 +1,6 @@
 import {useQuery} from "@apollo/client";
-import {GET_COLLECTIONS} from "../data/queries";
-import selectPrint from "../../image/Select Print Front and Back.png";
+import {GET_COLLECTIONS} from "../../../data/queries";
+import selectPrint from "../../../assets/Select Print Front and Back.png";
 import {Link} from "react-router-dom";
 
 function CreateTshirtDirectoryNew() {
@@ -25,7 +25,7 @@ function CreateTshirtDirectoryNew() {
             if (i === 7 && collections.name === 'Original') {
                 tshirtDirectory.push(<div className='directory-sticker menu-item col-md-6 col-lg-4 align-self-center' >
                     <div className='col-sm '>
-                        <img className='directory-tshirt animation' src={selectPrint} />
+                        <img className='directory-tshirt tshirt-shadow animation' src={selectPrint} />
                     </div>
                 </div>)
             }
@@ -39,12 +39,12 @@ function CreateTshirtDirectoryNew() {
             <div className='menu-item  col-md-6 col-lg-4'>
                 <div className='col-sm'>
                     <Link to={'/tshirts/' + item.product.slug}>
-                        <img className='directory-tshirt' src={`${item.featuredAsset.preview}?preset=large&format=webp`} />
+                        <img className='directory-tshirt tshirt-shadow' src={`${item.featuredAsset.preview}?preset=large&format=webp`} />
                     </Link>
                 </div>
                 <div className='col-sm menu-tshirt-desc'>
                     <p className="menu-tshirt-desc-name"><Link to={'/tshirts/' + item.product.slug}> {item.product.name}</Link></p>
-                    <p>{(item.price/100)}$ incl. Shipping</p>
+                    <p>{(item.price/100)}$</p>
                 </div>
             </div>
         )

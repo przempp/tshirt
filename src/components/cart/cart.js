@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import {useMutation, useQuery, } from "@apollo/client";
-import {ADJUST_ORDER_LINE, GET_ACTIVE_ORDER} from "../data/queries";
+import {ADJUST_ORDER_LINE, GET_ACTIVE_ORDER} from "../../data/queries";
 import {Link} from 'react-router-dom'
 import OutsideClickHandler from 'react-outside-click-handler';
-import CartDetailsTable from './cartDetailsTable'
+import CartDetailsTable from './components/cartDetailsTable'
 
 function Cart() {
     const [sidebarClassname, setSidebarClassname] = useState('')
@@ -32,7 +32,7 @@ function Cart() {
                     </div>
                 {activeOrderData && console.log(activeOrderData)}
                 {activeOrderData && activeOrderData.activeOrder && (activeOrderData.activeOrder.totalQuantity !== 0) && <Link className='checkout-button'   to="/checkout">
-                    <button c onClick={e => {setSidebarClassname('')}} type="button">
+                    <button className='my-button' onClick={e => {setSidebarClassname('')}} type="button">
                         Checkout
                     </button>
                 </Link>}

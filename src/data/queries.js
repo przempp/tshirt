@@ -29,6 +29,9 @@ export const GET_PRODUCT = gql`
             product(slug: $slug) {
                 name
                 description
+                customFields {
+                    redbubbleLink
+                }
                 variants {
                     facetValues {
                         id

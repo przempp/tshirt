@@ -1,6 +1,6 @@
 import React from "react";
 import {useMutation, useQuery} from "@apollo/client";
-import {ADJUST_ORDER_LINE, GET_ACTIVE_ORDER} from "../data/queries";
+import {ADJUST_ORDER_LINE, GET_ACTIVE_ORDER} from "../../../data/queries";
 
 
 function CartDetailsTable({showButtons = true, animate = true, responsive = false}) {
@@ -18,7 +18,7 @@ function CartDetailsTable({showButtons = true, animate = true, responsive = fals
                     <td  scope="col" style={{minWidth: '100px', maxWidth: '300px' }}>{item.productVariant.name}</td>
                   <td scope="col" >
                       {showButtons &&
-                        <button onClick={() => {
+                        <button className='my-button small' onClick={() => {
                             adjustOrderLine({ variables: {
                                     orderLineId:item.id, quantity: item.quantity + 1 } })}
                         }
@@ -29,7 +29,7 @@ function CartDetailsTable({showButtons = true, animate = true, responsive = fals
                     </td>
                     <td scope="col" >{item.quantity} </td>
                     <td scope="col" >
-                        {showButtons && <button onClick={() => {
+                        {showButtons && <button className='my-button small' onClick={() => {
                             adjustOrderLine({ variables: {
                                     orderLineId:item.id, quantity: item.quantity - 1 } })}
                         }
