@@ -176,7 +176,7 @@ html a:hover {
 }
 
 .text-3d-animation {
-  animation-timing-function: linear;
+  animation-timing-function: ease-in-out;
   animation-duration: 8s;
   animation-iteration-count: infinite;
   animation-name: text-animation;

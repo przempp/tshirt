@@ -5,7 +5,8 @@ import {
     GET_ACTIVE_ORDER,
     GET_PRODUCT,
     GET_PRODUCT_FEATURED_ASSET,
-    GET_PRODUCTS_DESIGNS
+    GET_PRODUCTS_DESIGNS,
+    GET_FACET_REDBUBBLE,
 } from '../../data/queries'
 import {useLazyQuery, useMutation, useQuery} from "@apollo/client";
 import DOMPurify from 'dompurify';
@@ -26,6 +27,7 @@ function TshirtPage() {
     const [isOpen, setIsOpen] = useState(false)
     const [backImage, setBackImage] = useState("")
     const {loading, error, data} = useQuery(GET_PRODUCT, {variables: {slug: id}});
+    const {data: dataRedbubble, loading: loadingRedbubble} = useQuery(GET_FACET_REDBUBBLE);
     // const { loading: designsLoading, error: designsError, data: designsData } = useQuery(GET_DESIGNS);
     const {loading: activeOrderLoading, error: activeOrderError, data: activeOrderData} = useQuery(GET_ACTIVE_ORDER);
     const [getProductFeaturedAsset, {
@@ -122,7 +124,13 @@ function TshirtPage() {
             }}>
 
                 {backDesignDialogueOpen && <div>
-
+                    {!loadingRedbubble && dataRedbubble.facet.values[0].name === 'true' ?
+                        <>
+                            <h1 className='text-center'>THIS ITEM IS CURRENTLY AVAILABLE ONLY AT OUR REDBUBBLE STORE</h1>
+                            <a href={data.product.customFields.redbubbleLink} className="my-button mt-2 w-100 display-6 text-center">BUY ON REDBUBBLE</a>
+                        </>
+                        :
+                    <>
                     <h1 className='text-center'>WANT TO ADD A DIFFERENT BACK DESIGN?</h1>
                     <div className='d-flex justify-content-around'>
                         <button className='my-button' onClick={() => {
@@ -138,7 +146,9 @@ function TshirtPage() {
                             addItemToOrder()
                         }}>NO
                         </button>
+
                     </div>
+                    </>}
                 </div>}
 
                 {(isPickingBackDesign) &&
@@ -178,7 +188,7 @@ function TshirtPage() {
                         </button>
                     </div>
                 </div>}
-
+                {console.log(dataRedbubble)}
                 {isConfirming && <div>
                     <h2 className='text-center'>YOUR SHIRT DESIGN:</h2>
                     <div className='d-flex'>
@@ -204,6 +214,7 @@ function TshirtPage() {
                                 }}
                         >ADD TO CART
                         </button>
+
                     </div>
 
                 </div>}
@@ -253,13 +264,16 @@ function TshirtPage() {
                     }
                 </div>
             </div>
-            <div className='w-100'>
-                <button className="my-button mt-2 w-100 display-6" onClick={() => {
-                    setIsOpen(true);
-                    setBackDesignDialogueOpen(true)
-                }}>
-                    ADD TO CART
-                </button>
+            <div className='w-100' style={{ paddingLeft: "15px", paddingRight: "15px"}}>
+                {/*{console.log(dataRedbubble.facet.values[0].name)}*/}
+                    <button className="my-button mt-2 w-100 display-6" onClick={() => {
+                        setIsOpen(true);
+                        setBackDesignDialogueOpen(true)
+                    }}>
+                        {!loadingRedbubble && dataRedbubble.facet.values[0].name === 'true' ? 'CHECK ON REDBUBBLE' : 'ADD TO' +
+                            ' CART'}
+                    </button>
+
             </div>
             <div className='col-sm-12 description'>
                 <hr className=" border-top border-bottom border-dark mb-4"/>
