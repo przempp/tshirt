@@ -113,6 +113,15 @@ function TshirtPage() {
     // console.log(backImage)
     // console.log(backImageSlug)
 
+    const ButtonComponent = (onClickFunction, text) => {
+        return (
+            <button className="my-button mt-2 w-100 display-6"
+                    onClick={onClickFunction}>
+                {text}
+            </button>
+        )
+    }
+
 
     return (
         <div className="row justify-content-center">
@@ -266,13 +275,18 @@ function TshirtPage() {
             </div>
             <div className='w-100' style={{ paddingLeft: "15px", paddingRight: "15px"}}>
                 {/*{console.log(dataRedbubble.facet.values[0].name)}*/}
-                    <button className="my-button mt-2 w-100 display-6" onClick={() => {
-                        setIsOpen(true);
+
+                {ButtonComponent(() =>{
+                    if (!loadingRedbubble && dataRedbubble.facet.values[0].name === 'true')
+                        window.open(data.product.customFields.redbubbleLink,'_blank')
+                    else {
+                        setIsOpen(true)
                         setBackDesignDialogueOpen(true)
-                    }}>
-                        {!loadingRedbubble && dataRedbubble.facet.values[0].name === 'true' ? 'CHECK ON REDBUBBLE' : 'ADD TO' +
-                            ' CART'}
-                    </button>
+                    }
+
+                },
+                    (!loadingRedbubble && dataRedbubble.facet.values[0].name === 'true') && "BUY ON REDBUBBLE" || "ADD TO CART"
+                )}
 
             </div>
             <div className='col-sm-12 description'>
