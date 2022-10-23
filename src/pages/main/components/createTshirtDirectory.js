@@ -34,8 +34,8 @@ function CreateTshirtDirectoryNew() {
     return tshirtDirectory
 
     function SetTable(item) {
-        let tshirtDirectory = []
-        tshirtDirectory.push(
+        let table = []
+        table.push(
             <div className='menu-item  col-md-6 col-lg-4'>
                 <div className='col-sm'>
                     <Link to={'/tshirts/' + item.product.slug}>
@@ -48,7 +48,7 @@ function CreateTshirtDirectoryNew() {
                 </div>
             </div>
         )
-        return tshirtDirectory
+        return table
     }
 }
 

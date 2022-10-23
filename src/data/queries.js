@@ -456,3 +456,14 @@ export const ADD_PAYMENT = gql`
     ${CART_FRAGMENT}
     ${ERROR_RESULT_FRAGMENT}
 `;
+
+export const GET_FACET_REDBUBBLE = gql`
+    query GetFacetRedbubble {
+        facet(id:7){
+            values {
+                name
+                code
+            }
+        }
+    }
+`;
