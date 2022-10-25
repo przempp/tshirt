@@ -58,8 +58,8 @@ function TshirtPage() {
             refetchQueries: [{query: GET_ACTIVE_ORDER}, 'GetActiveOrder']
         }
     )
-    if (data) console.log(data.product.variants[variant].facetValues[0].id)
-    if (productsDesignsData) console.log(productsDesignsData)
+    // if (data) console.log(data.product.variants[variant].facetValues[0].id)
+    // if (productsDesignsData) console.log(productsDesignsData)
 
 
     useEffect(() => {
@@ -191,8 +191,8 @@ function TshirtPage() {
                             setBackDesignDialogueOpen(false);
                             setIsPickingBackDesign(false)
                             setIsConfirming((true))
-                            console.log([data.product.variants[variant].facetValues[0].id])
-                            console.log(backImage)
+                            // console.log([data.product.variants[variant].facetValues[0].id])
+                            // console.log(backImage)
                             getProductFeaturedAsset({
                                 variables: {
                                     term: backImage,
@@ -204,7 +204,7 @@ function TshirtPage() {
                         </button>
                     </div>
                 </div>}
-                {console.log(dataRedbubble)}
+                {/*{console.log(dataRedbubble)}*/}
                 {isConfirming && <div>
                     <h2 className='text-center'>YOUR SHIRT DESIGN:</h2>
                     <div className='d-flex'>
@@ -215,7 +215,7 @@ function TshirtPage() {
                         </div>
                         <div className='d-flex flex-column col-6 text-center'>
                             <h2>BACK</h2>
-                            {backFeaturedAssetData && console.log(backFeaturedAssetData.search)}
+                            {/*{backFeaturedAssetData && console.log(backFeaturedAssetData.search)}*/}
                             {backFeaturedAssetData && <img className="animation"
                                                            src={`${backFeaturedAssetData.search.items[0].productVariantAsset.preview}?preset=small&format=webp`}/>}
                         </div>
@@ -248,7 +248,7 @@ function TshirtPage() {
 
                             <img className="animation tshirt-shadow"
                                  onLoad={() => {
-                                     console.log('image loaded')
+                                     // console.log('image loaded')
                                      setImageLoading(false)
                                  }}
                                  src={`${data.product.variants[0].featuredAsset.preview}?preset=large&format=webp`}/>

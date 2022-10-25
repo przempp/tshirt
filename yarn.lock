@@ -9224,11 +9224,6 @@ url-parse@^1.5.3:
     querystringify "^2.1.1"
     requires-port "^1.0.0"
 
-use-dencrypt-effect@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/use-dencrypt-effect/-/use-dencrypt-effect-1.0.2.tgz#29aa5d60680d75fcea055607853d9cdd8891e0a5"
-  integrity sha512-HfgvcQAUEoqSrAHiHrZL4stw5qc3JIDpN4lsYlcBa9WtOy4RKG03WlZ1Iq9k1OMOV3D2WiI0AFL8uIXWzYWHFA==
-
 use-sync-external-store@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/use-sync-external-store/-/use-sync-external-store-1.2.0.tgz#7dbefd6ef3fe4e767a0cf5d7287aacfb5846928a"

@@ -30,7 +30,7 @@ function Cart() {
                     <CartDetailsTable/>
 
                     </div>
-                {activeOrderData && console.log(activeOrderData)}
+                {/*{activeOrderData && console.log(activeOrderData)}*/}
                 {activeOrderData && activeOrderData.activeOrder && (activeOrderData.activeOrder.totalQuantity !== 0) && <Link className='checkout-button'   to="/checkout">
                     <button className='my-button' onClick={e => {setSidebarClassname('')}} type="button">
                         Checkout

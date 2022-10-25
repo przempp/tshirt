@@ -8,8 +8,13 @@ import TshirtPage from './pages/tshirts/tshirt'
 import Cart from './components/cart/cart'
 import Footer from './components/footer/footer'
 import './App.css';
-import {BrowserRouter, Route, Routes, useParams} from "react-router-dom";
 import Checkout from "./pages/checkout/checkout";
+import {
+    BrowserRouter,
+    Routes,
+    Route,
+    useParams
+} from "react-router-dom";
 
 
 function App() {
