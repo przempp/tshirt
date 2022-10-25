@@ -25,8 +25,8 @@ function About() {
 
                 <p>Global fashion for a global community.</p>
 
-                <p>Order or questions through email <a href='mailto:jowe@airmail.cc'>jowe@airmail.cc</a> <br/>
-                    Questions through our <a href='https://t.me/ETDsupportbot'>Telegram bot</a>
+                <p>
+                    Still Got questions? Ask us anything through our <a href='https://t.me/ETDsupportbot'>Telegram bot</a>
                 </p>
             </h2>
         </div>

@@ -419,8 +419,8 @@ html a:hover {
 .loading-status {
   width: 100%;
   text-align: center;
-  padding-top: 15vh;
-  padding-bottom: 15vh;
+  padding-top: 25vh;
+  padding-bottom: 25vh;
 }
 
 .cart-container {
@@ -654,4 +654,18 @@ button {
 .my-button:disabled{
   color: dimgrey;
   background: black;
+}
+
+.is-loading{
+  animation-name:onload;
+  animation-duration: 1s;
+}
+
+@keyframes onload{
+  0%{
+    opacity:0;
+  }
+  100%{
+    opacity: 1;
+  }
 }

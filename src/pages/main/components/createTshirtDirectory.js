@@ -2,10 +2,12 @@ import {useQuery} from "@apollo/client";
 import {GET_COLLECTIONS} from "../../../data/queries";
 import selectPrint from "../../../assets/Select Print Front and Back.png";
 import {Link} from "react-router-dom";
+import Spinner from "../../../components/spinner/spinner";
+import React, {useState, useLayoutEffect, useRef} from "react";
 
 function CreateTshirtDirectoryNew() {
     const { loading, error, data } = useQuery(GET_COLLECTIONS);
-    if (loading) return <p className='loading-status' >Loading...</p>;
+    if (loading)  return <Spinner/>
     if (error) return <p className='loading-status'>Error :(</p>;
     let tshirtDirectory;
     tshirtDirectory = [];
@@ -25,7 +27,8 @@ function CreateTshirtDirectoryNew() {
             if (i === 7 && collections.name === 'Original') {
                 tshirtDirectory.push(<div className='directory-sticker menu-item col-md-6 col-lg-4 align-self-center' >
                     <div className='col-sm '>
-                        <img className='directory-tshirt tshirt-shadow animation' src={selectPrint} />
+                        <img className='directory-tshirt tshirt-shadow animation'
+                             src={selectPrint} />
                     </div>
                 </div>)
             }
@@ -37,9 +40,9 @@ function CreateTshirtDirectoryNew() {
         let table = []
         table.push(
             <div className='menu-item  col-md-6 col-lg-4'>
-                <div className='col-sm'>
+                <div style={{ minHeight: `250px`}} className='col-sm tshirt-div'>
                     <Link to={'/tshirts/' + item.product.slug}>
-                        <img className='directory-tshirt tshirt-shadow' src={`${item.featuredAsset.preview}?preset=large&format=webp`} />
+                        <img className={`directory-tshirt tshirt-shadow`} src={`${item.featuredAsset.preview}?preset=large&format=webp`} />
                     </Link>
                 </div>
                 <div className='col-sm menu-tshirt-desc'>
