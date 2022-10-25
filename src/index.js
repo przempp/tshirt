@@ -5,8 +5,8 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import './bootstrap.min.css';
-import { ApolloClient, InMemoryCache, ApolloProvider, HttpLink, ApolloLink, gql } from '@apollo/client';
-import { setContext } from '@apollo/client/link/context'
+import {ApolloClient, ApolloLink, ApolloProvider, HttpLink, InMemoryCache} from '@apollo/client';
+import {setContext} from '@apollo/client/link/context'
 
 
 const AUTH_TOKEN_KEY = 'auth_token';
@@ -60,9 +60,10 @@ const client = new ApolloClient({
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <ApolloProvider client={client}>
-    <App />
+        <App/>
     </ApolloProvider>
-);
+)
+;
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

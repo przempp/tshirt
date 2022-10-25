@@ -23,7 +23,7 @@ function CreateTshirtDirectoryNew() {
                 )
             }
             tshirtDirectory.push(SetTable(products))
-            console.log(collections.name)
+            // console.log(collections.name)
             if (i === 7 && collections.name === 'Original') {
                 tshirtDirectory.push(<div className='directory-sticker menu-item col-md-6 col-lg-4 align-self-center' >
                     <div className='col-sm '>
