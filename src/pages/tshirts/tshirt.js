@@ -1,18 +1,20 @@
 import React, {useEffect, useState} from 'react';
-import {Link, useParams} from 'react-router-dom'
+import {useParams} from 'react-router-dom'
 import {
     ADD_ITEM_TO_ORDER,
     GET_ACTIVE_ORDER,
+    GET_FACET_REDBUBBLE,
     GET_PRODUCT,
     GET_PRODUCT_FEATURED_ASSET,
     GET_PRODUCTS_DESIGNS,
-    GET_FACET_REDBUBBLE,
 } from '../../data/queries'
 import {useLazyQuery, useMutation, useQuery} from "@apollo/client";
 import DOMPurify from 'dompurify';
 import convertHtmlToReact from '@hedgedoc/html-to-react';
 import {Carousel} from 'react-responsive-carousel';
 import ReactModal from 'react-modal';
+import ReactLoading from 'react-loading';
+import Spinner from '../../components/spinner/spinner'
 
 
 function TshirtPage() {
@@ -21,6 +23,8 @@ function TshirtPage() {
     }, [])
     const {id} = useParams();
     const [variant, setVariant] = useState(0)
+    const [imageLoading, setImageLoading] = useState(true)
+    const [loader, setLoader] = useState(true)
     const [backDesignDialogueOpen, setBackDesignDialogueOpen] = useState(true)
     const [isPickingBackDesign, setIsPickingBackDesign] = useState(false)
     const [isConfirming, setIsConfirming] = useState(false)
@@ -56,9 +60,7 @@ function TshirtPage() {
     )
     if (data) console.log(data.product.variants[variant].facetValues[0].id)
     if (productsDesignsData) console.log(productsDesignsData)
-    // if (productsDesignsData) productsDesignsData.collection.productVariants.items.map((items, i) => {
-    //     // console.log(`${items.product.featuredAsset.preview}?preset=thumb`)
-    // })
+
 
     useEffect(() => {
         // Update the document title using the browser API
@@ -69,20 +71,23 @@ function TshirtPage() {
 
     });
 
-    // const [adjustOrderLine, { loading: adjustLoading, error: adjustError, data: adjustItemData }] = useMutation(ADJUST_ORDER_LINE, {variables: { orderLineId:
-    //             (activeOrderData && activeOrderData.activeOrder.lines[0]) && activeOrderData.activeOrder.lines[0].id, quantity: 1  }})
-    // const [removeItemFromOrder, { loading: removeItemLoading, error: removeItemError, data: removeItemData }] =
-    //     useMutation(REMOVE_ITEM_FROM_ORDER, {variables: { orderLineId:
-    //                 (activeOrderData && activeOrderData.activeOrder.lines[0]) && activeOrderData.activeOrder.lines[0].id }})
 
-    // if (designsData) console.log(designsData.collection.productVariants.items)
+    useEffect(() => {
+        const timeoutId = setTimeout(() => {
+            if (loading) setLoader(false)
+        }, 1500);
 
-    // if (data) console.log(data.product.variants[0].id)
-    // if (activeOrderData) console.log(activeOrderData.activeOrder.lines)
-    // if (activeOrderData) console.log(activeOrderData)
-    // if (addItemData) console.log(addItemData)
-    if (loading) return <p className='loading-status'>Loading...</p>;
-    if (error) return <p className='loading-status'>Error :(</p>;
+        return () => clearTimeout(timeoutId);
+    }, [loading]);
+
+    if (loading) return <div className='d-flex justify-content-center'>
+        <Spinner/>
+    </div>
+    if (error) return <div className='d-flex justify-content-center'>
+        <h2 className='loading-status' >ERROR, try refreshing or contact us through
+            our <a href='https://t.me/ETDsupportbot'>Telegram bot</a></h2>
+    </div>
+    // if (error) return <p className='loading-status'>Error :(</p>;
     // console.log(activeOrderData)
     let clean = DOMPurify.sanitize(data.product.description, {USE_PROFILES: {html: true}});
 
@@ -135,29 +140,31 @@ function TshirtPage() {
                 {backDesignDialogueOpen && <div>
                     {!loadingRedbubble && dataRedbubble.facet.values[0].name === 'true' ?
                         <>
-                            <h1 className='text-center'>THIS ITEM IS CURRENTLY AVAILABLE ONLY AT OUR REDBUBBLE STORE</h1>
-                            <a href={data.product.customFields.redbubbleLink} className="my-button mt-2 w-100 display-6 text-center">BUY ON REDBUBBLE</a>
+                            <h1 className='text-center'>THIS ITEM IS CURRENTLY AVAILABLE ONLY AT OUR REDBUBBLE
+                                STORE</h1>
+                            <a href={data.product.customFields.redbubbleLink}
+                               className="my-button mt-2 w-100 display-6 text-center">BUY ON REDBUBBLE</a>
                         </>
                         :
-                    <>
-                    <h1 className='text-center'>WANT TO ADD A DIFFERENT BACK DESIGN?</h1>
-                    <div className='d-flex justify-content-around'>
-                        <button className='my-button' onClick={() => {
-                            setBackDesignDialogueOpen(false);
-                            setIsPickingBackDesign(true);
-                        }}>YES
-                        </button>
-                        <button className='my-button' onClick={() => {
-                            setBackDesignDialogueOpen(false);
-                            setIsPickingBackDesign(false);
-                            setIsOpen(false);
-                            setBackImage("")
-                            addItemToOrder()
-                        }}>NO
-                        </button>
+                        <>
+                            <h1 className='text-center'>WANT TO ADD A DIFFERENT BACK DESIGN?</h1>
+                            <div className='d-flex justify-content-around'>
+                                <button className='my-button' onClick={() => {
+                                    setBackDesignDialogueOpen(false);
+                                    setIsPickingBackDesign(true);
+                                }}>YES
+                                </button>
+                                <button className='my-button' onClick={() => {
+                                    setBackDesignDialogueOpen(false);
+                                    setIsPickingBackDesign(false);
+                                    setIsOpen(false);
+                                    setBackImage("")
+                                    addItemToOrder()
+                                }}>NO
+                                </button>
 
-                    </div>
-                    </>}
+                            </div>
+                        </>}
                 </div>}
 
                 {(isPickingBackDesign) &&
@@ -233,23 +240,26 @@ function TshirtPage() {
 
             {/* modal end */}
 
-            <div className="col-lg-5 col-md-7 col-xl-6  align-self-center ">
-                {/*<a  href={data.product.variants[0].featuredAsset.source}>*/}
-                {/* <img className="tshirt-product-assets"  src={`${data.product.variants[0].featuredAsset.preview}?preset=large&format=webp`}/>*/}
-                {/*</a>*/}
-                <Carousel preventMovementUntilSwipeScrollTolerance={true} showIndicators={false}
+            <div className="col-lg-5 col-md-7 col-xl-6 align-self-center ">
+                    <Carousel preventMovementUntilSwipeScrollTolerance={true} showIndicators={false}
                           swipeScrollTolerance={30} showArrows={false} showStatus={false} emulateTouch={true}
                           infiniteLoop={true} onChange={e => setVariant(e)}>
                     <div>
-                        <img className="animation tshirt-shadow"
-                             src={`${data.product.variants[0].featuredAsset.preview}?preset=large&format=webp`}/>
+
+                            <img className="animation tshirt-shadow"
+                                 onLoad={() => {
+                                     console.log('image loaded')
+                                     setImageLoading(false)
+                                 }}
+                                 src={`${data.product.variants[0].featuredAsset.preview}?preset=large&format=webp`}/>
+
+
                     </div>
                     <div>
                         <img className="animation tshirt-shadow"
                              src={`${data.product.variants[1].featuredAsset.preview}?preset=large&format=webp`}/>
                     </div>
                 </Carousel>
-
             </div>
 
             <div className="col-lg-7 col-md-5 col-xl-6 tshirt-product-info justify-content-center align-self-center ">
@@ -262,29 +272,34 @@ function TshirtPage() {
                     <h2 className='text-justify'>{convertHtmlToReact(clean)}</h2>
 
                     <hr className=" border-top border-bottom border-dark    "/>
-                    <h2 className='text-justify'>PRICE: {data.product.variants[0].price / 100}$</h2>
-                    <h2 className='text-justify '>EU SHIPPING + 10$, WORLD
-                        WIDE SHIPPING +20$</h2> <br/>
-
-                    {data.product.customFields.redbubbleLink ?
-                    <h2 className='text-justify'>Also available at <a target="_blank" href={data.product.customFields.redbubbleLink} >REDBUBBLE</a></h2>
-                    :
-                        <h2 className='text-justify'>Check our other designs at <a target="_blank" href='https://www.redbubble.com/people/enjoythedecline/shop' >REDBUBBLE</a></h2>
+                    {(!loadingRedbubble && dataRedbubble.facet.values[0].name === 'true') ?
+                        <h2>
+                            Due to homoglobo shortages, we are currently handling the shipping and payment processing
+                            through <a target="_blank" href='https://www.redbubble.com/people/enjoythedecline/shop'>REDBUBBLE</a>.
+                            <br/>Hand printing will return shortly.
+                        </h2>
+                        :
+                        <>
+                            <h2 className='text-justify'>PRICE: {data.product.variants[0].price / 100}$</h2>
+                            <h2 className='text-justify '>EU SHIPPING + 10$, WORLD
+                                WIDE SHIPPING +20$</h2> <br/>
+                        </>
                     }
+
                 </div>
             </div>
-            <div className='w-100' style={{ paddingLeft: "15px", paddingRight: "15px"}}>
+            <div className='w-100' style={{paddingLeft: "15px", paddingRight: "15px"}}>
                 {/*{console.log(dataRedbubble.facet.values[0].name)}*/}
 
-                {ButtonComponent(() =>{
-                    if (!loadingRedbubble && dataRedbubble.facet.values[0].name === 'true')
-                        window.open(data.product.customFields.redbubbleLink,'_blank')
-                    else {
-                        setIsOpen(true)
-                        setBackDesignDialogueOpen(true)
-                    }
+                {ButtonComponent(() => {
+                        if (!loadingRedbubble && dataRedbubble.facet.values[0].name === 'true')
+                            window.open(data.product.customFields.redbubbleLink, '_blank')
+                        else {
+                            setIsOpen(true)
+                            setBackDesignDialogueOpen(true)
+                        }
 
-                },
+                    },
                     (!loadingRedbubble && dataRedbubble.facet.values[0].name === 'true') && "BUY ON REDBUBBLE" || "ADD TO CART"
                 )}
 
