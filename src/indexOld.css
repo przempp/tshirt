@@ -77,7 +77,7 @@ nav li a {
 }
 
 .background2 {
-  background-image: url(image/smiley.gif);
+  background-image: url(assets/smiley.gif);
   background-color: black;
   background-position: center;
   overflow: hidden;

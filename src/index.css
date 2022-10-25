@@ -1,17 +1,21 @@
 @font-face {
   font-family: "HandjetHeart";   /*Can be any text*/
   src: local("HandjetCircleDouble-Regular"),
-  url("./fonts/HandjetCircleDouble-Regular.ttf") format("truetype");
+  url("assets/fonts/HandjetCircleDouble-Regular.ttf") format("truetype");
 }
 
 @font-face {
   font-family: "HandjetHeartDoubleFlower";   /*Can be any text*/
   src: local("HandjetHeartDoubleFlower-Regular"),
-  url("./fonts/HandjetFlowerDouble-Regular.ttf") format("truetype");
+  url("assets/fonts/HandjetFlowerDouble-Regular.ttf") format("truetype");
 }
 
+.table td {
+  padding: 0.55rem !important;
+}
 
 body {
+
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'HandjetHeart', 'HandjetHeartDoubleFlower', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -19,12 +23,45 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
+
 }
 
 *{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'HandjetHeart';
+  font-style: italic;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #e7e7e7;
+  text-transform: uppercase;
+
+}
+
+table {
+  /*border: 1px solid black;*/
+  /*table-layout: fixed;*/
+  /*width: 200px !important;*/
+  /*min-width: 20px;*/
+
+
+}
+
+th,
+td {
+  /*border: 1px solid black;*/
+  width: 125px;
+  overflow: hidden;
+  border-top-color: #343a40 !important;
+  vertical-align: middle !important
+}
+
+
+
+th {
+  font-size: 1.4em;
+
 }
 
 @keyframes slide {
@@ -32,18 +69,46 @@ body {
     transform: translate(0);
   }
   100% {
-    transform: translate(-3840px); /* The image width */
+    transform: translate(-3840px); /* The assets width */
   }
 }
 
 body {
-  background-image: url(image/smiley.gif);
+
+  background-image: url(assets/smiley_old.gif);
   background-color: #191719 !important;
   background-position: revert;
   background-size: 320px;
   background-position-x: 0px;
   animation: scaleAnimation 10s infinite linear;
+
+
 }
+
+.bg-container2 {
+  z-index: 200;
+  overflow: auto;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  background: linear-gradient(rgba(255, 255, 255, 0.005), rgba(255, 255, 255, 0.02)),
+              url(assets/scanlines3.png); /* download the assets here: https://i.ibb.co/C0MjrsJ/05.png and link to it */
+  /*background: url(assets/scanlines3.png); !* download the assets here: https://i.ibb.co/C0MjrsJ/05.png and link to it *!*/
+  background-size: 2px 2px;
+}
+
+/*.bg-container {*/
+/*  background-color: black;*/
+/*  background-assets: radial-gradient(*/
+/*          rgba(0, 150, 0, 0.75), black 120%*/
+/*  );*/
+/*  background-blend-mode: screen;*/
+/*  height: 100vh;*/
+
+/*}*/
 
 @keyframes scaleAnimation {
   0% {
@@ -75,15 +140,15 @@ html a:hover {
 }
 
 
-.main {
-  font-family: 'HandjetHeart';
-  font-style: italic;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: #e7e7e7;
-  text-transform: uppercase;
-  margin-bottom: 150px;
-}
+/*.main {*/
+/*  font-family: 'HandjetHeart';*/
+/*  font-style: italic;*/
+/*  -webkit-font-smoothing: antialiased;*/
+/*  -moz-osx-font-smoothing: grayscale;*/
+/*  color: #e7e7e7;*/
+/*  text-transform: uppercase;*/
+/*  margin-bottom: 150px;*/
+/*}*/
 
 
 .navbar {
@@ -111,7 +176,7 @@ html a:hover {
 }
 
 .text-3d-animation {
-  animation-timing-function: linear;
+  animation-timing-function: ease-in-out;
   animation-duration: 8s;
   animation-iteration-count: infinite;
   animation-name: text-animation;
@@ -253,6 +318,10 @@ html a:hover {
   max-width: 100%;
 }
 
+.tshirt-shadow {
+  filter: drop-shadow(0.65rem 0.65rem 0.9rem rgba(0, 0, 0, 0.9));
+}
+
 .menu-tshirt-desc {
   padding-top: 5px;
 }
@@ -280,12 +349,20 @@ html a:hover {
 
 }
 
-.tshirt-product-description {
+.tshirt-product-info {
   white-space: pre;
   white-space: break-spaces;
 }
 
-.tshirt-product-description h3 {
+.description p,
+.description h2,
+.description h3 {
+  font-size: clamp( 25px, 3vw, 33px)
+}
+
+
+
+.tshirt-product-info h3 {
  font-size: 1.75em;
 }
 
@@ -339,8 +416,256 @@ html a:hover {
   }
 }
 
+.loading-status {
+  width: 100%;
+  text-align: center;
+  padding-top: 25vh;
+  padding-bottom: 25vh;
+}
+
+.cart-container {
+  position: fixed;
+  width: max-content;
+  height: max-content;
+  background: dimgrey;
+  z-index: 2;
+}
+
+.cart-product-image {
+  width: 50px;
+}
+
+.thumb.selected {
+  border: 3px solid darkgrey !important;
+}
+
+.thumb {
+  border: 3px solid #333 !important;
+}
+
+.carousel-modal {
+  color: white;
+  background: red;
+}
+
+button {
+  background: darkblue;
+  padding: 5px;
+}
+
+.sidebar {
+  overflow: visible;
+  z-index: 1000;
+  height: 150%;
+  top: -20px;
+  width: min-content;
+  /*display: block;*/
+  backdrop-filter: hue-rotate(180deg);
+  background: linear-gradient(180deg, rgba(23, 23, 25, 0.9) 0%,  rgba(25,23,25, 0.7)  100%);
+
+  /*animation: AnimationName 6s linear infinite;*/
+  /*transform: rotate(7deg);*/
+  transform-origin: 100% 0%;
+  position: fixed;
+  left: -820px;
+  padding-top: 85px;
+  /*border-right: solid 5px black;*/
+  outline: 2px solid #343a40;
+  transition: left 0.5s;
+  /*-webkit-transition: all revert 0.35s;*/
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+}
+
+.notransition {
+  -webkit-transition: none !important;
+  -moz-transition: none !important;
+  -o-transition: none !important;
+  transition: none !important;
+}
+
+.navbar-div > nav {
+  padding: 9px;
+  filter: drop-shadow(2px 3px 4px black);
+  width: 100%;
+  /*width: 500px;*/
+  /*min-height: 5vh;*/
+  /*max-height: 75vh;*/
+  overflow: auto;
+  /*transform: rotate(-10deg);*/
+  /*overflow-x: hidden;*/
+
+}
+
+.navbar-div {
+  /*max-height: 55vh;*/
+
+  filter: drop-shadow(2px 3px 4px black);
+  /*position: absolute;*/
+
+  /*width: 600px;*/
+  overflow: auto;
+  /*transform: rotate(-7deg);*/
+  /*overflow-x: hidden;*/
+  /*min-height: 5vh;*/
+  /*max-height: 65vh;*/
+  /*width: 100%;*/
+  display: flex;
+  align-items: center;
+  overflow-x: auto;
+  /*top: 75px;*/
+  justify-content: center;
+  left: 0px;
+  /*height: 20vh;*/
+}
 
 
+.checkout-button {
+  margin-top: 15px;
+  padding: 10px;
+  align-self: center;
+  /*transform: rotate(-7deg);*/
+}
 
 
+.table-div-cart {
+  max-height: 60vh;
+  min-width: 320px;
+}
 
+.responsive .table-div-cart {
+  max-height: none;
+  min-width: none;
+}
+
+@media only screen and (max-width: 767px)  {
+  .sidebar {
+    width: 100%;
+    transform: rotate(0deg);
+  }
+  .table-div-cart {
+    max-height: 60vh;
+    width: 100%;
+  }
+
+  .navbar-div {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes AnimationName {
+  0% {
+    background-position: 100% 0%
+  }
+  100% {
+    background-position: 91% 100%
+  }
+}
+
+.enter{
+  opacity: 1;
+  left: 0;
+}
+
+.scrollbar {
+
+}
+
+/* Chrome */
+.scrollbar::-webkit-scrollbar {
+  width: 5px;
+}
+
+.scrollbar::-webkit-scrollbar-track {
+  /*background-color: grey;*/
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 15px;
+}
+
+.scrollbar::-webkit-scrollbar-thumb {
+  background-color: #e7e7e7;
+  border-radius: 15px;
+  /*border: 1px solid red;*/
+}
+
+/*.container::-webkit-scrollbar-button {
+  background-color: red;
+   border-radius: 15px;
+}*/
+
+.scrollbar::-webkit-scrollbar-thumb:hover {
+  background: red;
+}
+
+.animation-chill {
+  animation-timing-function: ease-in-out;
+  animation-duration: 3.7s;
+  animation-iteration-count: infinite;
+  animation-name: swingy-chill;
+}
+
+@keyframes swingy-chill {
+  0% {
+    transform: rotate(-1deg);
+  }
+
+  50% {
+    transform: rotate(1deg);
+  }
+
+  100% {
+    transform: rotate(-1deg);
+  }
+}
+
+.cart-icon {
+  /*left: 340px;*/
+  left: 5vw;
+  cursor: pointer;
+}
+
+
+.my-button{
+  /*background: linear-gradient(to right,#2d2d2d ,#414141);*/
+  background-color: #262525;
+  color: #fff;
+
+  font-size: 18px;
+  font-weight: 400;
+  font-style: italic;
+  text-decoration: none;
+  padding: 6px 15px;
+  border: 0px solid #000;
+  border-radius: 24px;
+  display: inline-block;
+  width: max-content;
+}
+.my-button:hover{
+  /*background: linear-gradient(to right,#5b5b5b ,#666666);*/
+  background-color: #1d1d1d;
+  cursor: pointer;
+}
+.my-button:active{
+  transform: scale(0.95);
+}
+
+.my-button:disabled{
+  color: dimgrey;
+  background: black;
+}
+
+.is-loading{
+  animation-name:onload;
+  animation-duration: 1s;
+}
+
+@keyframes onload{
+  0%{
+    opacity:0;
+  }
+  100%{
+    opacity: 1;
+  }
+}
