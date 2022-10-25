@@ -3,7 +3,7 @@ import {GET_COLLECTIONS} from "../../../data/queries";
 import selectPrint from "../../../assets/Select Print Front and Back.png";
 import {Link} from "react-router-dom";
 import Spinner from "../../../components/spinner/spinner";
-import React, {useState, useLayoutEffect, useRef} from "react";
+import React from "react";
 
 function CreateTshirtDirectoryNew() {
     const { loading, error, data } = useQuery(GET_COLLECTIONS);
@@ -11,8 +11,8 @@ function CreateTshirtDirectoryNew() {
     if (error) return <p className='loading-status'>Error :(</p>;
     let tshirtDirectory;
     tshirtDirectory = [];
-    data.collections.items.map((collections, i)=>{
-        collections.productVariants.items.map((products, i)=>{
+    data.collections.items.forEach((collections, i)=>{
+        collections.productVariants.items.forEach((products, i)=>{
             if (i === 0 && collections.name) {
                 tshirtDirectory.push(
                     <div  className='menu-item col-md-12 '>
@@ -27,7 +27,7 @@ function CreateTshirtDirectoryNew() {
             if (i === 7 && collections.name === 'Original') {
                 tshirtDirectory.push(<div className='directory-sticker menu-item col-md-6 col-lg-4 align-self-center' >
                     <div className='col-sm '>
-                        <img className='directory-tshirt tshirt-shadow animation'
+                        <img alt='product' className='directory-tshirt tshirt-shadow animation'
                              src={selectPrint} />
                     </div>
                 </div>)
@@ -42,7 +42,7 @@ function CreateTshirtDirectoryNew() {
             <div className='menu-item  col-md-6 col-lg-4'>
                 <div style={{ minHeight: `250px`}} className='col-sm tshirt-div'>
                     <Link to={'/tshirts/' + item.product.slug}>
-                        <img className={`directory-tshirt tshirt-shadow`} src={`${item.featuredAsset.preview}?preset=large&format=webp`} />
+                        <img alt='product' className={`directory-tshirt tshirt-shadow`} src={`${item.featuredAsset.preview}?preset=large&format=webp`} />
                     </Link>
                 </div>
                 <div className='col-sm menu-tshirt-desc'>

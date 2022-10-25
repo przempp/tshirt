@@ -1,16 +1,13 @@
-import React, { useState, useEffect, useRef } from 'react';
-import {useMutation, useQuery, } from "@apollo/client";
-import {ADJUST_ORDER_LINE, GET_ACTIVE_ORDER} from "../../data/queries";
+import React, { useState } from 'react';
+import {useQuery} from "@apollo/client";
+import {GET_ACTIVE_ORDER} from "../../data/queries";
 import {Link} from 'react-router-dom'
 import OutsideClickHandler from 'react-outside-click-handler';
 import CartDetailsTable from './components/cartDetailsTable'
 
 function Cart() {
     const [sidebarClassname, setSidebarClassname] = useState('')
-    const quantity = useRef(0);
-    const id = useRef(0);
-    // const [quantity, setQuantity] = useState(0);
-    const { loading: activeOrderLoading, error: activeOrderError, data: activeOrderData } = useQuery(GET_ACTIVE_ORDER);
+    const {data: activeOrderData } = useQuery(GET_ACTIVE_ORDER);
 
 
     return (
@@ -18,7 +15,7 @@ function Cart() {
             onOutsideClick={() => setSidebarClassname('')}
         >
             <div style={{zIndex: "100022"}} className={` position-fixed  cart-icon `}  >
-                <h3 onClick={event => {sidebarClassname ? setSidebarClassname('') : setSidebarClassname('enter')}} className='pt-2 pl-1' >{(activeOrderData && activeOrderData.activeOrder) ? activeOrderData.activeOrder.totalWithTax/100 : "0"}$</h3>
+                <h3 onClick={() => {sidebarClassname ? setSidebarClassname('') : setSidebarClassname('enter')}} className='pt-2 pl-1' >{(activeOrderData && activeOrderData.activeOrder) ? activeOrderData.activeOrder.totalWithTax/100 : "0"}$</h3>
                 {/*<button onClick={event => {setSidebarClassname('enter')}} >testtesttesttesttesttesttesttest</button>*/}
             </div>
             <div className={`sidebar  ${sidebarClassname}`}>

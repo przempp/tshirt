@@ -13,7 +13,6 @@ import DOMPurify from 'dompurify';
 import convertHtmlToReact from '@hedgedoc/html-to-react';
 import {Carousel} from 'react-responsive-carousel';
 import ReactModal from 'react-modal';
-import ReactLoading from 'react-loading';
 import Spinner from '../../components/spinner/spinner'
 
 
@@ -23,8 +22,6 @@ function TshirtPage() {
     }, [])
     const {id} = useParams();
     const [variant, setVariant] = useState(0)
-    const [imageLoading, setImageLoading] = useState(true)
-    const [loader, setLoader] = useState(true)
     const [backDesignDialogueOpen, setBackDesignDialogueOpen] = useState(true)
     const [isPickingBackDesign, setIsPickingBackDesign] = useState(false)
     const [isConfirming, setIsConfirming] = useState(false)
@@ -33,22 +30,13 @@ function TshirtPage() {
     const {loading, error, data} = useQuery(GET_PRODUCT, {variables: {slug: id}});
     const {data: dataRedbubble, loading: loadingRedbubble} = useQuery(GET_FACET_REDBUBBLE);
     // const { loading: designsLoading, error: designsError, data: designsData } = useQuery(GET_DESIGNS);
-    const {loading: activeOrderLoading, error: activeOrderError, data: activeOrderData} = useQuery(GET_ACTIVE_ORDER);
     const [getProductFeaturedAsset, {
-        loading: backFeaturedAssetLoading,
-        error: backFeaturedAssetError,
         data: backFeaturedAssetData
     }] = useLazyQuery(GET_PRODUCT_FEATURED_ASSET);
     const {
-        loading: productsDesignsLoading,
-        error: productsDesignsError,
         data: productsDesignsData
     } = useQuery(GET_PRODUCTS_DESIGNS);
-    const [addItemToOrder, {
-        loading: addItemLoading,
-        error: addItemError,
-        data: addItemData
-    }] = useMutation(ADD_ITEM_TO_ORDER,
+    const [addItemToOrder] = useMutation(ADD_ITEM_TO_ORDER,
         {
             variables: {
                 productVariantId: data && data.product.variants[variant].id,
@@ -69,16 +57,7 @@ function TshirtPage() {
         }
         if (backDesignDialogueOpen) setBackImage('')
 
-    });
-
-
-    useEffect(() => {
-        const timeoutId = setTimeout(() => {
-            if (loading) setLoader(false)
-        }, 1500);
-
-        return () => clearTimeout(timeoutId);
-    }, [loading]);
+    }, [productsDesignsData, backImage, isPickingBackDesign, backDesignDialogueOpen]);
 
     if (loading) return <div className='d-flex justify-content-center'>
         <Spinner/>
@@ -180,7 +159,7 @@ function TshirtPage() {
                             (productsDesignsData) && productsDesignsData.collection.productVariants.items.map((items, i) => {
                                 // console.log(items.product)
                                 return (<div id={items.product.name}>
-                                    <img className="animation "
+                                    <img className="animation" alt='product'
                                          src={`${items.product.featuredAsset.preview}?w=200&h=150&mode=crop`}/>
                                 </div>)
                             })
@@ -210,13 +189,13 @@ function TshirtPage() {
                     <div className='d-flex'>
                         <div className='d-flex flex-column col-6 text-center'>
                             <h2>FRONT</h2>
-                            <img className="animation"
+                            <img className="animation" alt='product'
                                  src={`${data.product.variants[variant].featuredAsset.preview}?preset=small&format=webp`}/>
                         </div>
                         <div className='d-flex flex-column col-6 text-center'>
                             <h2>BACK</h2>
                             {/*{backFeaturedAssetData && console.log(backFeaturedAssetData.search)}*/}
-                            {backFeaturedAssetData && <img className="animation"
+                            {backFeaturedAssetData && <img className="animation" alt='product'
                                                            src={`${backFeaturedAssetData.search.items[0].productVariantAsset.preview}?preset=small&format=webp`}/>}
                         </div>
                     </div>
@@ -246,17 +225,16 @@ function TshirtPage() {
                           infiniteLoop={true} onChange={e => setVariant(e)}>
                     <div>
 
-                            <img className="animation tshirt-shadow"
+                            <img className="animation tshirt-shadow" alt='product'
                                  onLoad={() => {
                                      // console.log('image loaded')
-                                     setImageLoading(false)
                                  }}
                                  src={`${data.product.variants[0].featuredAsset.preview}?preset=large&format=webp`}/>
 
 
                     </div>
                     <div>
-                        <img className="animation tshirt-shadow"
+                        <img className="animation tshirt-shadow" alt='product'
                              src={`${data.product.variants[1].featuredAsset.preview}?preset=large&format=webp`}/>
                     </div>
                 </Carousel>
@@ -275,7 +253,7 @@ function TshirtPage() {
                     {(!loadingRedbubble && dataRedbubble.facet.values[0].name === 'true') ?
                         <h2>
                             Due to homoglobo shortages, we are currently handling the shipping and payment processing
-                            through <a target="_blank" href='https://www.redbubble.com/people/enjoythedecline/shop'>REDBUBBLE</a>.
+                            through <a target="_blank" rel="noreferrer" href='https://www.redbubble.com/people/enjoythedecline/shop'>REDBUBBLE</a>.
                             <br/>Hand printing will return shortly.
                         </h2>
                         :
@@ -300,7 +278,8 @@ function TshirtPage() {
                         }
 
                     },
-                    (!loadingRedbubble && dataRedbubble.facet.values[0].name === 'true') && "BUY ON REDBUBBLE" || "ADD TO CART"
+                    (!loadingRedbubble && dataRedbubble.facet.values[0].name === 'true') ? "BUY ON REDBUBBLE" : "ADD" +
+                    " TO CART"
                 )}
 
             </div>

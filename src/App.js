@@ -13,12 +13,10 @@ import {
     BrowserRouter,
     Routes,
     Route,
-    useParams
 } from "react-router-dom";
 
 
 function App() {
-    let id = useParams()
     return (
         <BrowserRouter>
             <div className="bg-container">

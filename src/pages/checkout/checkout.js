@@ -5,7 +5,6 @@ import {
     GET_ACTIVE_ORDER,
     GET_AVAILABLE_COUNTRIES,
     GET_ELIGIBLE_SHIPPING_METHODS,
-    GET_NEXT_ORDER_STATES,
     SET_CUSTOMER_FOR_ORDER,
     SET_SHIPPING_ADDRESS,
     SET_SHIPPING_METHOD,
@@ -35,7 +34,6 @@ function Checkout() {
 
     const [cryptoPrice, setCryptoPrice] = useState(0)
     const [secondsSinceOrderPlaced, setSecondsSinceOrderPlaced] = useState(0)
-    const [orderDate, setOrderDate] = useState()
     const [selectedCrypto, setSelectedCrypto] = useState("bitcoin")
     const [shippingType, setShippingType] = useState(0);
     const [transactionID, setTransactionID] = useState('');
@@ -93,7 +91,8 @@ function Checkout() {
                 }
             })()
         }
-    }, [customerPaysStage]);
+    }, [customerPaysStage, selectedCrypto]);
+
     console.log(cryptoPrice)
 
     let input = {
@@ -115,13 +114,11 @@ function Checkout() {
 
     const [getShippingMethods, {
         data: shippingOrderData,
-        refetch
     }] = useLazyQuery(GET_ELIGIBLE_SHIPPING_METHODS,
         {fetchPolicy: 'network-only'}); // without this the cached shipping data is used, which might not be
     // eligible for  the current order
-    const {loading: countriesLoading, error: countriesError, data: countriesData} = useQuery(GET_AVAILABLE_COUNTRIES);
-    const {data: nextOrderData} = useQuery(GET_NEXT_ORDER_STATES);
-    const {loading: activeOrderLoading, error: activeOrderError, data: activeOrderData} = useQuery(GET_ACTIVE_ORDER);
+    const {data: countriesData} = useQuery(GET_AVAILABLE_COUNTRIES);
+    const {loading: activeOrderLoading, data: activeOrderData} = useQuery(GET_ACTIVE_ORDER);
     const [setShippingAddress, {
         data: setShippingData
     }] = useMutation(SET_SHIPPING_ADDRESS,
@@ -163,10 +160,6 @@ function Checkout() {
             refetchQueries: [{query: GET_ACTIVE_ORDER}]
         }
     )
-    // console.log('shipping order data:')
-    // console.log(setShippingData)
-    if (nextOrderData) console.log(nextOrderData)
-
     useEffect(() => {
         if (activeOrderData && activeOrderData.activeOrder && activeOrderData.activeOrder.state === "ArrangingPayment") {
             const currentTimeInSeconds = Date.parse(new Date()) / 1000
@@ -175,9 +168,6 @@ function Checkout() {
             let whenTimeout = timeoutTimeForOrder - currentTimeInSeconds
             console.log("Pozostalo do timeoutu:")
             console.log(whenTimeout)
-            // console.log(activeOrderData.activeOrder.shippingAddress.customFields.paymentStartDate)
-            let pastSecondsCalculated = (
-                (Date.parse(new Date()) - Date.parse(activeOrderData.activeOrder.shippingAddress.customFields.paymentStartDate)) / 1000)
             const interval = setInterval(() => {
                 whenTimeout--
                 setSecondsSinceOrderPlaced(whenTimeout)
@@ -190,7 +180,7 @@ function Checkout() {
             }, 1000);
             return () => clearInterval(interval);
         }
-    }, [activeOrderData])
+    }, [activeOrderData, transitionOrderState])
 
     const cancelButton = () => {
         return (
@@ -231,15 +221,14 @@ function Checkout() {
         if (setShippingData && setShippingData.setOrderShippingAddress.shippingAddress.country) {
             getShippingMethods()
         }
-    }, [setShippingData])
+    }, [setShippingData, getShippingMethods])
 
 
     useEffect(() => {
         if (cryptoPrice && activeOrderData.activeOrder && (activeOrderData.activeOrder.shippingAddress.customFields.cryptoPrice === 0)) {
-            setOrderDate(new Date())
             setShippingAddress()
         }
-    }, [cryptoPrice])
+    }, [cryptoPrice, setShippingAddress, activeOrderData])
 
 
     const [setCustomerForOrder] = useMutation(SET_CUSTOMER_FOR_ORDER,
@@ -254,14 +243,14 @@ function Checkout() {
         })
     console.log(activeOrderData)
     let shippingMethodsFormated = []
-    if (shippingOrderData) shippingOrderData.eligibleShippingMethods.map(method => {
+    if (shippingOrderData) shippingOrderData.eligibleShippingMethods.forEach(method => {
         shippingMethodsFormated.push({
             value: method.id,
             label: `${method.name} - ${method.price / 100}$`
         })
     })
     let countriesDataFormated = []
-    countriesData && countriesData.availableCountries.map((data, i) => {
+    countriesData && countriesData.availableCountries.forEach((data, i) => {
 
         countriesDataFormated.push({
             value: data.code,
@@ -286,18 +275,7 @@ function Checkout() {
                 label: activeOrderData.activeOrder.shippingAddress.countryCode
             })
         }
-    }, [activeOrderLoading])
-
-
-    function checkIfEmptyInputs(inputsArray) {
-        let isEmpty = false
-        inputsArray.map((input) => {
-            if (input === null || input.trim().length === 0) {
-                isEmpty = true
-            }
-        })
-        return isEmpty
-    }
+    }, [activeOrderLoading, activeOrderData])
 
     return (
         <div>
