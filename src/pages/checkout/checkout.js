@@ -277,6 +277,9 @@ function Checkout() {
         }
     }, [activeOrderLoading, activeOrderData])
 
+
+
+
     return (
         <div>
             <div className='row flex-wrap-reverse'>
