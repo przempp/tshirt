@@ -20,7 +20,7 @@ function About() {
                 atelier clandestin apparel.</p>
 
                 <p>No matter your complexion you‘ll look
-                great in our bleach printed tshirts,
+                great in our shirts,
                 coming in a light and airy shade of grey.</p>
 
                 <p>Global fashion for a global community.</p>
