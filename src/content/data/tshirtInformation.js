@@ -1,6 +1,6 @@
-import {Crunchy, BoogLoops, CornSyrup, DeadWashingtons, Liberator, FGC9, Glock, Happy,
-        UncleVanya, Pitzer, BrandName} from "./helpers";
-
+import { Crunchy, BoogLoops, CornSyrup, DeadWashingtons, Liberator, FGC9, Glock, Happy, 
+// @ts-expect-error TS(2307): Cannot find module './helpers' or its correspondin... Remove this comment to see the full error message
+UncleVanya, Pitzer, BrandName } from "./helpers";
 export const tshirts = [
     {
         name: 'CRUNCHY',
@@ -127,8 +127,5 @@ export const tshirts = [
         img: Liberator,
         price: 25
     },
-
-
-]
-
-export default tshirts
+];
+export default tshirts;

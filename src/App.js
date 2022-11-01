@@ -1,40 +1,15 @@
-import React from 'react';
-
-import Main from './pages/main/main'
+import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
+import Main from './pages/main/main';
 import Navbar from "./components/navbar/navbar";
-import About from './pages/about/about'
-import Shipping from './pages/shipping/shipping'
-import TshirtPage from './pages/tshirts/tshirt'
-import Cart from './components/cart/cart'
-import Footer from './components/footer/footer'
+import About from './pages/about/about';
+import Shipping from './pages/shipping/shipping';
+import TshirtPage from './pages/tshirts/tshirt';
+import Cart from './components/cart/cart';
+import Footer from './components/footer/footer';
 import './App.css';
 import Checkout from "./pages/checkout/checkout";
-import {
-    BrowserRouter,
-    Routes,
-    Route,
-} from "react-router-dom";
-
-
+import { BrowserRouter, Routes, Route, } from "react-router-dom";
 function App() {
-    return (
-        <BrowserRouter>
-            <div className="bg-container">
-                <div className="container main pt-4  ">
-                    <Cart/>
-                    <Navbar/>
-                    <Routes>
-                        <Route path="/" element={<Main/>}/>
-                        <Route path="/about" element={<About/>}/>
-                        <Route path="/shipping" element={<Shipping/>}/>
-                        <Route path="/tshirts/:id" element={<TshirtPage/>}/>
-                        <Route path="/checkout" element={<Checkout/>}/>
-                    </Routes>
-                    <Footer/>
-                </div>
-            </div>
-        </BrowserRouter>
-    );
+    return (_jsx(BrowserRouter, { children: _jsx("div", Object.assign({ className: "bg-container" }, { children: _jsxs("div", Object.assign({ className: "container main pt-4  " }, { children: [_jsx(Cart, {}), _jsx(Navbar, {}), _jsxs(Routes, { children: [_jsx(Route, { path: "/", element: _jsx(Main, {}) }), _jsx(Route, { path: "/about", element: _jsx(About, {}) }), _jsx(Route, { path: "/shipping", element: _jsx(Shipping, {}) }), _jsx(Route, { path: "/tshirts/:id", element: _jsx(TshirtPage, {}) }), _jsx(Route, { path: "/checkout", element: _jsx(Checkout, {}) })] }), _jsx(Footer, {})] })) })) }));
 }
-
 export default App;

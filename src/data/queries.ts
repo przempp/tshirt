@@ -1,5 +1,6 @@
-import { gql } from "@apollo/client";
-export const GET_COLLECTIONS = gql `
+import { gql } from "@apollo/client"
+
+export const GET_COLLECTIONS = gql`
     query GetCollectons {
         collections(options:{filter: {slug: {contains: "frontpage"} }}) {
             items
@@ -21,8 +22,9 @@ export const GET_COLLECTIONS = gql `
             }
         }
     }
-`;
-export const GET_PRODUCT = gql `
+`
+
+export const GET_PRODUCT = gql`
         query GetProduct($slug: String!)  {
             product(slug: $slug) {
                 name
@@ -47,8 +49,9 @@ export const GET_PRODUCT = gql `
                 }
             }
         }
-    `;
-export const ACTIVE_ORDER = gql `
+    `
+
+export const ACTIVE_ORDER = gql`
     fragment ActiveOrder on Order {
         id
         code
@@ -92,8 +95,9 @@ export const ACTIVE_ORDER = gql `
             }
         }
     }
-`;
-export const ADD_ITEM_TO_ORDER = gql `
+`
+
+export const ADD_ITEM_TO_ORDER = gql`
     mutation AddItemToOrder($productVariantId: ID! $quantity: Int!, $backDesign: String!){
         addItemToOrder(
             productVariantId: $productVariantId, 
@@ -117,8 +121,9 @@ export const ADD_ITEM_TO_ORDER = gql `
             }
         }
     }
-`;
-export const REMOVE_ITEM_FROM_ORDER = gql `
+`
+
+export const REMOVE_ITEM_FROM_ORDER = gql`
     ${ACTIVE_ORDER}
     mutation RemoveItemFromOrder($orderLineId: ID!){
         removeOrderLine(orderLineId: $orderLineId) {
@@ -129,8 +134,9 @@ export const REMOVE_ITEM_FROM_ORDER = gql `
             }
         }
     }
-`;
-export const ADJUST_ORDER_LINE = gql `
+`
+
+export const ADJUST_ORDER_LINE = gql`
     ${ACTIVE_ORDER}
     mutation AdjustOrderLine($orderLineId: ID! $quantity: Int!){
         adjustOrderLine(orderLineId: $orderLineId, quantity: $quantity ) {
@@ -141,16 +147,18 @@ export const ADJUST_ORDER_LINE = gql `
             }
         }
     }
-`;
-export const GET_ACTIVE_ORDER = gql `
+`
+
+export const GET_ACTIVE_ORDER = gql`
     ${ACTIVE_ORDER}
     query GetActiveOrder {
         activeOrder {
             ... ActiveOrder
         }
     }
-`;
-export const GET_DESIGNS = gql `
+`
+
+export const GET_DESIGNS = gql`
     query GetDesigns {
         collection(id: 16) {
             productVariants {
@@ -166,9 +174,11 @@ export const GET_DESIGNS = gql `
             }
         }
     }
-`;
+`
+
 // fragments
-export const ASSET_FRAGMENT = gql `
+
+export const ASSET_FRAGMENT = gql`
     fragment Asset on Asset {
         id
         width
@@ -181,7 +191,8 @@ export const ASSET_FRAGMENT = gql `
         }
     }
 `;
-export const CART_FRAGMENT = gql `
+
+export const CART_FRAGMENT = gql`
     fragment Cart on Order {
         id
         code
@@ -235,7 +246,8 @@ export const CART_FRAGMENT = gql `
     }
     ${ASSET_FRAGMENT}
 `;
-export const COUNTRY_FRAGMENT = gql `
+
+export const COUNTRY_FRAGMENT = gql`
     fragment Country on Country {
         id
         code
@@ -243,7 +255,8 @@ export const COUNTRY_FRAGMENT = gql `
         enabled
     }
 `;
-export const GET_AVAILABLE_COUNTRIES = gql `
+
+export const GET_AVAILABLE_COUNTRIES = gql`
     query GetAvailableCountries {
         availableCountries {
             id
@@ -253,12 +266,16 @@ export const GET_AVAILABLE_COUNTRIES = gql `
         }
     }
 `;
-export const GET_NEXT_ORDER_STATES = gql `
+
+export const GET_NEXT_ORDER_STATES = gql`
     query NextOrderStates {
         nextOrderStates
     }
 `;
-export const ORDER_ADDRESS_FRAGMENT = gql `
+
+
+
+export const ORDER_ADDRESS_FRAGMENT = gql`
     fragment OrderAddress on OrderAddress {
         fullName
         company
@@ -271,7 +288,8 @@ export const ORDER_ADDRESS_FRAGMENT = gql `
         phoneNumber
     }
 `;
-export const ADDRESS_FRAGMENT = gql `
+
+export const ADDRESS_FRAGMENT = gql`
     fragment Address on Address {
         id
         fullName
@@ -291,14 +309,18 @@ export const ADDRESS_FRAGMENT = gql `
         defaultBillingAddress
     }
 `;
-export const ERROR_RESULT_FRAGMENT = gql `
+
+export const ERROR_RESULT_FRAGMENT = gql`
     fragment ErrorResult on ErrorResult {
         errorCode
         message
     }
 `;
+
+
 // checkout
-export const GET_SHIPPING_ADDRESS = gql `
+
+export const GET_SHIPPING_ADDRESS = gql`
     query GetShippingAddress {
         activeOrder {
             id
@@ -309,7 +331,8 @@ export const GET_SHIPPING_ADDRESS = gql `
     }
     ${ORDER_ADDRESS_FRAGMENT}
 `;
-export const SET_SHIPPING_ADDRESS = gql `
+
+export const SET_SHIPPING_ADDRESS = gql`
     mutation SetShippingAddress($input: CreateAddressInput!) {
         setOrderShippingAddress(input: $input) {
             ...Cart
@@ -325,7 +348,8 @@ export const SET_SHIPPING_ADDRESS = gql `
     ${ORDER_ADDRESS_FRAGMENT}
     ${ERROR_RESULT_FRAGMENT}
 `;
-export const GET_ELIGIBLE_SHIPPING_METHODS = gql `
+
+export const GET_ELIGIBLE_SHIPPING_METHODS = gql`
     query GetEligibleShippingMethods {
         eligibleShippingMethods {
             id
@@ -337,7 +361,8 @@ export const GET_ELIGIBLE_SHIPPING_METHODS = gql `
         }
     }
 `;
-export const GET_PRODUCTS_DESIGNS = gql `
+
+export const GET_PRODUCTS_DESIGNS = gql`
     query GetProductsDesigns {
         collection(id: 16) {
             productVariants {
@@ -355,7 +380,8 @@ export const GET_PRODUCTS_DESIGNS = gql `
         }
     }
 `;
-export const GET_PRODUCT_FEATURED_ASSET = gql `
+
+export const GET_PRODUCT_FEATURED_ASSET = gql`
     query GetProductFeaturedAsset($term: String! $id: [ID!]) {
         search(input: {term: $term, facetValueIds: $id}) {
             items {
@@ -366,7 +392,9 @@ export const GET_PRODUCT_FEATURED_ASSET = gql `
         }
     }
 `;
-export const SET_SHIPPING_METHOD = gql `
+
+
+export const SET_SHIPPING_METHOD = gql`
     mutation SetShippingMethod($id: ID!) {
         setOrderShippingMethod(shippingMethodId: $id) {
             ...Cart
@@ -376,7 +404,8 @@ export const SET_SHIPPING_METHOD = gql `
     ${CART_FRAGMENT}
     ${ERROR_RESULT_FRAGMENT}
 `;
-export const SET_CUSTOMER_FOR_ORDER = gql `
+
+export const SET_CUSTOMER_FOR_ORDER = gql`
     mutation SetCustomerForOrder($input: CreateCustomerInput!) {
         setCustomerForOrder(input: $input) {
             ...on Order {
@@ -393,7 +422,8 @@ export const SET_CUSTOMER_FOR_ORDER = gql `
     }
     ${ERROR_RESULT_FRAGMENT}
 `;
-export const TRANSITION_TO_ARRANGING_PAYMENT = gql `
+
+export const TRANSITION_TO_ARRANGING_PAYMENT = gql`
     mutation TransitionToArrangingPayment {
         transitionOrderToState(state: "ArrangingPayment") {
             ...Cart
@@ -403,7 +433,9 @@ export const TRANSITION_TO_ARRANGING_PAYMENT = gql `
     ${CART_FRAGMENT}
     ${ERROR_RESULT_FRAGMENT}
 `;
-export const TRANSITION_ORDER_STATE = gql `
+
+
+export const TRANSITION_ORDER_STATE = gql`
     mutation TransitionOrderState($input: String!) {
         transitionOrderToState(state: $input) {
             ...Cart
@@ -413,7 +445,8 @@ export const TRANSITION_ORDER_STATE = gql `
     ${CART_FRAGMENT}
     ${ERROR_RESULT_FRAGMENT}
 `;
-export const ADD_PAYMENT = gql `
+
+export const ADD_PAYMENT = gql`
     mutation AddPayment($input: PaymentInput!) {
         addPaymentToOrder(input: $input) {
             ...Cart
@@ -423,7 +456,8 @@ export const ADD_PAYMENT = gql `
     ${CART_FRAGMENT}
     ${ERROR_RESULT_FRAGMENT}
 `;
-export const GET_FACET_REDBUBBLE = gql `
+
+export const GET_FACET_REDBUBBLE = gql`
     query GetFacetRedbubble {
         facet(id:7){
             values {

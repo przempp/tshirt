@@ -1,29 +1,6 @@
-import { Link, NavLink} from 'react-router-dom'
-import React from 'react';
-
-
-
+import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
+import { Link, NavLink } from 'react-router-dom';
 function Navbar(id) {
-    return (
-        <div className="navbar d-flex justify-content-center align-items-center flex-column ">
-            <div className="logo-div row  ">
-                <Link to={'/'}>
-                    <div className="animation">
-
-                        <h1  className='logo-text col-xl text-3d-animation'>ENJOY THE DECLINE</h1>
-                    </div>
-                </Link>
-            </div>
-            <div className='menu row'>
-                <div className='menu-item col-4'>
-                    <NavLink className={({ isActive }) => isActive ? "navlink-active" : ""} to="/">Shirts</NavLink></div>
-                <div className='menu-item col-4'>
-                    <NavLink className={({ isActive }) => isActive ? "navlink-active" : ""} to="/shipping">Shipping</NavLink></div>
-                <div className='menu-item col-4'>
-                    <NavLink className={({ isActive }) => isActive ? "navlink-active" : ""} to="/about">About</NavLink></div>
-            </div>
-        </div>
-    )
+    return (_jsxs("div", Object.assign({ className: "navbar d-flex justify-content-center align-items-center flex-column " }, { children: [_jsx("div", Object.assign({ className: "logo-div row  " }, { children: _jsx(Link, Object.assign({ to: '/' }, { children: _jsx("div", Object.assign({ className: "animation" }, { children: _jsx("h1", Object.assign({ className: 'logo-text col-xl text-3d-animation' }, { children: "ENJOY THE DECLINE" })) })) })) })), _jsxs("div", Object.assign({ className: 'menu row' }, { children: [_jsx("div", Object.assign({ className: 'menu-item col-4' }, { children: _jsx(NavLink, Object.assign({ className: ({ isActive }) => isActive ? "navlink-active" : "", to: "/" }, { children: "Shirts" })) })), _jsx("div", Object.assign({ className: 'menu-item col-4' }, { children: _jsx(NavLink, Object.assign({ className: ({ isActive }) => isActive ? "navlink-active" : "", to: "/shipping" }, { children: "Shipping" })) })), _jsx("div", Object.assign({ className: 'menu-item col-4' }, { children: _jsx(NavLink, Object.assign({ className: ({ isActive }) => isActive ? "navlink-active" : "", to: "/about" }, { children: "About" })) }))] }))] })));
 }
-
-export default Navbar
+export default Navbar;
