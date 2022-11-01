@@ -9,7 +9,9 @@ import { setContext } from '@apollo/client/link/context'
 const AUTH_TOKEN_KEY = 'auth_token';
 
 const httpLink = new HttpLink({
+    // @ts-expect-error TS(2580): Cannot find name 'process'. Do you need to install... Remove this comment to see the full error message
     uri: `${process.env.NEXT_PUBLIC_URL_SHOP_API}/shop-api`,
+    // @ts-expect-error TS(2345): Argument of type '{ uri: string; withCredentials: ... Remove this comment to see the full error message
     withCredentials: true,
 });
 
