@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-// @ts-expect-error TS(6142): Module './App' was resolved to '/home/jebaclinuxa/... Remove this comment to see the full error message
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import './bootstrap.min.css';
@@ -15,9 +14,8 @@ const AUTH_TOKEN_KEY = 'auth_token';
 
 const httpLink = new HttpLink({
     // uri: `http://localhost:3000/shop-api`,
-    // @ts-expect-error TS(2580): Cannot find name 'process'. Do you need to install... Remove this comment to see the full error message
     uri: process.env.REACT_APP_SHOP_API_LINK,
-    // @ts-expect-error TS(2345): Argument of type '{ uri: any; withCredentials: boo... Remove this comment to see the full error message
+    // @ts-expect-error TS(2345): Argument of type '{ uri: string | undefined; withC... Remove this comment to see the full error message
     withCredentials: true,
 });
 
@@ -63,9 +61,7 @@ const client = new ApolloClient({
 // @ts-expect-error TS(2345): Argument of type 'HTMLElement | null' is not assig... Remove this comment to see the full error message
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
     <ApolloProvider client={client}>
-        {/* @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
         <App/>
     </ApolloProvider>
 )

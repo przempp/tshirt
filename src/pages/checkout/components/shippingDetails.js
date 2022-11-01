@@ -1,0 +1,20 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const jsx_runtime_1 = require("react/jsx-runtime");
+const react_select_1 = __importDefault(require("react-select"));
+function ShippingDetails(setShippingAddress, setShippingMethodStage, setShippingDetailsStage, setAddress, address, address2, setAddress2, city, setCity, province, setProvince, zip, setZip, countryCode, setCountryCode, countriesDataFormated, cancelButton) {
+    return ((0, jsx_runtime_1.jsxs)("form", Object.assign({ onSubmit: (e) => {
+            e.preventDefault();
+            setShippingAddress();
+            setShippingMethodStage(true);
+            setShippingDetailsStage(false);
+        } }, { children: [(0, jsx_runtime_1.jsxs)("div", Object.assign({ className: "form-group" }, { children: [(0, jsx_runtime_1.jsx)("label", Object.assign({ htmlFor: "inputAddress" }, { children: "Address" })), (0, jsx_runtime_1.jsx)("input", { required: true, onChange: event => setAddress(event.target.value), value: address, type: "text", className: "form-control", id: "inputAddress", placeholder: "1234 Main St" })] })), (0, jsx_runtime_1.jsxs)("div", Object.assign({ className: "form-group" }, { children: [(0, jsx_runtime_1.jsx)("label", Object.assign({ htmlFor: "inputAddress2" }, { children: "Address 2" })), (0, jsx_runtime_1.jsx)("input", { onChange: event => setAddress2(event.target.value), value: address2, type: "text", className: "form-control", id: "inputAddress2", placeholder: "Apartment, studio, or floor" })] })), (0, jsx_runtime_1.jsxs)("div", Object.assign({ className: "form-row" }, { children: [(0, jsx_runtime_1.jsxs)("div", Object.assign({ className: "form-group col-6 " }, { children: [(0, jsx_runtime_1.jsx)("label", Object.assign({ htmlFor: "inputCity" }, { children: "City" })), (0, jsx_runtime_1.jsx)("input", { required: true, onChange: event => setCity(event.target.value), value: city, type: "text", className: "form-control", id: "inputCity" })] })), (0, jsx_runtime_1.jsxs)("div", Object.assign({ className: "form-group col-6 " }, { children: [(0, jsx_runtime_1.jsx)("label", Object.assign({ htmlFor: "inputState" }, { children: "State" })), (0, jsx_runtime_1.jsx)("input", { required: true, onChange: event => setProvince(event.target.value), value: province, id: "inputState", type: "text", className: "form-control" })] }))] })), (0, jsx_runtime_1.jsxs)("div", Object.assign({ className: "form-row" }, { children: [(0, jsx_runtime_1.jsxs)("div", Object.assign({ className: "form-group col-5" }, { children: [(0, jsx_runtime_1.jsx)("label", Object.assign({ htmlFor: "inputZip" }, { children: "Zip" })), (0, jsx_runtime_1.jsx)("input", { required: true, onChange: event => setZip(event.target.value), value: zip, type: "text", className: "form-control", id: "inputZip" })] })), (0, jsx_runtime_1.jsxs)("div", Object.assign({ className: " col-7" }, { children: [(0, jsx_runtime_1.jsx)("label", Object.assign({ htmlFor: "inputCountry" }, { children: "Country" })), (0, jsx_runtime_1.jsx)(react_select_1.default, { rules: { required: true }, value: countryCode, onChange: setCountryCode, styles: {
+                                    option: (provided, state) => (Object.assign(Object.assign({}, provided), { color: 'black' })),
+                                    input: (provided, state) => (Object.assign(Object.assign({}, provided), { color: 'black' })),
+                                    placeholder: (provided, state) => (Object.assign(Object.assign({}, provided), { color: 'black' })),
+                                }, options: countriesDataFormated })] }))] })), (0, jsx_runtime_1.jsxs)("div", Object.assign({ className: 'd-flex justify-content-between' }, { children: [cancelButton(), (0, jsx_runtime_1.jsx)("button", Object.assign({ className: 'my-button small', type: 'submit', disabled: !countryCode.value }, { children: "Continue" }))] }))] })));
+}
+exports.default = ShippingDetails;

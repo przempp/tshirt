@@ -8,11 +8,8 @@ function PaymentMethod(
     cancelButton: any
 ) {
     return (
-        // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
         <Form>
-            {/* @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
             <h2>Pick payment option</h2>
-            {/* @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
             <Form.Check
                 type={'radio'}
                 id={`radio-btc`}
@@ -20,7 +17,6 @@ function PaymentMethod(
                 onChange={() => setSelectedCrypto('bitcoin')}
                 checked={selectedCrypto === "bitcoin"}
             />
-            {/* @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
             <Form.Check
                 type={'radio'}
                 id={`default-eth`}
@@ -28,7 +24,6 @@ function PaymentMethod(
                 onChange={() => setSelectedCrypto('ethereum')}
                 checked={selectedCrypto === "ethereum"}
             />
-            {/* @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
             <Form.Check
                 type={'radio'}
                 id={`default-xmr`}
@@ -36,7 +31,6 @@ function PaymentMethod(
                 onChange={() => setSelectedCrypto('monero')}
                 checked={selectedCrypto === "monero"}
             />
-            {/* @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
             <Form.Check
                 type={'radio'}
                 id={`default-ltc`}
@@ -44,10 +38,8 @@ function PaymentMethod(
                 onChange={() => setSelectedCrypto('litecoin')}
                 checked={selectedCrypto === "litecoin"}
             />
-            {/* @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
             <div className='d-flex justify-content-between'>
                 {cancelButton()}
-                {/* @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
                 <button onClick={e => {
                     setShippingAddress()
                     setPaymentMethodStage(false)
