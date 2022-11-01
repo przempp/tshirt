@@ -28,6 +28,7 @@
     "web-vitals": "^2.1.0"
   },
   "scripts": {
+    "type-check": "tsc --traceResolution",
     "start": "react-scripts start",
     "build": "GENERATE_SOURCEMAP=false react-scripts build",
     "test": "react-scripts test",
