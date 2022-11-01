@@ -1,8 +1,7 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.tshirts = void 0;
-const helpers_1 = require("./helpers");
-exports.tshirts = [
+import { Crunchy, BoogLoops, CornSyrup, DeadWashingtons, Liberator, FGC9, Glock, Happy, 
+// @ts-expect-error TS(2307): Cannot find module './helpers' or its correspondin... Remove this comment to see the full error message
+UncleVanya, Pitzer, BrandName } from "./helpers";
+export const tshirts = [
     {
         name: 'CRUNCHY',
         link: 'crunchy',
@@ -10,7 +9,7 @@ exports.tshirts = [
             "in your cereal so what is your problem chud? 🤓 🤓 🤓 \n" +
             "\n" +
             "25$ includes eu shipping, world wide shipping +10$\n",
-        img: helpers_1.Crunchy,
+        img: Crunchy,
         price: 25
     },
     {
@@ -20,7 +19,7 @@ exports.tshirts = [
             'Life is too short to worry about material possessions. Enjoy the moment and don\'t worry about tomorrow.\n' +
             '\n' +
             '25$ includes eu shipping, world wide shipping +10$.\n',
-        img: helpers_1.DeadWashingtons,
+        img: DeadWashingtons,
         price: 25
     },
     {
@@ -31,7 +30,7 @@ exports.tshirts = [
             'Plus, it\'s super fun to eat!\n' +
             '\n' +
             '25$ includes eu shipping, world wide shipping +10$.\n',
-        img: helpers_1.BoogLoops,
+        img: BoogLoops,
         price: 25
     },
     {
@@ -42,7 +41,7 @@ exports.tshirts = [
             'Treat your pod mates today!\n' +
             '\n' +
             '25$ includes eu shipping, world wide shipping +10$.\n',
-        img: helpers_1.Pitzer,
+        img: Pitzer,
         price: 25
     },
     {
@@ -52,7 +51,7 @@ exports.tshirts = [
             '(Statement not included)\n' +
             '\n' +
             '25$ includes eu shipping, world wide shipping +10$.\n',
-        img: helpers_1.BrandName,
+        img: BrandName,
         price: 25
     },
     {
@@ -68,7 +67,7 @@ exports.tshirts = [
             'So if you’re looking for a delicious and healthy way to sweeten your food, then corn syrup is the perfect choice!\n' +
             '\n' +
             '25$ includes eu shipping, world wide shipping +10$.\n',
-        img: helpers_1.CornSyrup,
+        img: CornSyrup,
         price: 25
     },
     {
@@ -82,7 +81,7 @@ exports.tshirts = [
             'I notice the good\n' +
             '\n' +
             '25$ includes eu shipping, world wide shipping +10$.\n',
-        img: helpers_1.Happy,
+        img: Happy,
         price: 25
     },
     {
@@ -92,7 +91,7 @@ exports.tshirts = [
             'But don\'t take our word for it, come see for yourself!\n' +
             '\n' +
             '25$ includes eu shipping, world wide shipping +10$.\n',
-        img: helpers_1.UncleVanya,
+        img: UncleVanya,
         price: 25
     },
     {
@@ -103,7 +102,7 @@ exports.tshirts = [
             'results in the release of lead and other pollutants into the environment, further harming the planet.\n\n' +
             '\n' +
             '25$ includes eu shipping, world wide shipping +10$.\n',
-        img: helpers_1.FGC9,
+        img: FGC9,
         price: 25
     },
     {
@@ -114,7 +113,7 @@ exports.tshirts = [
             'results in the release of lead and other pollutants into the environment, further harming the planet.\n\n' +
             '\n' +
             '25$ includes eu shipping, world wide shipping +10$.\n',
-        img: helpers_1.Glock,
+        img: Glock,
         price: 25
     },
     {
@@ -125,8 +124,8 @@ exports.tshirts = [
             'results in the release of lead and other pollutants into the environment, further harming the planet.\n\n' +
             '\n' +
             '25$ includes eu shipping, world wide shipping +10$.\n',
-        img: helpers_1.Liberator,
+        img: Liberator,
         price: 25
     },
 ];
-exports.default = exports.tshirts;
+export default tshirts;

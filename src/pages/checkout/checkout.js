@@ -1,4 +1,3 @@
-"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -8,46 +7,42 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const jsx_runtime_1 = require("react/jsx-runtime");
-const react_1 = require("react");
-const client_1 = require("@apollo/client");
-const queries_1 = require("../../data/queries");
-const cartDetailsTable_1 = __importDefault(require("../../components/cart/components/cartDetailsTable"));
-const customerDetails_1 = __importDefault(require("./components/customerDetails"));
-const shippingDetails_1 = __importDefault(require("./components/shippingDetails"));
-const shippingMethod_1 = __importDefault(require("./components/shippingMethod"));
-const paymentMethod_1 = __importDefault(require("./components/paymentMethod"));
-const reviewDetails_1 = __importDefault(require("./components/reviewDetails"));
-const finalizationStage_1 = __importDefault(require("./components/finalizationStage"));
-const customerPays_1 = __importDefault(require("./components/customerPays"));
-const coingecko_api_1 = __importDefault(require("@crypto-coffee/coingecko-api"));
+import { jsx as _jsx, Fragment as _Fragment, jsxs as _jsxs } from "react/jsx-runtime";
+import { useEffect, useState } from 'react';
+import { useLazyQuery, useMutation, useQuery, } from "@apollo/client";
+import { ADD_PAYMENT, GET_ACTIVE_ORDER, GET_AVAILABLE_COUNTRIES, GET_ELIGIBLE_SHIPPING_METHODS, SET_CUSTOMER_FOR_ORDER, SET_SHIPPING_ADDRESS, SET_SHIPPING_METHOD, TRANSITION_ORDER_STATE, TRANSITION_TO_ARRANGING_PAYMENT } from "../../data/queries";
+import CartDetailsTable from '../../components/cart/components/cartDetailsTable';
+import CustomerDetails from './components/customerDetails';
+import ShippingDetails from './components/shippingDetails';
+import ShippingMethod from './components/shippingMethod';
+import PaymentMethod from './components/paymentMethod';
+import ReviewDetails from './components/reviewDetails';
+import FinalizationStage from './components/finalizationStage';
+import CustomerPays from './components/customerPays';
+import CoinGeckoApi from '@crypto-coffee/coingecko-api';
 function Checkout() {
-    const [customerDetailsStage, setCustomerDetailsStage] = (0, react_1.useState)(true);
-    const [shippingDetailsStage, setShippingDetailsStage] = (0, react_1.useState)(false);
-    const [shippingMethodStage, setShippingMethodStage] = (0, react_1.useState)(false);
-    const [paymentMethodStage, setPaymentMethodStage] = (0, react_1.useState)(false);
-    const [paymentStage, setPaymentStage] = (0, react_1.useState)(false);
-    const [customerPaysStage, setCustomerPaysStage] = (0, react_1.useState)(false);
-    const [finalStage, setFinalStage] = (0, react_1.useState)(false);
-    const [cryptoPrice, setCryptoPrice] = (0, react_1.useState)(0);
-    const [secondsSinceOrderPlaced, setSecondsSinceOrderPlaced] = (0, react_1.useState)(0);
-    const [selectedCrypto, setSelectedCrypto] = (0, react_1.useState)("bitcoin");
-    const [shippingType, setShippingType] = (0, react_1.useState)(0);
-    const [transactionID, setTransactionID] = (0, react_1.useState)('');
-    const [firstName, setFirstName] = (0, react_1.useState)("");
-    const [lastName, setLastName] = (0, react_1.useState)("");
-    const [email, setEmail] = (0, react_1.useState)("");
-    const [telegram, setTelegram] = (0, react_1.useState)("");
-    const [address, setAddress] = (0, react_1.useState)("");
-    const [address2, setAddress2] = (0, react_1.useState)("");
-    const [city, setCity] = (0, react_1.useState)("");
-    const [province, setProvince] = (0, react_1.useState)("");
-    const [zip, setZip] = (0, react_1.useState)("");
-    const [countryCode, setCountryCode] = (0, react_1.useState)("");
+    const [customerDetailsStage, setCustomerDetailsStage] = useState(true);
+    const [shippingDetailsStage, setShippingDetailsStage] = useState(false);
+    const [shippingMethodStage, setShippingMethodStage] = useState(false);
+    const [paymentMethodStage, setPaymentMethodStage] = useState(false);
+    const [paymentStage, setPaymentStage] = useState(false);
+    const [customerPaysStage, setCustomerPaysStage] = useState(false);
+    const [finalStage, setFinalStage] = useState(false);
+    const [cryptoPrice, setCryptoPrice] = useState(0);
+    const [secondsSinceOrderPlaced, setSecondsSinceOrderPlaced] = useState(0);
+    const [selectedCrypto, setSelectedCrypto] = useState("bitcoin");
+    const [shippingType, setShippingType] = useState(0);
+    const [transactionID, setTransactionID] = useState('');
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [email, setEmail] = useState("");
+    const [telegram, setTelegram] = useState("");
+    const [address, setAddress] = useState("");
+    const [address2, setAddress2] = useState("");
+    const [city, setCity] = useState("");
+    const [province, setProvince] = useState("");
+    const [zip, setZip] = useState("");
+    const [countryCode, setCountryCode] = useState("");
     const customStyles = {
         // @ts-expect-error TS(7006): Parameter 'provided' implicitly has an 'any' type.
         option: (provided, state) => (Object.assign(Object.assign({}, provided), { color: 'black' })),
@@ -62,12 +57,12 @@ function Checkout() {
         monero: 'xrm_address',
         litecoin: 'ltc_address'
     };
-    (0, react_1.useEffect)(() => {
+    useEffect(() => {
         if (customerPaysStage) {
             ;
             (() => __awaiter(this, void 0, void 0, function* () {
                 try {
-                    const coinGeckoApi = new coingecko_api_1.default();
+                    const coinGeckoApi = new CoinGeckoApi();
                     const results = yield coinGeckoApi.simple({
                         ids: [selectedCrypto],
                         vs_currencies: 'usd'
@@ -96,25 +91,25 @@ function Checkout() {
             paymentStartDate: new Date()
         }
     };
-    const [getShippingMethods, { data: shippingOrderData, }] = (0, client_1.useLazyQuery)(queries_1.GET_ELIGIBLE_SHIPPING_METHODS, { fetchPolicy: 'network-only' }); // without this the cached shipping data is used, which might not be
+    const [getShippingMethods, { data: shippingOrderData, }] = useLazyQuery(GET_ELIGIBLE_SHIPPING_METHODS, { fetchPolicy: 'network-only' }); // without this the cached shipping data is used, which might not be
     // eligible for  the current order
-    const { data: countriesData } = (0, client_1.useQuery)(queries_1.GET_AVAILABLE_COUNTRIES);
-    const { loading: activeOrderLoading, data: activeOrderData } = (0, client_1.useQuery)(queries_1.GET_ACTIVE_ORDER);
-    const [setShippingAddress, { data: setShippingData }] = (0, client_1.useMutation)(queries_1.SET_SHIPPING_ADDRESS, {
+    const { data: countriesData } = useQuery(GET_AVAILABLE_COUNTRIES);
+    const { loading: activeOrderLoading, data: activeOrderData } = useQuery(GET_ACTIVE_ORDER);
+    const [setShippingAddress, { data: setShippingData }] = useMutation(SET_SHIPPING_ADDRESS, {
         variables: { input: input }
     });
-    const [setShippingMethod] = (0, client_1.useMutation)(queries_1.SET_SHIPPING_METHOD, {
+    const [setShippingMethod] = useMutation(SET_SHIPPING_METHOD, {
         variables: { id: shippingType.value },
     });
-    const [transitionToPayment] = (0, client_1.useMutation)(queries_1.TRANSITION_TO_ARRANGING_PAYMENT, {
+    const [transitionToPayment] = useMutation(TRANSITION_TO_ARRANGING_PAYMENT, {
         variables: {
             metadata: {
                 dupa2: "chuj"
             }
         }
     });
-    const [transitionOrderState] = (0, client_1.useMutation)(queries_1.TRANSITION_ORDER_STATE);
-    const [addPayment, { data: addPaymentData }] = (0, client_1.useMutation)(queries_1.ADD_PAYMENT, {
+    const [transitionOrderState] = useMutation(TRANSITION_ORDER_STATE);
+    const [addPayment, { data: addPaymentData }] = useMutation(ADD_PAYMENT, {
         variables: {
             input: {
                 method: 'standard-payment',
@@ -123,9 +118,9 @@ function Checkout() {
                 }
             }
         },
-        refetchQueries: [{ query: queries_1.GET_ACTIVE_ORDER }]
+        refetchQueries: [{ query: GET_ACTIVE_ORDER }]
     });
-    (0, react_1.useEffect)(() => {
+    useEffect(() => {
         if (activeOrderData && activeOrderData.activeOrder && activeOrderData.activeOrder.state === "ArrangingPayment") {
             // @ts-expect-error TS(2345): Argument of type 'Date' is not assignable to param... Remove this comment to see the full error message
             const currentTimeInSeconds = Date.parse(new Date()) / 1000;
@@ -139,7 +134,7 @@ function Checkout() {
                 setSecondsSinceOrderPlaced(whenTimeout);
                 console.log(whenTimeout);
                 if (whenTimeout <= 0) {
-                    transitionOrderState({ variables: { input: 'Cancelled' }, refetchQueries: [{ query: queries_1.GET_ACTIVE_ORDER }] });
+                    transitionOrderState({ variables: { input: 'Cancelled' }, refetchQueries: [{ query: GET_ACTIVE_ORDER }] });
                     setFinalStage(false);
                     setCustomerDetailsStage(false);
                 }
@@ -148,37 +143,37 @@ function Checkout() {
         }
     }, [activeOrderData, transitionOrderState]);
     const cancelButton = () => {
-        return ((0, jsx_runtime_1.jsx)("button", Object.assign({ className: 'my-button small', onClick: () => {
-                transitionOrderState({ variables: { input: 'Cancelled' }, refetchQueries: [{ query: queries_1.GET_ACTIVE_ORDER }] });
+        return (_jsx("button", Object.assign({ className: 'my-button small', onClick: () => {
+                transitionOrderState({ variables: { input: 'Cancelled' }, refetchQueries: [{ query: GET_ACTIVE_ORDER }] });
                 setFinalStage(false);
                 setCustomerDetailsStage(false);
             } }, { children: "Cancel order" })));
     };
     function editButton(setStage) {
-        return ((0, jsx_runtime_1.jsx)("button", Object.assign({ className: 'my-button small', onClick: () => {
+        return (_jsx("button", Object.assign({ className: 'my-button small', onClick: () => {
                 transitionOrderState({ variables: { input: 'AddingItems' } });
                 setCustomerDetailsStage(true);
                 setStage(false);
             } }, { children: "Edit order" })));
     }
-    (0, react_1.useEffect)(() => {
+    useEffect(() => {
         if (activeOrderData && activeOrderData.activeOrder && activeOrderData.activeOrder.state === "ArrangingPayment") {
             setSelectedCrypto(activeOrderData.activeOrder.shippingAddress.customFields.paymentType);
             setCustomerDetailsStage(false);
             setCustomerPaysStage(true);
         }
     }, [activeOrderData]);
-    (0, react_1.useEffect)(() => {
+    useEffect(() => {
         if (setShippingData && setShippingData.setOrderShippingAddress.shippingAddress.country) {
             getShippingMethods();
         }
     }, [setShippingData, getShippingMethods]);
-    (0, react_1.useEffect)(() => {
+    useEffect(() => {
         if (cryptoPrice && activeOrderData.activeOrder && (activeOrderData.activeOrder.shippingAddress.customFields.cryptoPrice === 0)) {
             setShippingAddress();
         }
     }, [cryptoPrice, setShippingAddress, activeOrderData]);
-    const [setCustomerForOrder] = (0, client_1.useMutation)(queries_1.SET_CUSTOMER_FOR_ORDER, {
+    const [setCustomerForOrder] = useMutation(SET_CUSTOMER_FOR_ORDER, {
         variables: {
             input: {
                 emailAddress: email,
@@ -203,11 +198,11 @@ function Checkout() {
             label: data.name
         });
     });
-    (0, react_1.useEffect)(() => {
+    useEffect(() => {
         if (window.innerWidth < 700)
             window.scrollTo(0, 130);
     }, []);
-    (0, react_1.useEffect)(() => {
+    useEffect(() => {
         if (activeOrderData && activeOrderData.activeOrder) {
             setTelegram(activeOrderData.activeOrder.shippingAddress.phoneNumber);
             setAddress(activeOrderData.activeOrder.shippingAddress.streetLine1);
@@ -222,12 +217,12 @@ function Checkout() {
             });
         }
     }, [activeOrderLoading, activeOrderData]);
-    return ((0, jsx_runtime_1.jsx)("div", { children: (0, jsx_runtime_1.jsxs)("div", Object.assign({ className: 'row flex-wrap-reverse' }, { children: [(activeOrderData && activeOrderData.activeOrder && (activeOrderData.activeOrder.totalQuantity !== 0)) || finalStage ?
-                    (0, jsx_runtime_1.jsx)("div", Object.assign({ className: 'col-md-6 col-lg-7' }, { children: (0, jsx_runtime_1.jsxs)("div", { children: [activeOrderData && activeOrderData.activeOrder && console.log(activeOrderData.activeOrder.state), (activeOrderData && activeOrderData.activeOrder && activeOrderData.activeOrder.state === "ArrangingPayment") ?
-                                    customerPaysStage && (0, customerPays_1.default)(activeOrderData, secondsSinceOrderPlaced, selectedCrypto, storeCryptoAddresses, setTransactionID, addPayment, setCustomerPaysStage, setFinalStage, setCustomerDetailsStage, editButton, cancelButton)
-                                    : (0, jsx_runtime_1.jsxs)(jsx_runtime_1.Fragment, { children: [customerDetailsStage && (0, customerDetails_1.default)(setCustomerDetailsStage, setShippingDetailsStage, setCustomerForOrder, firstName, setFirstName, lastName, setLastName, email, setEmail, telegram, setTelegram, cancelButton), shippingDetailsStage && (0, shippingDetails_1.default)(setShippingAddress, setShippingMethodStage, setShippingDetailsStage, setAddress, address, address2, setAddress2, city, setCity, province, setProvince, zip, setZip, countryCode, setCountryCode, countriesDataFormated, cancelButton), shippingMethodStage && (0, shippingMethod_1.default)(shippingType, setShippingType, setShippingMethodStage, setPaymentMethodStage, setShippingMethod, shippingMethodsFormated, customStyles, cancelButton), paymentMethodStage && (0, paymentMethod_1.default)(setPaymentMethodStage, setPaymentStage, setSelectedCrypto, selectedCrypto, setShippingAddress, shippingType, cancelButton), paymentStage && (0, reviewDetails_1.default)(activeOrderData, transitionToPayment, setShippingAddress, setPaymentStage, setCustomerPaysStage, cancelButton, editButton), (finalStage && addPaymentData && addPaymentData.addPaymentToOrder && addPaymentData.addPaymentToOrder.errorCode) ?
-                                                (0, finalizationStage_1.default)(false, addPaymentData)
-                                                : (0, finalizationStage_1.default)(true, addPaymentData)] })] }) }))
-                    : (0, jsx_runtime_1.jsx)("div", Object.assign({ className: 'col-md-6 col-lg-6 text-center align-self-baseline' }, { children: (0, jsx_runtime_1.jsx)("h2", { children: "NO ORDER" }) })), !finalStage && (0, jsx_runtime_1.jsx)("div", Object.assign({ className: 'col-md-6 col-lg-5 ' }, { children: (0, jsx_runtime_1.jsx)(cartDetailsTable_1.default, { showButtons: (activeOrderData && activeOrderData.activeOrder && activeOrderData.activeOrder.state) === ('AddingItems'), animate: false, responsive: true }) }))] })) }));
+    return (_jsx("div", { children: _jsxs("div", Object.assign({ className: 'row flex-wrap-reverse' }, { children: [(activeOrderData && activeOrderData.activeOrder && (activeOrderData.activeOrder.totalQuantity !== 0)) || finalStage ?
+                    _jsx("div", Object.assign({ className: 'col-md-6 col-lg-7' }, { children: _jsxs("div", { children: [activeOrderData && activeOrderData.activeOrder && console.log(activeOrderData.activeOrder.state), (activeOrderData && activeOrderData.activeOrder && activeOrderData.activeOrder.state === "ArrangingPayment") ?
+                                    customerPaysStage && CustomerPays(activeOrderData, secondsSinceOrderPlaced, selectedCrypto, storeCryptoAddresses, setTransactionID, addPayment, setCustomerPaysStage, setFinalStage, setCustomerDetailsStage, editButton, cancelButton)
+                                    : _jsxs(_Fragment, { children: [customerDetailsStage && CustomerDetails(setCustomerDetailsStage, setShippingDetailsStage, setCustomerForOrder, firstName, setFirstName, lastName, setLastName, email, setEmail, telegram, setTelegram, cancelButton), shippingDetailsStage && ShippingDetails(setShippingAddress, setShippingMethodStage, setShippingDetailsStage, setAddress, address, address2, setAddress2, city, setCity, province, setProvince, zip, setZip, countryCode, setCountryCode, countriesDataFormated, cancelButton), shippingMethodStage && ShippingMethod(shippingType, setShippingType, setShippingMethodStage, setPaymentMethodStage, setShippingMethod, shippingMethodsFormated, customStyles, cancelButton), paymentMethodStage && PaymentMethod(setPaymentMethodStage, setPaymentStage, setSelectedCrypto, selectedCrypto, setShippingAddress, shippingType, cancelButton), paymentStage && ReviewDetails(activeOrderData, transitionToPayment, setShippingAddress, setPaymentStage, setCustomerPaysStage, cancelButton, editButton), (finalStage && addPaymentData && addPaymentData.addPaymentToOrder && addPaymentData.addPaymentToOrder.errorCode) ?
+                                                FinalizationStage(false, addPaymentData)
+                                                : FinalizationStage(true, addPaymentData)] })] }) }))
+                    : _jsx("div", Object.assign({ className: 'col-md-6 col-lg-6 text-center align-self-baseline' }, { children: _jsx("h2", { children: "NO ORDER" }) })), !finalStage && _jsx("div", Object.assign({ className: 'col-md-6 col-lg-5 ' }, { children: _jsx(CartDetailsTable, { showButtons: (activeOrderData && activeOrderData.activeOrder && activeOrderData.activeOrder.state) === ('AddingItems'), animate: false, responsive: true }) }))] })) }));
 }
-exports.default = Checkout;
+export default Checkout;

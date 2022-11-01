@@ -1,15 +1,8 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-// @ts-expect-error TS(2304): Cannot find name 'zimport'.
-zimport;
-{
-    render, screen;
-}
-from;
-'@testing-library/react';
+import { jsx as _jsx } from "react/jsx-runtime";
+import { render, screen } from '@testing-library/react';
+import App from './App';
 test('renders learn react link', () => {
-    // @ts-expect-error TS(2304): Cannot find name 'render'.
-    render(/>);););
+    render(_jsx(App, {}));
     const linkElement = screen.getByText(/learn react/i);
     expect(linkElement).toBeInTheDocument();
 });

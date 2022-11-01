@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "baseUrl": "./src",
     "target": "es6",
     "lib": [
       "dom",
@@ -18,7 +19,7 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "module": "commonjs"
+    "module": "esnext"
   },
   "include": [
     "src"

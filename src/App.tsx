@@ -24,15 +24,12 @@ function App() {
                     <Cart/>
                     <Navbar/>
                     <Routes>
-                        {/* @ts-expect-error TS(2786): 'Main' cannot be used as a JSX component. */}
                         <Route path="/" element={<Main/>}/>
-                        {/* @ts-expect-error TS(2786): 'About' cannot be used as a JSX component. */}
                         <Route path="/about" element={<About/>}/>
                         <Route path="/shipping" element={<Shipping/>}/>
                         <Route path="/tshirts/:id" element={<TshirtPage/>}/>
                         <Route path="/checkout" element={<Checkout/>}/>
                     </Routes>
-                    {/* @ts-expect-error TS(2786): 'Footer' cannot be used as a JSX component. */}
                     <Footer/>
                 </div>
             </div>
