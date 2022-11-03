@@ -51,12 +51,6 @@ const client = new ApolloClient({
     cache: new InMemoryCache(),
 })
 
-
-// const client = new ApolloClient({
-//     uri: 'https://adminpanel.enjoythed.biz/shop-api',
-//     cache: new InMemoryCache(),
-// });
-
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <ApolloProvider client={client}>

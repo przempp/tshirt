@@ -10,15 +10,15 @@ import Footer from './components/footer/footer'
 import './App.css';
 import Checkout from "./pages/checkout/checkout";
 import {
-    BrowserRouter,
     Routes,
     Route,
+    HashRouter
 } from "react-router-dom";
 
 
 function App() {
     return (
-        <BrowserRouter>
+        <HashRouter>
             <div className="bg-container">
                 <div className="container main pt-4  ">
                     <Cart/>
@@ -33,7 +33,7 @@ function App() {
                     <Footer/>
                 </div>
             </div>
-        </BrowserRouter>
+        </HashRouter>
     );
 }
 
