@@ -33,6 +33,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "dev": "PORT=3001 react-scripts start",
     "build": "GENERATE_SOURCEMAP=false react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -49,6 +50,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "@types/react-outside-click-handler": "^1.3.1",
     "ts-loader": "^9.4.1",
     "typescript": "^4.8.4"
   }

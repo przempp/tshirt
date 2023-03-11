@@ -3,7 +3,7 @@ import React from 'react';
 
 
 
-function Navbar(id) {
+function Navbar() {
     return (
         <div className="navbar d-flex justify-content-center align-items-center flex-column ">
             <div className="logo-div row  ">

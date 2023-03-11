@@ -4,7 +4,7 @@ import Main from './pages/main/main'
 import Navbar from "./components/navbar/navbar";
 import About from './pages/about/about'
 import Shipping from './pages/shipping/shipping'
-import TshirtPage from './pages/tshirts/tshirt'
+import TshirtPage from './pages/tshirt/tshirt'
 import Cart from './components/cart/cart'
 import Footer from './components/footer/footer'
 import './App.css';

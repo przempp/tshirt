@@ -207,7 +207,6 @@ function Checkout() {
         )
     }
 
-
     useEffect(() => {
         if (activeOrderData && activeOrderData.activeOrder && activeOrderData.activeOrder.state === "ArrangingPayment") {
             setSelectedCrypto(activeOrderData.activeOrder.shippingAddress.customFields.paymentType)
@@ -216,20 +215,17 @@ function Checkout() {
         }
     }, [activeOrderData]);
 
-
     useEffect(() => {
         if (setShippingData && setShippingData.setOrderShippingAddress.shippingAddress.country) {
             getShippingMethods()
         }
     }, [setShippingData, getShippingMethods])
 
-
     useEffect(() => {
         if (cryptoPrice && activeOrderData.activeOrder && (activeOrderData.activeOrder.shippingAddress.customFields.cryptoPrice === 0)) {
             setShippingAddress()
         }
     }, [cryptoPrice, setShippingAddress, activeOrderData])
-
 
     const [setCustomerForOrder] = useMutation(SET_CUSTOMER_FOR_ORDER,
         {
@@ -241,7 +237,7 @@ function Checkout() {
                 }
             }
         })
-    console.log(activeOrderData)
+        
     let shippingMethodsFormated = []
     if (shippingOrderData) shippingOrderData.eligibleShippingMethods.forEach(method => {
         shippingMethodsFormated.push({
