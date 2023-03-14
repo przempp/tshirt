@@ -1,7 +1,6 @@
 import Select from "react-select";
 import React from "react";
 
-
 function ShippingMethod(
     shippingType, setShippingType,
     setShippingMethodStage, setPaymentMethodStage,
@@ -9,7 +8,6 @@ function ShippingMethod(
     customStyles,
     cancelButton
 ) {
-
     return (
         <>
             <div className='form-group'>

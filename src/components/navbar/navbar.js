@@ -1,15 +1,12 @@
 import { Link, NavLink} from 'react-router-dom'
 import React from 'react';
 
-
-
 function Navbar(id) {
     return (
         <div className="navbar d-flex justify-content-center align-items-center flex-column ">
             <div className="logo-div row  ">
                 <Link to={'/'}>
                     <div className="animation">
-
                         <h1  className='logo-text col-xl text-3d-animation'>ENJOY THE DECLINE</h1>
                     </div>
                 </Link>

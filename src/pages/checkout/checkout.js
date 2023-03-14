@@ -19,7 +19,6 @@ import PaymentMethod from './components/paymentMethod'
 import ReviewDetails from './components/reviewDetails'
 import FinalizationStage from './components/finalizationStage'
 import CustomerPays from './components/customerPays'
-
 import CoinGeckoApi from '@crypto-coffee/coingecko-api'
 
 
@@ -93,8 +92,6 @@ function Checkout() {
         }
     }, [customerPaysStage, selectedCrypto]);
 
-    console.log(cryptoPrice)
-
     let input = {
         fullName: `${firstName} ${lastName}`,
         company: email,
@@ -137,7 +134,7 @@ function Checkout() {
         {
             variables: {
                 metadata: {
-                    dupa2: "chuj"
+                    dupa2: "test"
                 }
             }
         }
@@ -166,12 +163,9 @@ function Checkout() {
             const orderTimeInSeconds = Date.parse(activeOrderData.activeOrder.shippingAddress.customFields.paymentStartDate) / 1000
             const timeoutTimeForOrder = (orderTimeInSeconds + 1800)
             let whenTimeout = timeoutTimeForOrder - currentTimeInSeconds
-            console.log("Pozostalo do timeoutu:")
-            console.log(whenTimeout)
             const interval = setInterval(() => {
                 whenTimeout--
                 setSecondsSinceOrderPlaced(whenTimeout)
-                console.log(whenTimeout)
                 if (whenTimeout <= 0) {
                     transitionOrderState({variables: {input: 'Cancelled'}, refetchQueries: [{query: GET_ACTIVE_ORDER}]})
                     setFinalStage(false)
@@ -241,7 +235,6 @@ function Checkout() {
                 }
             }
         })
-    console.log(activeOrderData)
     let shippingMethodsFormated = []
     if (shippingOrderData) shippingOrderData.eligibleShippingMethods.forEach(method => {
         shippingMethodsFormated.push({
@@ -283,15 +276,11 @@ function Checkout() {
     return (
         <div>
             <div className='row flex-wrap-reverse'>
-
                 {(activeOrderData && activeOrderData.activeOrder && (activeOrderData.activeOrder.totalQuantity !== 0)) || finalStage ?
                     <div className={'col-md-6 col-lg-7'}>
                         <div>
-
                             {activeOrderData && activeOrderData.activeOrder && console.log(activeOrderData.activeOrder.state)}
-
                             {(activeOrderData && activeOrderData.activeOrder && activeOrderData.activeOrder.state === "ArrangingPayment") ?
-
                                 customerPaysStage && CustomerPays(
                                     activeOrderData,
                                     secondsSinceOrderPlaced,
@@ -303,7 +292,6 @@ function Checkout() {
                                     setFinalStage, setCustomerDetailsStage,
                                     editButton, cancelButton)
                                 : <>
-
                                     {customerDetailsStage && CustomerDetails(
                                         setCustomerDetailsStage, setShippingDetailsStage, setCustomerForOrder,
                                         firstName, setFirstName,
@@ -365,10 +353,7 @@ function Checkout() {
                         showButtons={(activeOrderData && activeOrderData.activeOrder && activeOrderData.activeOrder.state) === ('AddingItems')}
                         animate={false} responsive={true}/>
                 </div>}
-
             </div>
-
-
         </div>
     )
 }

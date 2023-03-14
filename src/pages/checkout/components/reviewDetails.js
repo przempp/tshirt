@@ -19,7 +19,6 @@ function ReviewDetails(
                 </div>
                 <div className={'col-md-12 col-lg-6 text-lg-right text-md-left d-flex flex-column'}>
                     <h3>CONTACT</h3>
-                    {/*{console.log(activeOrderData.activeOrder.shippingAddress.customFields.paymentType)}*/}
                     <p className='pb-0 mb-0'>{activeOrderData.activeOrder.shippingAddress.company}</p>
                     <p className='pb-0 mb-0'>{activeOrderData.activeOrder.shippingAddress.phoneNumber}</p>
                     <p className='mt-2'>Payment with: {activeOrderData.activeOrder.shippingAddress.customFields.paymentType}</p>
@@ -30,10 +29,8 @@ function ReviewDetails(
                     <button style={{ margin: '5px' }} type='button' className='my-button' onClick={e => {
                         transitionToPayment()
                         setShippingAddress()
-                        // console.log('Zmiana na arranging payment POSZLA!')
                         setPaymentStage(false)
                         setCustomerPaysStage(true)
-
                     }}>
                         FINALIZE AND PAY!
                     </button>

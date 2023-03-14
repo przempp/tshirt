@@ -15,7 +15,6 @@ import {Carousel} from 'react-responsive-carousel';
 import ReactModal from 'react-modal';
 import Spinner from '../../components/spinner/spinner'
 
-
 function TshirtPage() {
     useEffect(() => {
         if (window.innerWidth < 700) window.scrollTo(0, 240)
@@ -46,9 +45,6 @@ function TshirtPage() {
             refetchQueries: [{query: GET_ACTIVE_ORDER}, 'GetActiveOrder']
         }
     )
-    // if (data) console.log(data.product.variants[variant].facetValues[0].id)
-    // if (productsDesignsData) console.log(productsDesignsData)
-
 
     useEffect(() => {
         // Update the document title using the browser API
@@ -66,8 +62,6 @@ function TshirtPage() {
         <h2 className='loading-status' >ERROR, try refreshing or contact us through
             our <a href='https://t.me/ETDsupportbot'>Telegram bot</a></h2>
     </div>
-    // if (error) return <p className='loading-status'>Error :(</p>;
-    // console.log(activeOrderData)
     let clean = DOMPurify.sanitize(data.product.description, {USE_PROFILES: {html: true}});
 
     const customStyles = {
@@ -94,9 +88,6 @@ function TshirtPage() {
         },
     };
 
-    // console.log(backImage)
-    // console.log(backImageSlug)
-
     const ButtonComponent = (onClickFunction, text) => {
         return (
             <button className="my-button mt-2 w-100 display-6"
@@ -106,7 +97,6 @@ function TshirtPage() {
         )
     }
 
-
     return (
         <div className="row justify-content-center">
             <ReactModal style={customStyles} isOpen={isOpen} shouldCloseOnOverlayClick={true} onRequestClose={() => {
@@ -115,7 +105,6 @@ function TshirtPage() {
                 setIsOpen(false)
                 setIsConfirming(false)
             }}>
-
                 {backDesignDialogueOpen && <div>
                     {!loadingRedbubble && dataRedbubble.facet.values[0].name === 'true' ?
                         <>
@@ -145,7 +134,6 @@ function TshirtPage() {
                             </div>
                         </>}
                 </div>}
-
                 {(isPickingBackDesign) &&
                 <div>
                     <h1 className='text-center' style={{fontSize: '6vh'}}>SELECT DESIRED DESIGN ON THE BACK</h1>
@@ -170,8 +158,6 @@ function TshirtPage() {
                             setBackDesignDialogueOpen(false);
                             setIsPickingBackDesign(false)
                             setIsConfirming((true))
-                            // console.log([data.product.variants[variant].facetValues[0].id])
-                            // console.log(backImage)
                             getProductFeaturedAsset({
                                 variables: {
                                     term: backImage,
@@ -183,7 +169,6 @@ function TshirtPage() {
                         </button>
                     </div>
                 </div>}
-                {/*{console.log(dataRedbubble)}*/}
                 {isConfirming && <div>
                     <h2 className='text-center'>YOUR SHIRT DESIGN:</h2>
                     <div className='d-flex'>
@@ -194,7 +179,6 @@ function TshirtPage() {
                         </div>
                         <div className='d-flex flex-column col-6 text-center'>
                             <h2>BACK</h2>
-                            {/*{backFeaturedAssetData && console.log(backFeaturedAssetData.search)}*/}
                             {backFeaturedAssetData && <img className="animation" alt='product'
                                                            src={`${backFeaturedAssetData.search.items[0].productVariantAsset.preview}?preset=small&format=webp`}/>}
                         </div>
@@ -209,29 +193,19 @@ function TshirtPage() {
                                 }}
                         >ADD TO CART
                         </button>
-
                     </div>
-
                 </div>}
-
-
             </ReactModal>
-
             {/* modal end */}
-
             <div className="col-lg-5 col-md-7 col-xl-6 align-self-center ">
                     <Carousel preventMovementUntilSwipeScrollTolerance={true} showIndicators={false}
                           swipeScrollTolerance={30} showArrows={false} showStatus={false} emulateTouch={true}
                           infiniteLoop={true} onChange={e => setVariant(e)}>
                     <div>
-
                             <img className="animation tshirt-shadow" alt='product'
                                  onLoad={() => {
-                                     // console.log('image loaded')
                                  }}
                                  src={`${data.product.variants[0].featuredAsset.preview}?preset=large&format=webp`}/>
-
-
                     </div>
                     <div>
                         <img className="animation tshirt-shadow" alt='product'
@@ -239,16 +213,12 @@ function TshirtPage() {
                     </div>
                 </Carousel>
             </div>
-
             <div className="col-lg-7 col-md-5 col-xl-6 tshirt-product-info justify-content-center align-self-center ">
                 <div className=' mb-2'>
                     <h1 className="mb-0">{data.product.variants[variant].name}</h1>
-
-
                 </div>
                 <div className='description'>
                     <h2 className='text-justify'>{convertHtmlToReact(clean)}</h2>
-
                     <hr className=" border-top border-bottom border-dark    "/>
                     {(!loadingRedbubble && dataRedbubble.facet.values[0].name === 'true') ?
                         <h2>
@@ -263,12 +233,9 @@ function TshirtPage() {
                                 WIDE SHIPPING +20$</h2> <br/>
                         </>
                     }
-
                 </div>
             </div>
             <div className='w-100' style={{paddingLeft: "15px", paddingRight: "15px"}}>
-                {/*{console.log(dataRedbubble.facet.values[0].name)}*/}
-
                 {ButtonComponent(() => {
                         if (!loadingRedbubble && dataRedbubble.facet.values[0].name === 'true')
                             window.open(data.product.customFields.redbubbleLink, '_blank')
@@ -276,12 +243,10 @@ function TshirtPage() {
                             setIsOpen(true)
                             setBackDesignDialogueOpen(true)
                         }
-
                     },
                     (!loadingRedbubble && dataRedbubble.facet.values[0].name === 'true') ? "BUY ON REDBUBBLE" : "ADD" +
                     " TO CART"
                 )}
-
             </div>
             <div className='col-sm-12 description'>
                 <hr className=" border-top border-bottom border-dark mb-4"/>

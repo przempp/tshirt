@@ -4,7 +4,6 @@ import {ADJUST_ORDER_LINE, GET_ACTIVE_ORDER} from "../../../data/queries";
 
 
 function CartDetailsTable({showButtons = true, animate = true, responsive = false}) {
-    // console.log(showButtons)
     const { data: activeOrderData } = useQuery(GET_ACTIVE_ORDER);
     const [adjustOrderLine] = useMutation(ADJUST_ORDER_LINE,
         {refetchQueries: [{ query: GET_ACTIVE_ORDER }]})

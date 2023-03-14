@@ -76,7 +76,6 @@ function ShippingDetails(
             </div>
         </form>
     )
-
 }
 
 export default ShippingDetails

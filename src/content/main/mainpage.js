@@ -1,4 +1,3 @@
-import logo from "../../logo.svg";
 import tshirts from "../data/tshirtInformation";
 import selectPrint from "../../image/Select Print Front and Back.png"
 import {Link} from "react-router-dom";
