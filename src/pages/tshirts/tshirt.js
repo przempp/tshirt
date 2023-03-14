@@ -145,7 +145,6 @@ function TshirtPage() {
 
                         {
                             (productsDesignsData) && productsDesignsData.collection.productVariants.items.map((items, i) => {
-                                // console.log(items.product)
                                 return (<div id={items.product.name}>
                                     <img className="animation" alt='product'
                                          src={`${items.product.featuredAsset.preview}?w=200&h=150&mode=crop`}/>

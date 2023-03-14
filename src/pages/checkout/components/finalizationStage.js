@@ -1,7 +1,6 @@
 import React from "react";
 
 function FinalizationStage(success, addPaymentData) {
-    console.log(success)
     return (
         (success === true && addPaymentData && addPaymentData.addPaymentToOrder) ?
             <div className='col-12 pl-0 text-center align-self-baseline'>

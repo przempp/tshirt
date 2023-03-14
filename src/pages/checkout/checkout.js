@@ -49,7 +49,6 @@ function Checkout() {
     const [zip, setZip] = useState("");
     const [countryCode, setCountryCode] = useState("");
 
-
     const customStyles = {
         option: (provided, state) => ({
             ...provided,
@@ -66,15 +65,13 @@ function Checkout() {
 
     }
 
-
     const storeCryptoAddresses =
         {
-            bitcoin: 'btc_address',
-            ethereum: 'eth_address',
-            monero: 'xrm_address',
-            litecoin: 'ltc_address'
+            bitcoin: process.env.REACT_APP_BTC_ADDRESS || 'default_btc_address',
+            ethereum: process.env.REACT_APP_ETH_ADDRESS || 'default_eth_address',
+            monero: process.env.REACT_APP_XRM_ADDRESS || 'default_xrm_address',
+            litecoin: process.env.REACT_APP_LTC_ADDRESS || 'default_ltc_address'
         }
-
 
     useEffect(() => {
         if (customerPaysStage) {
@@ -201,7 +198,6 @@ function Checkout() {
         )
     }
 
-
     useEffect(() => {
         if (activeOrderData && activeOrderData.activeOrder && activeOrderData.activeOrder.state === "ArrangingPayment") {
             setSelectedCrypto(activeOrderData.activeOrder.shippingAddress.customFields.paymentType)
@@ -210,20 +206,17 @@ function Checkout() {
         }
     }, [activeOrderData]);
 
-
     useEffect(() => {
         if (setShippingData && setShippingData.setOrderShippingAddress.shippingAddress.country) {
             getShippingMethods()
         }
     }, [setShippingData, getShippingMethods])
 
-
     useEffect(() => {
         if (cryptoPrice && activeOrderData.activeOrder && (activeOrderData.activeOrder.shippingAddress.customFields.cryptoPrice === 0)) {
             setShippingAddress()
         }
     }, [cryptoPrice, setShippingAddress, activeOrderData])
-
 
     const [setCustomerForOrder] = useMutation(SET_CUSTOMER_FOR_ORDER,
         {
@@ -270,16 +263,12 @@ function Checkout() {
         }
     }, [activeOrderLoading, activeOrderData])
 
-
-
-
     return (
         <div>
             <div className='row flex-wrap-reverse'>
                 {(activeOrderData && activeOrderData.activeOrder && (activeOrderData.activeOrder.totalQuantity !== 0)) || finalStage ?
                     <div className={'col-md-6 col-lg-7'}>
                         <div>
-                            {activeOrderData && activeOrderData.activeOrder && console.log(activeOrderData.activeOrder.state)}
                             {(activeOrderData && activeOrderData.activeOrder && activeOrderData.activeOrder.state === "ArrangingPayment") ?
                                 customerPaysStage && CustomerPays(
                                     activeOrderData,
@@ -341,13 +330,10 @@ function Checkout() {
                                 </>}
 
                         </div>
-
-
                     </div>
                     : <div className='col-md-6 col-lg-6 text-center align-self-baseline'>
                         <h2>NO ORDER</h2>
                     </div>}
-
                 {!finalStage && <div className='col-md-6 col-lg-5 '>
                     <CartDetailsTable
                         showButtons={(activeOrderData && activeOrderData.activeOrder && activeOrderData.activeOrder.state) === ('AddingItems')}
