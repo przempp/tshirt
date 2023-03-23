@@ -24,7 +24,7 @@ import CoinGeckoApi from '@crypto-coffee/coingecko-api'
 
 
 function Checkout() {
-    const [customerDetailsStage, setCustomerDetailsStage] = useState(true)
+    const [customerDetailsStage, setCustomerDetailsStage] = useState(true) //needs rewriting
     const [shippingDetailsStage, setShippingDetailsStage] = useState(false)
     const [shippingMethodStage, setShippingMethodStage] = useState(false)
     const [paymentMethodStage, setPaymentMethodStage] = useState(false)
@@ -38,7 +38,7 @@ function Checkout() {
     const [shippingType, setShippingType] = useState(0);
     const [transactionID, setTransactionID] = useState('');
 
-    const [firstName, setFirstName] = useState("");
+    const [firstName, setFirstName] = useState(""); //needs rewriting
     const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
     const [telegram, setTelegram] = useState("");
