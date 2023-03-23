@@ -2,8 +2,9 @@ import React from "react";
 
 function ReviewDetails(
     activeOrderData, transitionToPayment,
-    setShippingAddress, setPaymentStage, setCustomerPaysStage,
-    cancelButton, editButton
+    setShippingAddress,
+    cancelButton, editButton,
+    currentOrderStage, setCurrentOrderStage
 ) {
 
     return(
@@ -30,9 +31,7 @@ function ReviewDetails(
                     <button style={{ margin: '5px' }} type='button' className='my-button' onClick={e => {
                         transitionToPayment()
                         setShippingAddress()
-                        // console.log('Zmiana na arranging payment POSZLA!')
-                        setPaymentStage(false)
-                        setCustomerPaysStage(true)
+                        setCurrentOrderStage('customerPaysStage')
 
                     }}>
                         FINALIZE AND PAY!
@@ -41,7 +40,7 @@ function ReviewDetails(
 
                 <div >
                     <span style={{ margin: '2.5px' }} > {cancelButton()} </span>
-                    <span style={{ margin: '2.5px' }} > {editButton(setPaymentStage)} </span>
+                    <span style={{ margin: '2.5px' }} > {editButton()} </span>
 
                 </div>
 

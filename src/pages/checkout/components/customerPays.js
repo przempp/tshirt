@@ -7,9 +7,8 @@ function CustomerPays(
     storeCryptoAddresses,
     setTransactionID,
     addPayment,
-    setCustomerPaysStage,
-    setFinalStage, setCustomerDetailsStage,
-    editButton, cancelButton
+    editButton, cancelButton,
+    currentOrderStage, setCurrentOrderStage
 ) {
 
     return (
@@ -41,10 +40,7 @@ function CustomerPays(
                 <div style={{margin: '5px'}}>
                     <button type='button' className='my-button' onClick={e => {
                         addPayment()
-                        setCustomerPaysStage(false)
-                        setFinalStage(true)
-                        setCustomerDetailsStage(false)
-
+                        setCurrentOrderStage('finalStage')
                     }}>
                         FINALIZE AND PAY!
                     </button>
@@ -52,7 +48,7 @@ function CustomerPays(
 
                 <div>
                     <span style={{margin: '2.5px'}}> {cancelButton()} </span>
-                    <span style={{margin: '2.5px'}}> {editButton(setCustomerPaysStage)} </span>
+                    {/* <span style={{margin: '2.5px'}}> {editButton(setCustomerPaysStage)} </span> */}
 
                 </div>
 

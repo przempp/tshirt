@@ -19,18 +19,13 @@ import PaymentMethod from './components/paymentMethod'
 import ReviewDetails from './components/reviewDetails'
 import FinalizationStage from './components/finalizationStage'
 import CustomerPays from './components/customerPays'
+import useRenderBasedOnCase from './components/useRenderBasedOnCase'
 
 import CoinGeckoApi from '@crypto-coffee/coingecko-api'
 
 
 function Checkout() {
-    const [customerDetailsStage, setCustomerDetailsStage] = useState(true) //needs rewriting
-    const [shippingDetailsStage, setShippingDetailsStage] = useState(false)
-    const [shippingMethodStage, setShippingMethodStage] = useState(false)
-    const [paymentMethodStage, setPaymentMethodStage] = useState(false)
-    const [paymentStage, setPaymentStage] = useState(false)
-    const [customerPaysStage, setCustomerPaysStage] = useState(false)
-    const [finalStage, setFinalStage] = useState(false)
+    const [currentOrderStage, setCurrentOrderStage] = useState("customerDetailsStage")
 
     const [cryptoPrice, setCryptoPrice] = useState(0)
     const [secondsSinceOrderPlaced, setSecondsSinceOrderPlaced] = useState(0)
@@ -38,18 +33,13 @@ function Checkout() {
     const [shippingType, setShippingType] = useState(0);
     const [transactionID, setTransactionID] = useState('');
 
-    const [firstName, setFirstName] = useState(""); //needs rewriting
-    const [lastName, setLastName] = useState("");
-    const [email, setEmail] = useState("");
-    const [telegram, setTelegram] = useState("");
-
-    const [address, setAddress] = useState("");
-    const [address2, setAddress2] = useState("");
-    const [city, setCity] = useState("");
-    const [province, setProvince] = useState("");
-    const [zip, setZip] = useState("");
-    const [countryCode, setCountryCode] = useState("");
-
+    const [customerDetails, setCustomerDetails] = useState({
+        firstName: "", lastName: "",
+        email: "",     telegram: "",
+        address: "", address2: "",
+        city: "",    province: "",
+        zip: "",     countryCode: "",
+      });
 
     const customStyles = {
         option: (provided, state) => ({
@@ -67,7 +57,6 @@ function Checkout() {
 
     }
 
-
     const storeCryptoAddresses =
         {
             bitcoin: 'btc_address',
@@ -76,9 +65,8 @@ function Checkout() {
             litecoin: 'ltc_address'
         }
 
-
     useEffect(() => {
-        if (customerPaysStage) {
+        if (currentOrderStage === 'customerPaysStage') {
             ;(async () => {
                 try {
                     const coinGeckoApi = new CoinGeckoApi()
@@ -91,20 +79,20 @@ function Checkout() {
                 }
             })()
         }
-    }, [customerPaysStage, selectedCrypto]);
+    }, [currentOrderStage, selectedCrypto]);
 
-    console.log(cryptoPrice)
+   
 
     let input = {
-        fullName: `${firstName} ${lastName}`,
-        company: email,
-        streetLine1: address,
-        streetLine2: address2,
-        city: city,
-        province: province,
-        postalCode: zip,
-        countryCode: countryCode.value,
-        phoneNumber: telegram,
+        fullName: `${customerDetails.firstName} ${customerDetails.lastName}`,
+        company: customerDetails.email,
+        streetLine1: customerDetails.address,
+        streetLine2: customerDetails.address2,
+        city: customerDetails.city,
+        province: customerDetails.province,
+        postalCode: customerDetails.zip,
+        countryCode: customerDetails.countryCode.value,
+        phoneNumber: customerDetails.telegram,
         customFields: {
             cryptoPrice: +(cryptoPrice),
             paymentType: selectedCrypto,
@@ -116,7 +104,7 @@ function Checkout() {
         data: shippingOrderData,
     }] = useLazyQuery(GET_ELIGIBLE_SHIPPING_METHODS,
         {fetchPolicy: 'network-only'}); // without this the cached shipping data is used, which might not be
-    // eligible for  the current order
+                                        // eligible for  the current order
     const {data: countriesData} = useQuery(GET_AVAILABLE_COUNTRIES);
     const {loading: activeOrderLoading, data: activeOrderData} = useQuery(GET_ACTIVE_ORDER);
     const [setShippingAddress, {
@@ -166,16 +154,12 @@ function Checkout() {
             const orderTimeInSeconds = Date.parse(activeOrderData.activeOrder.shippingAddress.customFields.paymentStartDate) / 1000
             const timeoutTimeForOrder = (orderTimeInSeconds + 1800)
             let whenTimeout = timeoutTimeForOrder - currentTimeInSeconds
-            console.log("Pozostalo do timeoutu:")
-            console.log(whenTimeout)
             const interval = setInterval(() => {
                 whenTimeout--
                 setSecondsSinceOrderPlaced(whenTimeout)
-                console.log(whenTimeout)
                 if (whenTimeout <= 0) {
                     transitionOrderState({variables: {input: 'Cancelled'}, refetchQueries: [{query: GET_ACTIVE_ORDER}]})
-                    setFinalStage(false)
-                    setCustomerDetailsStage(false)
+                    setCurrentOrderStage('')
                 }
             }, 1000);
             return () => clearInterval(interval);
@@ -186,21 +170,18 @@ function Checkout() {
         return (
             <button className='my-button small'  onClick={() => {
                 transitionOrderState({variables: {input: 'Cancelled'}, refetchQueries: [{query: GET_ACTIVE_ORDER}]})
-                setFinalStage(false)
-                setCustomerDetailsStage(false)
+                setCurrentOrderStage('')
             }}>
                 Cancel order
             </button>
         )
     }
 
-    function editButton(setStage) {
+    function editButton() {
         return (
             <button className='my-button small'  onClick={() => {
                 transitionOrderState({variables: {input: 'AddingItems'}})
-                setCustomerDetailsStage(true)
-                setStage(false)
-
+                setCurrentOrderStage('customerDetailsStage')
             }}>
                 Edit order
             </button>
@@ -210,8 +191,7 @@ function Checkout() {
     useEffect(() => {
         if (activeOrderData && activeOrderData.activeOrder && activeOrderData.activeOrder.state === "ArrangingPayment") {
             setSelectedCrypto(activeOrderData.activeOrder.shippingAddress.customFields.paymentType)
-            setCustomerDetailsStage(false)
-            setCustomerPaysStage(true)
+            setCurrentOrderStage('customerPaysStage')
         }
     }, [activeOrderData]);
 
@@ -231,13 +211,13 @@ function Checkout() {
         {
             variables: {
                 input: {
-                    emailAddress: email,
-                    firstName: firstName,
-                    lastName: lastName,
+                    emailAddress: customerDetails.email,
+                    firstName: customerDetails.firstName,
+                    lastName: customerDetails.lastName,
                 }
             }
         })
-        
+    
     let shippingMethodsFormated = []
     if (shippingOrderData) shippingOrderData.eligibleShippingMethods.forEach(method => {
         shippingMethodsFormated.push({
@@ -247,7 +227,6 @@ function Checkout() {
     })
     let countriesDataFormated = []
     countriesData && countriesData.availableCountries.forEach((data, i) => {
-
         countriesDataFormated.push({
             value: data.code,
             label: data.name
@@ -260,111 +239,72 @@ function Checkout() {
 
     useEffect(() => {
         if (activeOrderData && activeOrderData.activeOrder) {
-            setTelegram(activeOrderData.activeOrder.shippingAddress.phoneNumber)
-            setAddress(activeOrderData.activeOrder.shippingAddress.streetLine1)
-            setAddress2(activeOrderData.activeOrder.shippingAddress.streetLine2)
-            setCity(activeOrderData.activeOrder.shippingAddress.city)
-            setProvince(activeOrderData.activeOrder.shippingAddress.province)
-            setZip(activeOrderData.activeOrder.shippingAddress.postalCode)
-            setCountryCode({
+            setCustomerDetails({
+                ...customerDetails,
+            telegram: activeOrderData.activeOrder.shippingAddress.phoneNumber,
+            address: activeOrderData.activeOrder.shippingAddress.streetLine1,
+            address2: activeOrderData.activeOrder.shippingAddress.streetLine2,
+            city: activeOrderData.activeOrder.shippingAddress.city,
+            province: activeOrderData.activeOrder.shippingAddress.province,
+            zip: activeOrderData.activeOrder.shippingAddress.postalCode,
+            countryCode: {
                 value: activeOrderData.activeOrder.shippingAddress.countryCode,
                 label: activeOrderData.activeOrder.shippingAddress.countryCode
+            }
             })
         }
     }, [activeOrderLoading, activeOrderData])
 
-
-
+      const { renderBasedOnCase } = useRenderBasedOnCase({
+        customerDetails, setCustomerDetails,
+        setCustomerForOrder,cancelButton,
+        setCurrentOrderStage,
+        setShippingAddress,countriesDataFormated,
+        shippingType, setShippingType,
+        setShippingMethod, shippingMethodsFormated,
+        customStyles, setSelectedCrypto, selectedCrypto,
+        activeOrderData, transitionToPayment,
+        editButton, secondsSinceOrderPlaced,
+        storeCryptoAddresses, setTransactionID, addPayment,
+        CustomerDetails, ShippingDetails, ShippingMethod, PaymentMethod, ReviewDetails, CustomerPays
+      });
 
     return (
         <div>
-            <div className='row flex-wrap-reverse'>
-
-                {(activeOrderData && activeOrderData.activeOrder && (activeOrderData.activeOrder.totalQuantity !== 0)) || finalStage ?
+            <div className='row flex-wrap-reverse justify-content-center'>
+                {(activeOrderData && activeOrderData.activeOrder && (activeOrderData.activeOrder.totalQuantity !== 0)) || currentOrderStage === 'finalStage' ?
                     <div className={'col-md-6 col-lg-7'}>
                         <div>
-
-                            {activeOrderData && activeOrderData.activeOrder && console.log(activeOrderData.activeOrder.state)}
-
-                            {(activeOrderData && activeOrderData.activeOrder && activeOrderData.activeOrder.state === "ArrangingPayment") ?
-
-                                customerPaysStage && CustomerPays(
+                    {`currently: ${currentOrderStage}`}
+                        
+                            {(activeOrderData && activeOrderData.activeOrder && activeOrderData.activeOrder.state === "ArrangingPayment") ? 
+                            currentOrderStage === 'customerPaysStage' && CustomerPays(
                                     activeOrderData,
                                     secondsSinceOrderPlaced,
                                     selectedCrypto,
                                     storeCryptoAddresses,
                                     setTransactionID,
                                     addPayment,
-                                    setCustomerPaysStage,
-                                    setFinalStage, setCustomerDetailsStage,
-                                    editButton, cancelButton)
+                                    editButton, cancelButton,
+                                    currentOrderStage, setCurrentOrderStage)
                                 : <>
+                                {renderBasedOnCase(currentOrderStage)}
 
-                                    {customerDetailsStage && CustomerDetails(
-                                        setCustomerDetailsStage, setShippingDetailsStage, setCustomerForOrder,
-                                        firstName, setFirstName,
-                                        lastName, setLastName,
-                                        email, setEmail,
-                                        telegram, setTelegram,
-                                        cancelButton
-                                    )}
-
-                                    {shippingDetailsStage && ShippingDetails(
-                                        setShippingAddress, setShippingMethodStage, setShippingDetailsStage,
-                                        setAddress, address,
-                                        address2, setAddress2,
-                                        city, setCity,
-                                        province, setProvince,
-                                        zip, setZip,
-                                        countryCode, setCountryCode,
-                                        countriesDataFormated,
-                                        cancelButton
-                                    )}
-
-                                    {shippingMethodStage && ShippingMethod(
-                                        shippingType, setShippingType,
-                                        setShippingMethodStage, setPaymentMethodStage,
-                                        setShippingMethod, shippingMethodsFormated,
-                                        customStyles,
-                                        cancelButton
-                                    )}
-
-                                    {paymentMethodStage && PaymentMethod(
-                                        setPaymentMethodStage, setPaymentStage,
-                                        setSelectedCrypto, selectedCrypto,
-                                        setShippingAddress, shippingType,
-                                        cancelButton
-                                    )}
-
-                                    {paymentStage && ReviewDetails(
-                                        activeOrderData, transitionToPayment,
-                                        setShippingAddress, setPaymentStage, setCustomerPaysStage,
-                                        cancelButton, editButton
-                                    )}
-
-                                    {(finalStage && addPaymentData && addPaymentData.addPaymentToOrder && addPaymentData.addPaymentToOrder.errorCode) ?
-                                        FinalizationStage(false, addPaymentData)
-                                        : FinalizationStage(true, addPaymentData)}
-
+                                    {(currentOrderStage === 'finalStage' && addPaymentData && addPaymentData.addPaymentToOrder && addPaymentData.addPaymentToOrder.errorCode) 
+                                    ? FinalizationStage(false, addPaymentData)
+                                    : FinalizationStage(true, addPaymentData)}
                                 </>}
-
                         </div>
-
-
                     </div>
                     : <div className='col-md-6 col-lg-6 text-center align-self-baseline'>
                         <h2>NO ORDER</h2>
                     </div>}
-
-                {!finalStage && <div className='col-md-6 col-lg-5 '>
+                {currentOrderStage !== 'finalStage' && <div className='col-md-6 col-lg-5 '>
                     <CartDetailsTable
                         showButtons={(activeOrderData && activeOrderData.activeOrder && activeOrderData.activeOrder.state) === ('AddingItems')}
                         animate={false} responsive={true}/>
                 </div>}
-
             </div>
-
-
         </div>
     )
 }

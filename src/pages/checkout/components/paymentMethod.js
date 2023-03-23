@@ -2,10 +2,10 @@ import {Form} from "react-bootstrap";
 import React from "react";
 
 function PaymentMethod(
-    setPaymentMethodStage, setPaymentStage,
     setSelectedCrypto, selectedCrypto,
     setShippingAddress, shippingType,
-    cancelButton
+    cancelButton,
+    currentOrderStage, setCurrentOrderStage
 ) {
     return (
         <Form>
@@ -42,8 +42,7 @@ function PaymentMethod(
                 {cancelButton()}
                 <button onClick={e => {
                     setShippingAddress()
-                    setPaymentMethodStage(false)
-                    setPaymentStage(true)
+                    setCurrentOrderStage('paymentStage')
                 }} className="my-button small" disabled={(!shippingType)} type='button'>Finalize
                 </button>
             </div>

@@ -4,10 +4,10 @@ import React from "react";
 
 function ShippingMethod(
     shippingType, setShippingType,
-    setShippingMethodStage, setPaymentMethodStage,
     setShippingMethod, shippingMethodsFormated,
     customStyles,
-    cancelButton
+    cancelButton,
+    currentOrderStage, setCurrentOrderStage 
 ) {
 
     return (
@@ -24,8 +24,7 @@ function ShippingMethod(
                 {cancelButton()}
                 <button onClick={() => {
                     setShippingMethod()
-                    setShippingMethodStage(false)
-                    setPaymentMethodStage(true)
+                    setCurrentOrderStage('paymentMethodStage')
                 }} className="my-button small" disabled={(!shippingType)} type='button'>Set Shipping
                 </button>
             </div>
