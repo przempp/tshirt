@@ -1,7 +1,7 @@
 function useRenderBasedOnCase({
   customerDetails, setCustomerDetails,
   setCustomerForOrder,cancelButton,
-  , setCurrentOrderStage,
+  setCurrentOrderStage,
   setShippingAddress,countriesDataFormated,
   shippingType, setShippingType,
   setShippingMethod, shippingMethodsFormated,

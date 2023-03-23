@@ -1,8 +1,6 @@
 import { Link, NavLink} from 'react-router-dom'
 import React from 'react';
 
-
-
 function Navbar() {
     return (
         <div className="navbar d-flex justify-content-center align-items-center flex-column ">
