@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useMemo, useCallback} from 'react';
 import {useLazyQuery, useMutation, useQuery,} from "@apollo/client";
 import {
     ADD_PAYMENT,
@@ -54,7 +54,6 @@ function Checkout() {
             ...provided,
             color: 'black'
         }),
-
     }
 
     const storeCryptoAddresses =
@@ -81,9 +80,7 @@ function Checkout() {
         }
     }, [currentOrderStage, selectedCrypto]);
 
-   
-
-    let input = {
+    const input = useMemo(() => ({
         fullName: `${customerDetails.firstName} ${customerDetails.lastName}`,
         company: customerDetails.email,
         streetLine1: customerDetails.address,
@@ -94,11 +91,11 @@ function Checkout() {
         countryCode: customerDetails.countryCode.value,
         phoneNumber: customerDetails.telegram,
         customFields: {
-            cryptoPrice: +(cryptoPrice),
-            paymentType: selectedCrypto,
-            paymentStartDate: new Date()
+          cryptoPrice: +cryptoPrice,
+          paymentType: selectedCrypto,
+          paymentStartDate: new Date()
         }
-    }
+      }), [customerDetails, cryptoPrice, selectedCrypto]);
 
     const [getShippingMethods, {
         data: shippingOrderData,
@@ -148,24 +145,28 @@ function Checkout() {
             refetchQueries: [{query: GET_ACTIVE_ORDER}]
         }
     )
-    useEffect(() => {
+    const cancelOrder = useCallback(() => {
+        transitionOrderState({variables: {input: 'Cancelled'}, refetchQueries: [{query: GET_ACTIVE_ORDER}]})
+        setCurrentOrderStage('')
+      }, [transitionOrderState, setCurrentOrderStage])
+      
+      useEffect(() => {
         if (activeOrderData && activeOrderData.activeOrder && activeOrderData.activeOrder.state === "ArrangingPayment") {
-            const currentTimeInSeconds = Date.parse(new Date()) / 1000
-            const orderTimeInSeconds = Date.parse(activeOrderData.activeOrder.shippingAddress.customFields.paymentStartDate) / 1000
-            const timeoutTimeForOrder = (orderTimeInSeconds + 1800)
-            let whenTimeout = timeoutTimeForOrder - currentTimeInSeconds
-            const interval = setInterval(() => {
-                whenTimeout--
-                setSecondsSinceOrderPlaced(whenTimeout)
-                if (whenTimeout <= 0) {
-                    transitionOrderState({variables: {input: 'Cancelled'}, refetchQueries: [{query: GET_ACTIVE_ORDER}]})
-                    setCurrentOrderStage('')
-                }
-            }, 1000);
-            return () => clearInterval(interval);
+          const currentTimeInSeconds = Date.parse(new Date()) / 1000
+          const orderTimeInSeconds = Date.parse(activeOrderData.activeOrder.shippingAddress.customFields.paymentStartDate) / 1000
+          const timeoutTimeForOrder = (orderTimeInSeconds + 1800)
+          let whenTimeout = timeoutTimeForOrder - currentTimeInSeconds
+          const interval = setInterval(() => {
+            whenTimeout--
+            setSecondsSinceOrderPlaced(whenTimeout)
+            if (whenTimeout <= 0) {
+              cancelOrder()
+            }
+          }, 1000);
+          return () => clearInterval(interval);
         }
-    }, [activeOrderData, transitionOrderState])
-
+      }, [activeOrderData, cancelOrder, setSecondsSinceOrderPlaced])
+      
     const cancelButton = () => {
         return (
             <button className='my-button small'  onClick={() => {
