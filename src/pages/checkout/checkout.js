@@ -275,7 +275,6 @@ function Checkout() {
                 {(activeOrderData && activeOrderData.activeOrder && (activeOrderData.activeOrder.totalQuantity !== 0)) || currentOrderStage === 'finalStage' ?
                     <div className={'col-md-6 col-lg-7'}>
                         <div>
-                    {`currently: ${currentOrderStage}`}
                         
                             {(activeOrderData && activeOrderData.activeOrder && activeOrderData.activeOrder.state === "ArrangingPayment") ? 
                             currentOrderStage === 'customerPaysStage' && CustomerPays(
